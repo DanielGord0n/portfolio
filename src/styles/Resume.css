@@ -1,0 +1,51 @@
+.resume-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.resume-title {
+  color: #c9927a;
+  font-weight: normal;
+  margin-bottom: 3rem;
+  display: none; /* Hidden as in the design */
+}
+
+.experiences {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.experience {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 2rem;
+}
+
+.experience-header {
+  color: #c9927a;
+}
+
+.company {
+  font-size: 1.2rem;
+  font-weight: normal;
+  margin: 0;
+}
+
+.position {
+  font-weight: normal;
+}
+
+.experience-content {
+  color: #c9927a;
+}
+
+.description {
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.skills {
+  margin-top: 1rem;
+}
