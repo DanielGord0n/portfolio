@@ -1,0 +1,34 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 2rem;
+}
+
+.logo a {
+  font-size: 1.5rem;
+  text-decoration: none;
+  color: #c9927a;
+  font-weight: normal;
+}
+
+.nav ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav ul li {
+  margin-left: 2rem;
+}
+
+.nav ul li a {
+  text-decoration: none;
+  color: #c9927a;
+  transition: all 0.3s ease;
+}
+
+.nav ul li a:hover {
+  text-decoration: underline;
+}
