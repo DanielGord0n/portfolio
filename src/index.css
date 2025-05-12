@@ -71,6 +71,15 @@ body {
   scroll-padding-top: 100px;
 }
 
+/* Add top padding to prevent navbar overlap */
+.home-container,
+.skills-container,
+.resume-container,
+.contact-container,
+.projects-container {
+  padding-top: 100px !important;
+}
+
 body::before {
   content: '';
   position: fixed;

@@ -63,12 +63,6 @@ const Resume = () => {
         <h1>My Resume</h1>
         <div className="resume-tabs">
           <button 
-            className={`tab-btn ${activeTab === 'view' ? 'active' : ''}`}
-            onClick={() => setActiveTab('view')}
-          >
-            View Experience
-          </button>
-          <button 
             className={`tab-btn ${activeTab === 'pdf' ? 'active' : ''}`}
             onClick={() => setActiveTab('pdf')}
           >
@@ -83,63 +77,7 @@ const Resume = () => {
         </div>
       </div>
       
-      {activeTab === 'view' ? (
-        <div className="resume-content">
-          <section className="resume-section">
-            <h2 className="section-title">Professional Experience</h2>
-            <div className="experiences">
-              {experiences.map((exp, index) => (
-                <div className="experience" key={index}>
-                  <div className="experience-header">
-                    <h3 className="company">{exp.company}</h3>
-                    <span className="period">{exp.period}</span>
-                  </div>
-                  <p className="position">{exp.position}</p>
-                  <p className="description">{exp.description}</p>
-                  <div className="achievements">
-                    <h4>Key Achievements:</h4>
-                    <ul>
-                      {exp.achievements.map((achievement, idx) => (
-                        <li key={idx}>{achievement}</li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </section>
-          
-          <section className="resume-section">
-            <h2 className="section-title">Education</h2>
-            <div className="education">
-              {education.map((edu, index) => (
-                <div className="education-item" key={index}>
-                  <div className="education-header">
-                    <h3 className="institution">{edu.institution}</h3>
-                    <span className="period">{edu.period}</span>
-                  </div>
-                  <p className="degree">{edu.degree}</p>
-                  <p className="details">{edu.details}</p>
-                </div>
-              ))}
-            </div>
-          </section>
-          
-          <section className="resume-section">
-            <h2 className="section-title">Certifications</h2>
-            <div className="certifications">
-              {certifications.map((cert, index) => (
-                <div className="certification-item" key={index}>
-                  <h3 className="certification-name">{cert.name}</h3>
-                  <p className="certification-details">
-                    {cert.issuer} | {cert.year}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </section>
-        </div>
-      ) : activeTab === 'pdf' ? (
+      {activeTab === 'pdf' ? (
         <div className="resume-pdf-viewer">
           <div className="pdf-container">
             <iframe 

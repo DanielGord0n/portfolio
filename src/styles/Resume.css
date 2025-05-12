@@ -487,6 +487,34 @@
   margin-bottom: 0;
 }
 
+/* Resume action button */
+.resume-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 3rem;
+}
+
+.resume-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1.75rem;
+  background: var(--accent-gradient);
+  color: var(--bg-primary);
+  border: 1px solid var(--accent-primary);
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-size: var(--fz-md);
+  transition: var(--transition);
+  text-decoration: none;
+  box-shadow: var(--card-shadow);
+}
+
+.resume-action-btn:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
 .additional-info {
   font-size: var(--fz-sm);
   color: var(--text-secondary);
