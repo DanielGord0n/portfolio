@@ -41,15 +41,17 @@
   padding: 10px;
 }
 
+/* Removed < symbol as requested */
 .logo a::before {
-  content: '<';
-  margin-right: 5px;
+  content: '';
+  margin-right: 0;
   color: var(--accent-primary);
 }
 
+/* Removed /> symbol for consistency */
 .logo a::after {
-  content: '/>';
-  margin-left: 5px;
+  content: '';
+  margin-left: 0;
   color: var(--accent-primary);
 }
 
@@ -65,7 +67,6 @@
 .nav ul li {
   margin-left: 30px;
   position: relative;
-  counter-increment: item 1;
   font-family: 'Fira Code', monospace;
 }
 
@@ -81,14 +82,7 @@
   position: relative;
 }
 
-.nav ul li a::before {
-  content: '0' counter(item) '.';
-  color: var(--accent-primary);
-  font-size: var(--fz-xxs);
-  margin-right: 5px;
-  text-align: right;
-  transition: var(--transition);
-}
+/* Numbers removed from nav items as requested */
 
 .nav ul li a:hover {
   color: var(--accent-primary);
