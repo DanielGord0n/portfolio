@@ -40,7 +40,7 @@ const Home = () => {
         }
       });
     };
-  }, []);
+  }, [sectionRefs]);
 
   return (
     <div className="home-container">
@@ -73,22 +73,25 @@ const Home = () => {
         <div className="about-content">
           <div className="about-text">
             <p>
-              Hello! I'm Daniel, a passionate developer who enjoys creating things that live on the internet. My interest in web development started back in 2015 when I built my first website—turns out hacking together custom themes taught me a lot about HTML & CSS!
+              Hello! I'm Daniel Gordon, currently in my fourth year of the Honours Bachelor of Computer Science and Management program at Wilfrid Laurier University. Based in Vaughan, Ontario, I've been drawn to software development by a lifelong passion for problem-solving and building tools that make users' lives easier.
             </p>
             <p>
-              Fast-forward to today, and I've had the privilege of working at various companies, from startups to corporations. My main focus these days is building accessible, inclusive products and digital experiences for a variety of clients.
+              Over the past year as a Contract Full Stack Developer, I've engineered an AI-powered WhatsApp chat summarizer by integrating the WhatsApp API with Gemini AI, developed a scheduled email-delivery system using Node.js, and led the UI/UX build of a Framer-powered CMS website with interactive features.
             </p>
             <p>
-              Here are a few technologies I've been working with recently:
+              I'm comfortable participating in agile sprints, conducting pair-programming sessions, and writing clean, testable code. I welcome code reviews as an opportunity to learn and share best practices.
+            </p>
+            <p>
+              Here are the core technologies I work with daily:
             </p>
             
             <ul className="skills-list">
-              <li>JavaScript (ES6+)</li>
               <li>React</li>
               <li>Node.js</li>
-              <li>TypeScript</li>
-              <li>GraphQL</li>
-              <li>AWS</li>
+              <li>MySQL</li>
+              <li>Prisma</li>
+              <li>RESTful APIs</li>
+              <li>JavaScript/TypeScript</li>
             </ul>
           </div>
           
@@ -116,64 +119,108 @@ const Home = () => {
           <div className="featured-project">
             <div className="project-content">
               <p className="project-overline">Featured Project</p>
-              <h3 className="project-title">E-Commerce Platform</h3>
+              <h3 className="project-title">AI-Powered WhatsApp Summarizer</h3>
               <div className="project-description">
                 <p>
-                  A comprehensive e-commerce solution with user authentication, product management, shopping cart functionality, and secure payment processing integration. The platform includes an admin dashboard for inventory management and sales analytics.                  
+                  Engineered a chat summarization tool that integrates the WhatsApp API with Gemini AI to automatically condense lengthy message threads into concise daily digests, improving information retention and reducing cognitive overload for users.                
                 </p>
               </div>
               <ul className="project-tech-list">
-                <li>React</li>
                 <li>Node.js</li>
-                <li>MongoDB</li>
+                <li>WhatsApp API</li>
+                <li>Gemini AI</li>
+                <li>RESTful APIs</li>
                 <li>Express</li>
-                <li>Stripe API</li>
               </ul>
               <div className="project-links">
-                <a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="GitHub Link">
-                  <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><title>GitHub</title><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                <a href="https://github.com/DanielGord0n" target="_blank" rel="noopener noreferrer">
+                  <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                  </svg>
                 </a>
-                <a href="https://example.com" target="_blank" rel="noopener noreferrer" aria-label="External Link">
-                  <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><title>External Link</title><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                <a href="#" target="_blank" rel="noopener noreferrer">
+                  <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                    <polyline points="15 3 21 3 21 9"></polyline>
+                    <line x1="10" y1="14" x2="21" y2="3"></line>
+                  </svg>
                 </a>
               </div>
             </div>
             <div className="project-image">
-              <a href="https://example.com" target="_blank" rel="noopener noreferrer">
-                <img src="https://via.placeholder.com/600x340/3a4a5c/ffffff?text=E-Commerce+App" alt="E-Commerce Platform" />
-              </a>
+              <img src="https://via.placeholder.com/600x350/112240/64ffda?text=WhatsApp+AI+Summarizer" alt="WhatsApp AI Summarizer screenshot" />
             </div>
           </div>
           
           <div className="featured-project right">
             <div className="project-content">
               <p className="project-overline">Featured Project</p>
-              <h3 className="project-title">Task Management System</h3>
+              <h3 className="project-title">Automated Email Digest System</h3>
               <div className="project-description">
                 <p>
-                  A collaborative task management application built for teams with real-time updates, user role management, and progress tracking. Features include Kanban boards, sprint planning, and integration with third-party services.
+                  Developed a scheduled email-delivery system that sends WhatsApp conversation summaries to subscribers, reducing manual review time by over 80% through a Node.js back-end and cloud-based mail services with robust error handling.               
                 </p>
               </div>
               <ul className="project-tech-list">
-                <li>Vue.js</li>
-                <li>Firebase</li>
-                <li>Vuex</li>
-                <li>Chart.js</li>
-                <li>Socket.io</li>
+                <li>Node.js</li>
+                <li>Express</li>
+                <li>Cloud Mail Services</li>
+                <li>Scheduled Tasks</li>
+                <li>MySQL/Prisma</li>
               </ul>
               <div className="project-links">
-                <a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="GitHub Link">
-                  <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><title>GitHub</title><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                <a href="https://github.com/DanielGord0n" target="_blank" rel="noopener noreferrer">
+                  <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                  </svg>
                 </a>
-                <a href="https://example.com" target="_blank" rel="noopener noreferrer" aria-label="External Link">
-                  <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><title>External Link</title><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                <a href="#" target="_blank" rel="noopener noreferrer">
+                  <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                    <polyline points="15 3 21 3 21 9"></polyline>
+                    <line x1="10" y1="14" x2="21" y2="3"></line>
+                  </svg>
                 </a>
               </div>
             </div>
             <div className="project-image">
-              <a href="https://example.com" target="_blank" rel="noopener noreferrer">
-                <img src="https://via.placeholder.com/600x340/3a4a5c/ffffff?text=Task+Manager" alt="Task Management System" />
-              </a>
+              <img src="https://via.placeholder.com/600x350/112240/64ffda?text=Email+Digest+System" alt="Email Digest System screenshot" />
+            </div>
+          </div>
+          
+          <div className="featured-project">
+            <div className="project-content">
+              <p className="project-overline">Featured Project</p>
+              <h3 className="project-title">Futures and Fringes CMS Website</h3>
+              <div className="project-description">
+                <p>
+                  Led the UI/UX build of a Framer-powered CMS website, integrating newsletter sign-ups, interactive scroll effects, and dynamic case-study pages to enhance user engagement and provide an intuitive content management experience for the client.             
+                </p>
+              </div>
+              <ul className="project-tech-list">
+                <li>Framer</li>
+                <li>CMS Integration</li>
+                <li>UI/UX Design</li>
+                <li>Responsive Design</li>
+                <li>Interactive Elements</li>
+              </ul>
+              <div className="project-links">
+                <a href="https://github.com/DanielGord0n" target="_blank" rel="noopener noreferrer">
+                  <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                  </svg>
+                </a>
+                <a href="#" target="_blank" rel="noopener noreferrer">
+                  <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                    <polyline points="15 3 21 3 21 9"></polyline>
+                    <line x1="10" y1="14" x2="21" y2="3"></line>
+                  </svg>
+                </a>
+              </div>
+            </div>
+            <div className="project-image">
+              <img src="https://via.placeholder.com/600x350/112240/64ffda?text=Futures+and+Fringes+CMS" alt="Futures and Fringes CMS screenshot" />
             </div>
           </div>
         </div>

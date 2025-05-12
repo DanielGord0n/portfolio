@@ -2,11 +2,18 @@ import React, { useEffect, useRef } from 'react';
 import '../styles/Skills.css';
 
 const Skills = () => {
+  // Create refs directly in the component body
+  const mainSkillsRef = useRef(null);
+  const skillBarsRef = useRef(null);
+  const workProcessRef = useRef(null);
+  const additionalSkillsRef = useRef(null);
+  
+  // Group refs in an object for easier handling
   const sectionRefs = {
-    mainSkills: useRef(null),
-    skillBars: useRef(null),
-    workProcess: useRef(null),
-    additionalSkills: useRef(null)
+    mainSkills: mainSkillsRef,
+    skillBars: skillBarsRef,
+    workProcess: workProcessRef,
+    additionalSkills: additionalSkillsRef
   };
 
   // Animation for sections on scroll
@@ -39,6 +46,7 @@ const Skills = () => {
         }
       });
     };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const skillCategories = [
@@ -51,16 +59,16 @@ const Skills = () => {
           <polyline points="22 8.5 12 15.5 2 8.5"></polyline>
         </svg>
       ),
-      description: 'Building responsive, intuitive user interfaces with modern frameworks and tools.',
+      description: 'Creating engaging user interfaces with modern frameworks and responsive design',
       skills: [
-        { name: 'JavaScript (ES6+)', level: 95 },
-        { name: 'React.js', level: 90 },
-        { name: 'HTML5/CSS3', level: 92 },
-        { name: 'Redux', level: 85 },
-        { name: 'Responsive Design', level: 90 },
-        { name: 'TypeScript', level: 85 },
-        { name: 'SASS/LESS', level: 80 },
-        { name: 'Bootstrap/Material UI', level: 85 }
+        { name: 'React', level: 90 },
+        { name: 'JavaScript (ES6+)', level: 88 },
+        { name: 'TypeScript', level: 80 },
+        { name: 'HTML5/CSS3', level: 90 },
+        { name: 'UI/UX Design', level: 85 },
+        { name: 'Responsive Design', level: 88 },
+        { name: 'Framer', level: 85 },
+        { name: 'Interactive Elements', level: 82 }
       ]
     },
     {
@@ -73,38 +81,38 @@ const Skills = () => {
           <line x1="6" y1="18" x2="6.01" y2="18"></line>
         </svg>
       ),
-      description: 'Creating robust, scalable server-side applications and APIs.',
+      description: 'Building robust server-side applications with scalable APIs and database integration',
       skills: [
         { name: 'Node.js', level: 88 },
-        { name: 'Express.js', level: 90 },
+        { name: 'Express.js', level: 85 },
         { name: 'RESTful APIs', level: 90 },
-        { name: 'GraphQL', level: 80 },
-        { name: 'MongoDB', level: 85 },
-        { name: 'PostgreSQL', level: 75 },
+        { name: 'MySQL', level: 85 },
+        { name: 'Prisma ORM', level: 82 },
         { name: 'Authentication/Security', level: 80 },
-        { name: 'Serverless Architecture', level: 75 }
+        { name: 'Scheduled Tasks', level: 85 },
+        { name: 'Cloud Services', level: 78 }
       ]
     },
     {
-      title: 'DevOps & Tools',
+      title: 'AI & Integration',
       icon: (
         <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <line x1="4" y1="9" x2="20" y2="9"></line>
-          <line x1="4" y1="15" x2="20" y2="15"></line>
-          <line x1="10" y1="3" x2="8" y2="21"></line>
-          <line x1="16" y1="3" x2="14" y2="21"></line>
+          <path d="M12 2a5 5 0 0 0-5 5v2a5 5 0 0 0 10 0V7a5 5 0 0 0-5-5Z"></path>
+          <path d="M19 11c.6 0 1.1.2 1.5.7l1 1c.4.4.6.9.5 1.4-.1.6-.5 1.1-1 1.4l-4.7 2.8c-.7.4-1.5.6-2.3.6h-1.2"></path>
+          <path d="M8 10.2c-1 0-1.9.5-2.5 1.2l-.7.8c-.6.7-1 1.6-1 2.5 0 .9.3 1.8 1 2.5l.7.8c.6.7 1.5 1.2 2.5 1.2"></path>
+          <path d="m8 22 3.75-14"></path>
         </svg>
       ),
-      description: 'Automating deployment and ensuring seamless integration across platforms.',
+      description: 'Leveraging AI technologies and APIs to create intelligent applications',
       skills: [
-        { name: 'Git/GitHub', level: 90 },
-        { name: 'Docker', level: 75 },
-        { name: 'CI/CD Pipelines', level: 70 },
-        { name: 'AWS Services', level: 70 },
-        { name: 'Testing (Jest, Mocha)', level: 80 },
-        { name: 'Webpack/Babel', level: 75 },
-        { name: 'Linux', level: 70 },
-        { name: 'Agile Methodology', level: 85 }
+        { name: 'Gemini AI Integration', level: 85 },
+        { name: 'WhatsApp API', level: 90 },
+        { name: 'Email Services', level: 88 },
+        { name: 'API Integration', level: 90 },
+        { name: 'Text Summarization', level: 85 },
+        { name: 'CMS Systems', level: 82 },
+        { name: 'Newsletter Integration', level: 80 },
+        { name: 'Third-party APIs', level: 85 }
       ]
     }
   ];
@@ -155,151 +163,154 @@ const Skills = () => {
 
   return (
     <div className="skills-page">
-      {/* Main Skills Header Section */}
-      <div className="skills-header" ref={sectionRefs.mainSkills}>
-        <h1>My Technical Skills</h1>
-        <p className="skills-intro">
-          As a Full Stack Developer, I've cultivated a diverse set of technical skills
-          through both professional experience and personal projects. I'm committed to
-          continuous learning and staying current with the latest technologies.
-        </p>
-        <div className="skills-overview">
-          <div className="skill-highlight">
-            <div className="highlight-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
-                <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
-              </svg>
+      <div className="no-gap-container">
+        {/* Main Skills Header Section */}
+        <div className="skills-header" ref={sectionRefs.mainSkills}>
+          <h1>My Technical Skills</h1>
+          <p className="skills-intro">
+            As a fourth-year Honours Bachelor of Computer Science and Management student at Wilfrid Laurier University,
+            I've developed a versatile technical skill set through academic projects and professional experience as a Contract Full Stack Developer.
+            Based in Vaughan, Ontario, I'm passionate about creating intuitive, user-focused solutions.
+          </p>
+          <div className="skills-overview">
+            <div className="skill-highlight">
+              <div className="highlight-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+                  <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
+                </svg>
+              </div>
+              <h3>1+ Year</h3>
+              <p>Professional Experience</p>
             </div>
-            <h3>5+ Years</h3>
-            <p>Professional Experience</p>
-          </div>
-          <div className="skill-highlight">
-            <div className="highlight-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
-              </svg>
+            <div className="skill-highlight">
+              <div className="highlight-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                </svg>
+              </div>
+              <h3>3+</h3>
+              <p>Major Projects</p>
             </div>
-            <h3>30+</h3>
-            <p>Projects Completed</p>
-          </div>
-          <div className="skill-highlight">
-            <div className="highlight-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"></path>
-                <line x1="16" y1="8" x2="2" y2="22"></line>
-                <line x1="17.5" y1="15" x2="9" y2="15"></line>
-              </svg>
+            <div className="skill-highlight">
+              <div className="highlight-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"></path>
+                  <line x1="16" y1="8" x2="2" y2="22"></line>
+                  <line x1="17.5" y1="15" x2="9" y2="15"></line>
+                </svg>
+              </div>
+              <h3>CS & Mgmt</h3>
+              <p>Dual Specialization</p>
             </div>
-            <h3>3</h3>
-            <p>Technical Certifications</p>
           </div>
         </div>
-      </div>
 
-      {/* Skill Categories with Progress Bars */}
-      <div className="skills-content" ref={sectionRefs.skillBars}>
-        {skillCategories.map((category, index) => (
-          <div className="skill-section" key={index}>
-            <div className="skill-section-header">
-              <div className="skill-icon">{category.icon}</div>
-              <div>
-                <h2>{category.title}</h2>
-                <p>{category.description}</p>
+        {/* Work Process Section */}
+        <div className="work-process-section" ref={sectionRefs.workProcess}>
+          <h2>My Development Process</h2>
+          <p className="section-intro">I follow a systematic approach to ensure high-quality deliverables</p>
+          
+          <div className="process-steps">
+            {workProcess.map((step, index) => (
+              <div className="process-step" key={index}>
+                <div className="step-number">{index + 1}</div>
+                <div className="step-icon">{step.icon}</div>
+                <h3>{step.title}</h3>
+                <p>{step.description}</p>
               </div>
-            </div>
-            <div className="skill-bars">
-              {category.skills.map((skill, idx) => (
-                <div className="skill-item" key={idx}>
-                  <div className="skill-info">
-                    <span className="skill-name">{skill.name}</span>
-                    <span className="skill-percentage">{skill.level}%</span>
-                  </div>
-                  <div className="skill-bar">
-                    <div 
-                      className="skill-progress" 
-                      style={{ width: `${skill.level}%` }}
-                    ></div>
-                  </div>
-                </div>
-              ))}
-            </div>
+            ))}
           </div>
-        ))}
-      </div>
+        </div>
 
-      {/* Work Process Section */}
-      <div className="work-process-section" ref={sectionRefs.workProcess}>
-        <h2>My Development Process</h2>
-        <p className="section-intro">I follow a systematic approach to ensure high-quality deliverables</p>
-        
-        <div className="process-steps">
-          {workProcess.map((step, index) => (
-            <div className="process-step" key={index}>
-              <div className="step-number">{index + 1}</div>
-              <div className="step-icon">{step.icon}</div>
-              <h3>{step.title}</h3>
-              <p>{step.description}</p>
+        {/* Skill Categories with Progress Bars */}
+        <div className="skills-content" ref={sectionRefs.skillBars}>
+          {skillCategories.map((category, index) => (
+            <div className="skill-section" key={index}>
+              <div className="skill-section-header">
+                <div className="skill-icon">{category.icon}</div>
+                <div>
+                  <h2>{category.title}</h2>
+                  <p>{category.description}</p>
+                </div>
+              </div>
+              <div className="skill-bars">
+                {category.skills.map((skill, idx) => (
+                  <div className="skill-item" key={idx}>
+                    <div className="skill-info">
+                      <span className="skill-name">{skill.name}</span>
+                      <span className="skill-percentage">{skill.level}%</span>
+                    </div>
+                    <div className="skill-bar">
+                      <div 
+                        className="skill-progress" 
+                        style={{ width: `${skill.level}%` }}
+                      ></div>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           ))}
         </div>
-      </div>
 
-      {/* Additional Skills Grid */}
-      <div className="additional-skills" ref={sectionRefs.additionalSkills}>
-        <h2>Additional Skills & Expertise</h2>
-        <div className="additional-grid">
-          <div className="additional-card">
-            <h3>Soft Skills</h3>
-            <ul>
-              <li>Project Management</li>
-              <li>Team Leadership</li>
-              <li>Problem Solving</li>
-              <li>Technical Documentation</li>
-              <li>Client Communication</li>
-              <li>Mentoring Junior Developers</li>
-              <li>Agile Methodology</li>
-              <li>Time Management</li>
-            </ul>
-          </div>
-          <div className="additional-card">
-            <h3>Familiar Technologies</h3>
-            <ul>
-              <li>Vue.js</li>
-              <li>Next.js</li>
-              <li>Python</li>
-              <li>Firebase</li>
-              <li>Jenkins</li>
-              <li>Styled Components</li>
-              <li>Tailwind CSS</li>
-              <li>Socket.IO</li>
-            </ul>
-          </div>
-          <div className="additional-card">
-            <h3>Currently Learning</h3>
-            <ul>
-              <li>React Native</li>
-              <li>Kubernetes</li>
-              <li>Microservices Architecture</li>
-              <li>Terraform</li>
-              <li>Web3 Development</li>
-              <li>Machine Learning Basics</li>
-              <li>Three.js</li>
-              <li>Advanced CI/CD Practices</li>
-            </ul>
-          </div>
-          <div className="additional-card">
-            <h3>Development Tools</h3>
-            <ul>
-              <li>VS Code</li>
-              <li>GitHub & Git</li>
-              <li>Jira</li>
-              <li>Figma</li>
-              <li>Postman</li>
-              <li>Chrome DevTools</li>
-              <li>NPM/Yarn</li>
-              <li>Docker Desktop</li>
-            </ul>
+        {/* Additional Skills Section */}
+        <div className="additional-skills-section" ref={sectionRefs.additionalSkills}>
+          <h2>Additional Skills & Tools</h2>
+          <p className="section-intro">Complementary skills that round out my technical profile</p>
+          
+          <div className="additional-skills-grid">
+            <div className="additional-card">
+              <h3>Computer Science</h3>
+              <ul>
+                <li>Data Structures</li>
+                <li>Algorithms</li>
+                <li>Database Management</li>
+                <li>System Architecture</li>
+                <li>Operating Systems</li>
+                <li>Web Development</li>
+                <li>Problem Solving</li>
+              </ul>
+            </div>
+            <div className="additional-card">
+              <h3>Management Skills</h3>
+              <ul>
+                <li>Business Strategy</li>
+                <li>Project Management</li>
+                <li>Agile Methodology</li>
+                <li>Team Collaboration</li>
+                <li>Client Communication</li>
+                <li>Product Strategy</li>
+                <li>Time Management</li>
+                <li>Strategic Planning</li>
+              </ul>
+            </div>
+            <div className="additional-card">
+              <h3>Professional Skills</h3>
+              <ul>
+                <li>End-to-End Feature Development</li>
+                <li>Code Reviews & Quality Assurance</li>
+                <li>Technical Documentation</li>
+                <li>Cross-functional Teamwork</li>
+                <li>User-Centered Design</li>
+                <li>Continuous Learning</li>
+                <li>Problem Analysis</li>
+                <li>Pair Programming</li>
+              </ul>
+            </div>
+            <div className="additional-card">
+              <h3>Development Tools</h3>
+              <ul>
+                <li>VS Code</li>
+                <li>GitHub & Git</li>
+                <li>Figma</li>
+                <li>Framer</li>
+                <li>Postman</li>
+                <li>Chrome DevTools</li>
+                <li>NPM/Yarn</li>
+                <li>Agile Project Tools</li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
@@ -307,9 +318,9 @@ const Skills = () => {
       {/* Quote/Closing Section */}
       <div className="skills-quote">
         <blockquote>
-          "The best way to predict the future is to implement it."
+          "I thrive in environments where designers, product managers, and developers work closely to iterate quickly on features that directly improve client satisfaction."
         </blockquote>
-        <p className="quote-author">— Inspired by Alan Kay</p>
+        <p className="quote-author">— My Development Philosophy</p>
       </div>
     </div>
   );
