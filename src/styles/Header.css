@@ -2,14 +2,36 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 2rem 2rem;
+  padding: 1.5rem 2rem;
+  background-color: rgba(18, 18, 18, 0.8);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid var(--border-color);
 }
 
 .logo a {
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   text-decoration: none;
-  color: #c9927a;
-  font-weight: normal;
+  font-weight: 600;
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  position: relative;
+}
+
+.logo a::after {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background-color: var(--accent-primary);
+  border-radius: 50%;
+  bottom: 5px;
+  right: -12px;
 }
 
 .nav ul {
@@ -20,15 +42,92 @@
 }
 
 .nav ul li {
-  margin-left: 2rem;
+  margin-left: 2.5rem;
+  position: relative;
 }
 
 .nav ul li a {
   text-decoration: none;
-  color: #c9927a;
+  color: var(--text-primary);
+  transition: all 0.3s ease;
+  font-size: 0.95rem;
+  font-weight: 500;
+  padding: 0.5rem 0;
+  position: relative;
+  letter-spacing: 0.5px;
+}
+
+.nav ul li a::before {
+  content: '01.';
+  color: var(--accent-primary);
+  font-family: 'Fira Code', monospace;
+  font-size: 0.8rem;
+  margin-right: 0.5rem;
+  opacity: 0;
+  transform: translateY(10px);
   transition: all 0.3s ease;
 }
 
+.nav ul li:nth-child(2) a::before {
+  content: '02.';
+}
+
+.nav ul li:nth-child(3) a::before {
+  content: '03.';
+}
+
+.nav ul li:nth-child(4) a::before {
+  content: '04.';
+}
+
+.nav ul li:nth-child(5) a::before {
+  content: '05.';
+}
+
 .nav ul li a:hover {
-  text-decoration: underline;
+  color: var(--accent-primary);
+}
+
+.nav ul li a:hover::before {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.nav ul li a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--accent-primary);
+  transition: width 0.3s ease;
+}
+
+.nav ul li a:hover::after {
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .header {
+    padding: 1.2rem;
+    flex-direction: column;
+  }
+  
+  .logo {
+    margin-bottom: 1rem;
+  }
+  
+  .nav ul {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .nav ul li {
+    margin: 0.5rem 1rem;
+  }
+
+  .nav ul li a::before {
+    display: none;
+  }
 }
