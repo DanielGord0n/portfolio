@@ -1,44 +1,19 @@
-import React, { useState } from 'react';
+import React from 'react';
 import '../styles/Contact.css';
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
-  });
+
 
   const contactInfo = {
     email: "gordondan2@gmail.com",
     phone: "+1 (647)-622-0424",
-    location: "Toronto, Canada",
+    location: "Vaughan, Canada",
     github: "https://github.com/DanielGord0n",
     linkedin: "https://www.linkedin.com/in/daniel-gordon2/",
     twitter: "https://twitter.com/danielgordon"
   };
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prevState => ({
-      ...prevState,
-      [name]: value
-    }));
-  };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Handle form submission here
-    console.log('Form submitted:', formData);
-    // You would typically send this data to a server
-    alert('Thank you for your message! I\'ll get back to you as soon as possible.');
-    setFormData({
-      name: '',
-      email: '',
-      subject: '',
-      message: ''
-    });
-  };
 
   return (
     <div className="contact-container">
@@ -62,7 +37,7 @@ const Contact = () => {
                 </span>
                 Email
               </h3>
-              <p><a href={`mailto:${contactInfo.email}`}>{contactInfo.email}</a></p>
+              <p><a href={`mailto:${contactInfo.email}?subject=Portfolio%20Inquiry&body=Hello%20Daniel,%0A%0AI%20visited%20your%20portfolio%20and%20would%20like%20to%20connect%20about...%0A%0ABest%20regards,%0A`}>{contactInfo.email}</a></p>
             </div>
             
             <div className="contact-detail">
@@ -120,60 +95,20 @@ const Contact = () => {
           {/* Removed duplicate social section since we already have GitHub and LinkedIn in the contact details */}
         </div>
         
-        <div className="contact-form-container">
-          <div className="contact-form-header">
-            <h2>Send Me a Message</h2>
-            <p>Fill out the form below and I'll get back to you as soon as possible.</p>
+        <div className="contact-quick-actions">
+          <div className="contact-cta">
+            <h2>Let's Connect</h2>
+            <p>The best way to reach me is via email. Click the button below to send me a message directly.</p>
+            <div className="cta-buttons">
+              <a href={`mailto:${contactInfo.email}?subject=Portfolio%20Inquiry&body=Hello%20Daniel,%0A%0AI%20visited%20your%20portfolio%20and%20would%20like%20to%20connect%20about...%0A%0ABest%20regards,%0A`} className="btn btn-primary" target="_blank" rel="noopener noreferrer">
+                Send Email
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                  <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+              </a>
+            </div>
           </div>
-          
-          <form onSubmit={handleSubmit} className="contact-form">
-            <div className="form-group">
-              <label htmlFor="name">Name</label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                required
-                placeholder="Your name"
-              />
-            </div>
-            
-            <div className="form-group">
-              <label htmlFor="email">Email</label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                required
-                placeholder="your.email@example.com"
-              />
-            </div>
-            
-            <div className="form-group">
-              <label htmlFor="message">Message</label>
-              <textarea
-                id="message"
-                name="message"
-                value={formData.message}
-                onChange={handleChange}
-                required
-                rows="5"
-                placeholder="Your message here..."
-              ></textarea>
-            </div>
-            
-            <button type="submit" className="btn btn-primary submit-btn">
-              Send Message
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <line x1="22" y1="2" x2="11" y2="13"></line>
-                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-              </svg>
-            </button>
-          </form>
         </div>
       </div>
     </div>

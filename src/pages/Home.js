@@ -47,7 +47,7 @@ const Home = () => {
       {/* Hero Section */}
       <section className="hero-section" ref={sectionRefs.hero}>
         <div className="hero-content">
-          <span className="greeting">Hi, my name is</span>
+          <span className="greeting">Hello world, my name is</span>
           <h1 className="hero-title">Daniel Gordon.</h1>
           <h2 className="hero-subtitle">I build things for the web.</h2>
           
