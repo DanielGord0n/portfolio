@@ -7,7 +7,8 @@ import Header from './components/Header';
 
 // Pages
 import Home from './pages/Home';
-import Portfolio from './pages/Portfolio';
+import Projects from './pages/Projects';
+import Skills from './pages/Skills';
 import Resume from './pages/Resume';
 import Contact from './pages/Contact';
 
@@ -19,7 +20,8 @@ function App() {
         <main className="main-content">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/portfolio" element={<Portfolio />} />
+            <Route path="/projects" element={<Projects />} />
+            <Route path="/skills" element={<Skills />} />
             <Route path="/resume" element={<Resume />} />
             <Route path="/contact" element={<Contact />} />
           </Routes>

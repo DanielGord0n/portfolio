@@ -1,0 +1,166 @@
+.skills-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.skills-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.skills-header h1 {
+  color: #3a4a5c;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  position: relative;
+  display: inline-block;
+}
+
+.skills-header h1:after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 3px;
+  background-color: #4a90e2;
+}
+
+.skills-header p {
+  max-width: 800px;
+  margin: 1.5rem auto 0;
+  color: #555;
+  line-height: 1.6;
+  font-size: 1.1rem;
+}
+
+.skills-content {
+  margin-bottom: 4rem;
+}
+
+.skill-section {
+  margin-bottom: 3rem;
+}
+
+.skill-section h2 {
+  color: #3a4a5c;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #4a90e2;
+  display: inline-block;
+}
+
+.skill-bars {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+  gap: 1.5rem;
+}
+
+.skill-item {
+  margin-bottom: 1.2rem;
+}
+
+.skill-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.skill-name {
+  font-weight: 500;
+  color: #333;
+}
+
+.skill-percentage {
+  color: #4a90e2;
+  font-weight: 600;
+}
+
+.skill-bar {
+  height: 10px;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.skill-progress {
+  height: 100%;
+  background-color: #4a90e2;
+  border-radius: 5px;
+  transition: width 1.5s ease-in-out;
+}
+
+.additional-skills {
+  background-color: #f8f9fa;
+  padding: 3rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.additional-skills h2 {
+  color: #3a4a5c;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.additional-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.additional-card {
+  background-color: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.additional-card:hover {
+  transform: translateY(-5px);
+}
+
+.additional-card h3 {
+  color: #3a4a5c;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #4a90e2;
+  padding-bottom: 0.5rem;
+}
+
+.additional-card ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.additional-card li {
+  margin-bottom: 0.7rem;
+  padding-left: 20px;
+  position: relative;
+  color: #555;
+}
+
+.additional-card li:before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: #4a90e2;
+}
+
+@media (max-width: 768px) {
+  .skill-bars {
+    grid-template-columns: 1fr;
+  }
+  
+  .additional-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .skills-header h1 {
+    font-size: 2rem;
+  }
+}
