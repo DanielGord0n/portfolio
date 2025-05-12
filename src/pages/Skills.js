@@ -224,34 +224,39 @@ const Skills = () => {
         </div>
 
         {/* Skill Categories with Progress Bars */}
-        <div className="skills-content" ref={sectionRefs.skillBars}>
-          {skillCategories.map((category, index) => (
-            <div className="skill-section" key={index}>
-              <div className="skill-section-header">
-                <div className="skill-icon">{category.icon}</div>
-                <div>
-                  <h2>{category.title}</h2>
-                  <p>{category.description}</p>
+        <div ref={sectionRefs.skillBars}>
+          {skillCategories.map((category, index) => {
+            // Sort skills by level (highest first)
+            const sortedSkills = [...category.skills].sort((a, b) => b.level - a.level);
+            
+            return (
+              <div className="skill-section" key={index}>
+                <div className="skill-category-header">
+                  <div className="skill-category-icon">{category.icon}</div>
+                  <div className="skill-category-text">
+                    <h2>{category.title}</h2>
+                    <p>{category.description}</p>
+                  </div>
+                </div>
+                <div className="compact-skill-bars">
+                  {sortedSkills.map((skill, idx) => (
+                    <div className="compact-skill-item" key={idx}>
+                      <div className="compact-skill-info">
+                        <span className="compact-skill-name">{skill.name}</span>
+                        <span className="compact-skill-percentage">{skill.level}%</span>
+                      </div>
+                      <div className="compact-skill-bar">
+                        <div 
+                          className="compact-skill-progress" 
+                          style={{ width: `${skill.level}%` }}
+                        ></div>
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
-              <div className="skill-bars">
-                {category.skills.map((skill, idx) => (
-                  <div className="skill-item" key={idx}>
-                    <div className="skill-info">
-                      <span className="skill-name">{skill.name}</span>
-                      <span className="skill-percentage">{skill.level}%</span>
-                    </div>
-                    <div className="skill-bar">
-                      <div 
-                        className="skill-progress" 
-                        style={{ width: `${skill.level}%` }}
-                      ></div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         {/* Additional Skills Section */}
