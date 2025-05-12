@@ -12,6 +12,16 @@ const Contact = () => {
     linkedin: "https://www.linkedin.com/in/daniel-gordon2/",
     twitter: "https://twitter.com/danielgordon"
   };
+  
+  const openEmailClient = () => {
+    const emailAddress = "gordondan2@gmail.com";
+    const subject = "Portfolio Inquiry";
+    const body = "Hello Daniel,\n\nI visited your portfolio and would like to connect about...\n\nBest regards,";
+    
+    // Try direct Gmail link first
+    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${emailAddress}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.open(gmailUrl, '_blank');
+  };
 
 
 
@@ -100,13 +110,16 @@ const Contact = () => {
             <h2>Let's Connect</h2>
             <p>The best way to reach me is via email. Click the button below to send me a message directly.</p>
             <div className="cta-buttons">
-              <a href={`mailto:${contactInfo.email}?subject=Portfolio%20Inquiry&body=Hello%20Daniel,%0A%0AI%20visited%20your%20portfolio%20and%20would%20like%20to%20connect%20about...%0A%0ABest%20regards,%0A`} className="btn btn-primary" target="_blank" rel="noopener noreferrer">
+              <button 
+                className="btn btn-primary"
+                onClick={openEmailClient}
+              >
                 Send Email
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
                   <polyline points="22,6 12,13 2,6"></polyline>
                 </svg>
-              </a>
+              </button>
             </div>
           </div>
         </div>
