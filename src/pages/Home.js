@@ -7,7 +7,7 @@ const Home = () => {
     hero: useRef(null),
     about: useRef(null),
     projects: useRef(null),
-    skills: useRef(null)
+    interests: useRef(null)
   };
 
   // Animation for sections on scroll
@@ -183,76 +183,73 @@ const Home = () => {
         </div>
       </section>
       
-      {/* Skills Section */}
-      <section className="skills-section" ref={sectionRefs.skills}>
+      {/* Personal Interests Section */}
+      <section className="interests-section" ref={sectionRefs.interests}>
         <div className="section-header">
           <span className="section-number">03.</span>
-          <h2 className="section-title">Skills & Technologies</h2>
+          <h2 className="section-title">Beyond Coding</h2>
           <div className="section-line"></div>
         </div>
         
-        <div className="skills-container">
-          <div className="skills-group">
-            <h3>Frontend</h3>
-            <div className="skill-items">
-              <div className="skill-item">
-                <span className="skill-name">JavaScript <span className="skill-level">95%</span></span>
-                <div className="skill-bar"><div className="skill-progress" style={{width: '95%'}}></div></div>
+        <div className="interests-container">
+          <div className="interests-content">
+            <p>
+              When I'm not coding, you'll find me engaged in various activities that fuel my creativity and keep me balanced. I'm a firm believer that diverse interests contribute to becoming a better developer.
+            </p>
+            
+            <div className="interests-grid">
+              <div className="interest-card">
+                <div className="interest-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                    <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                  </svg>
+                </div>
+                <h3>Reading</h3>
+                <p>I enjoy reading books on technology, science fiction, and personal development. Currently reading "Clean Architecture" by Robert C. Martin.</p>
               </div>
-              <div className="skill-item">
-                <span className="skill-name">React <span className="skill-level">90%</span></span>
-                <div className="skill-bar"><div className="skill-progress" style={{width: '90%'}}></div></div>
+              
+              <div className="interest-card">
+                <div className="interest-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                  </svg>
+                </div>
+                <h3>Open Source</h3>
+                <p>I'm passionate about contributing to open-source projects, giving back to the community that has taught me so much.</p>
               </div>
-              <div className="skill-item">
-                <span className="skill-name">TypeScript <span className="skill-level">85%</span></span>
-                <div className="skill-bar"><div className="skill-progress" style={{width: '85%'}}></div></div>
+              
+              <div className="interest-card">
+                <div className="interest-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <path d="M12 6v6l4 2"></path>
+                  </svg>
+                </div>
+                <h3>Fitness</h3>
+                <p>Regular exercise helps me stay focused and productive. I enjoy cycling, hiking, and practicing yoga to maintain a healthy work-life balance.</p>
               </div>
-              <div className="skill-item">
-                <span className="skill-name">HTML/CSS <span className="skill-level">92%</span></span>
-                <div className="skill-bar"><div className="skill-progress" style={{width: '92%'}}></div></div>
-              </div>
-            </div>
-          </div>
-          
-          <div className="skills-group">
-            <h3>Backend</h3>
-            <div className="skill-items">
-              <div className="skill-item">
-                <span className="skill-name">Node.js <span className="skill-level">88%</span></span>
-                <div className="skill-bar"><div className="skill-progress" style={{width: '88%'}}></div></div>
-              </div>
-              <div className="skill-item">
-                <span className="skill-name">Express <span className="skill-level">90%</span></span>
-                <div className="skill-bar"><div className="skill-progress" style={{width: '90%'}}></div></div>
-              </div>
-              <div className="skill-item">
-                <span className="skill-name">MongoDB <span className="skill-level">85%</span></span>
-                <div className="skill-bar"><div className="skill-progress" style={{width: '85%'}}></div></div>
-              </div>
-              <div className="skill-item">
-                <span className="skill-name">GraphQL <span className="skill-level">80%</span></span>
-                <div className="skill-bar"><div className="skill-progress" style={{width: '80%'}}></div></div>
+              
+              <div className="interest-card">
+                <div className="interest-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M8 2v4"></path>
+                    <path d="M16 2v4"></path>
+                    <rect x="2" y="6" width="20" height="16" rx="2"></rect>
+                    <path d="M12 11h4"></path>
+                    <path d="M12 16h4"></path>
+                    <path d="M8 11v5"></path>
+                  </svg>
+                </div>
+                <h3>Community Involvement</h3>
+                <p>I regularly participate in tech meetups and conferences, both as an attendee and occasionally as a speaker, sharing knowledge and connecting with peers.</p>
               </div>
             </div>
           </div>
         </div>
         
-        <div className="tools-container">
-          <h3>Tools & Other</h3>
-          <ul className="tools-list">
-            <li>Git & GitHub</li>
-            <li>Docker</li>
-            <li>AWS</li>
-            <li>CI/CD</li>
-            <li>Jest</li>
-            <li>Webpack</li>
-            <li>Figma</li>
-            <li>VS Code</li>
-          </ul>
-        </div>
-        
-        <div className="more-skills">
-          <Link to="/skills" className="btn">View All Skills</Link>
+        <div className="skills-cta">
+          <Link to="/skills" className="btn">View My Skills</Link>
         </div>
       </section>
       
@@ -261,8 +258,8 @@ const Home = () => {
         <span className="section-number">04.</span>
         <h2>Get In Touch</h2>
         <p>
-          My inbox is always open. Whether you have a question, a project idea, or just want to say hi, 
-          I'll try my best to get back to you!         
+          Whether you have a project in mind, a question about my work, or just want to connect,
+          I'm always open to new opportunities and conversations. Let's build something amazing together!
         </p>
         <Link to="/contact" className="btn btn-primary">Say Hello</Link>
       </section>

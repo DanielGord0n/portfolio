@@ -71,7 +71,7 @@ body {
   scroll-padding-top: 100px;
 }
 
-/* Add top padding to prevent navbar overlap */
+/* Add top padding to all sections */
 .home-container,
 .skills-container,
 .resume-container,
