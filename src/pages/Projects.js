@@ -5,63 +5,91 @@ const Projects = () => {
   const projects = [
     {
       id: 1,
-      title: 'Full Stack E-Commerce Platform',
-      description: 'A complete e-commerce solution with product catalog, shopping cart, user authentication, and payment processing.',
-      technologies: ['React', 'Node.js', 'Express', 'MongoDB', 'Stripe API'],
-      image: 'https://via.placeholder.com/600x350/2a3f5c/ffffff?text=E-Commerce+App',
-      category: 'Web Application',
-      link: 'https://github.com/DanielGord0n/ecommerce-demo',
-      demo: 'https://ecommerce-demo.danielgordon.dev'
+      title: 'AI-Powered WhatsApp Summarizer',
+      description: 'Engineered a chat summarization tool that integrates the WhatsApp API with Gemini AI to automatically condense lengthy message threads into concise daily digests, improving information retention and reducing cognitive overload for users.',
+      technologies: ['Node.js', 'WhatsApp API', 'Gemini AI', 'RESTful APIs', 'Express'],
+      image: 'https://via.placeholder.com/600x350/2a3f5c/ffffff?text=WhatsApp+AI+Summarizer',
+      category: 'Full Stack Development',
+      link: 'https://github.com/DanielGord0n',
+      demo: '#',
+      company: 'Contract Work'
     },
     {
       id: 2,
-      title: 'Real-Time Chat Application',
-      description: 'Chat application with real-time messaging, user presence indicators, and file sharing capabilities.',
-      technologies: ['React', 'Socket.io', 'Node.js', 'Express', 'MongoDB'],
-      image: 'https://via.placeholder.com/600x350/1e4d2b/ffffff?text=Chat+App',
-      category: 'Web Application',
-      link: 'https://github.com/DanielGord0n/chat-app',
-      demo: 'https://chat.danielgordon.dev'
+      title: 'Automated Email Digest System',
+      description: 'Developed a scheduled email-delivery system that sends WhatsApp conversation summaries to subscribers, reducing manual review time by over 80% through a Node.js back-end and cloud-based mail services with robust error handling.',
+      technologies: ['Node.js', 'Express', 'Cloud Mail Services', 'Scheduled Tasks', 'MySQL/Prisma'],
+      image: 'https://via.placeholder.com/600x350/1e4d2b/ffffff?text=Email+Digest+System',
+      category: 'Backend Development',
+      link: 'https://github.com/DanielGord0n',
+      demo: '#',
+      company: 'Contract Work'
     },
     {
       id: 3,
-      title: 'Task Management System',
-      description: 'Project management tool with task tracking, team collaboration features, and detailed analytics dashboard.',
-      technologies: ['React', 'Redux', 'Node.js', 'PostgreSQL', 'Chart.js'],
-      image: 'https://via.placeholder.com/600x350/463a5c/ffffff?text=Task+Manager',
-      category: 'Web Application',
-      link: 'https://github.com/DanielGord0n/task-manager',
-      demo: 'https://tasks.danielgordon.dev'
+      title: 'Futures and Fringes CMS Website',
+      description: 'Led the UI/UX build of a Framer-powered CMS website, integrating newsletter sign-ups, interactive scroll effects, and dynamic case-study pages to enhance user engagement and provide an intuitive content management experience for the client.',
+      technologies: ['Framer', 'CMS Integration', 'UI/UX Design', 'Responsive Design', 'Interactive Elements'],
+      image: 'https://via.placeholder.com/600x350/463a5c/ffffff?text=Futures+and+Fringes',
+      category: 'Frontend Development',
+      link: 'https://github.com/DanielGord0n',
+      demo: '#',
+      company: 'Contract Work'
     },
     {
       id: 4,
-      title: 'Weather Dashboard API',
-      description: 'RESTful API service that aggregates weather data from multiple sources with caching and rate limiting.',
-      technologies: ['Node.js', 'Express', 'Redis', 'Docker', 'OpenWeatherMap API'],
-      image: 'https://via.placeholder.com/600x350/2b5c5c/ffffff?text=Weather+API',
-      category: 'API Service',
-      link: 'https://github.com/DanielGord0n/weather-api',
-      demo: 'https://api.weather.danielgordon.dev/docs'
+      title: 'Personal Developer Portfolio',
+      description: 'Designed and developed a custom portfolio website showcasing my projects and skills. Built with React and modern CSS, featuring responsive design, animated transitions, and optimized performance. You are currently viewing it!',
+      technologies: ['React', 'Modern CSS', 'Responsive Design', 'JavaScript', 'Git'],
+      image: 'https://via.placeholder.com/600x350/2b5c5c/ffffff?text=Portfolio+Website',
+      category: 'Frontend Development',
+      link: 'https://github.com/DanielGord0n',
+      demo: '#',
+      company: 'Personal Project'
     },
     {
       id: 5,
-      title: 'Developer Portfolio Website',
-      description: 'Personal portfolio website showcasing projects, skills, and resume. Built with React and modern CSS.',
-      technologies: ['React', 'React Router', 'Modern CSS', 'Responsive Design'],
-      image: 'https://via.placeholder.com/600x350/5c3a3a/ffffff?text=Portfolio+Site',
-      category: 'Web Design',
-      link: 'https://github.com/DanielGord0n/portfolio',
-      demo: 'https://danielgordon.dev'
+      title: 'wluNest - Student Housing Application',
+      description: 'Developed a platform aggregating Waterloo-Kitchener rental listings for students. Designed an intuitive UI with interactive maps, personalized filters, and a roommate finder. Integrated real-time updates and direct listing links using Node.js, React, and MySQL. Delivered a polished, fully functional app that significantly streamlined the housing search process.',
+      technologies: ['React', 'Node.js', 'MySQL', 'Interactive Maps', 'Real-time Updates'],
+      image: 'https://via.placeholder.com/600x350/5c3a3a/ffffff?text=wluNest',
+      category: 'Full Stack Development',
+      link: 'https://github.com/DanielGord0n',
+      demo: '#',
+      company: 'Academic Project'
     },
     {
       id: 6,
-      title: 'Content Management System',
-      description: 'Headless CMS built from scratch with user roles, content versioning, and API access.',
-      technologies: ['Node.js', 'Express', 'MongoDB', 'React Admin', 'JWT Authentication'],
-      image: 'https://via.placeholder.com/600x350/3a5c5c/ffffff?text=CMS+System',
-      category: 'Web Application',
-      link: 'https://github.com/DanielGord0n/headless-cms',
-      demo: 'https://cms-demo.danielgordon.dev'
+      title: 'Battleships Game',
+      description: 'Developed a fully functional recreation of the classic "Battleships" game using Java and Maven, including an intuitive GUI and an AI opponent. Demonstrated problem-solving and coding proficiency with object-oriented principles, AI development, and algorithmic problem-solving.',
+      technologies: ['Java', 'Maven', 'Object-Oriented Design', 'GUI Development', 'AI Logic'],
+      image: 'https://via.placeholder.com/600x350/3a5c5c/ffffff?text=Battleships+Game',
+      category: 'Software Development',
+      link: 'https://github.com/DanielGord0n',
+      demo: '#',
+      company: 'Academic Project'
+    },
+    {
+      id: 7,
+      title: 'Waiver Submission Applications',
+      description: 'Designed and implemented applications using React.js, Prisma, Tailwind CSS, and Vercel to manage liability waivers with a robust online database, reducing admin time by 40%. Strengthened knowledge in front-end frameworks, databases, and API integration.',
+      technologies: ['React.js', 'Prisma', 'Tailwind CSS', 'Vercel', 'Database Design'],
+      image: 'https://via.placeholder.com/600x350/2a4a7c/ffffff?text=Waiver+Submission+App',
+      category: 'Frontend Development',
+      link: 'https://github.com/DanielGord0n',
+      demo: '#',
+      company: 'Contract Work'
+    },
+    {
+      id: 8,
+      title: 'Multiplayer Roblox Game',
+      description: 'Working on a multiplayer game and server using Lua and the Roblox framework, building skills in game development, networking, and server-client interaction within a complex environment.',
+      technologies: ['Lua', 'Roblox Framework', 'Networking', 'Game Development', 'Server-Client Architecture'],
+      image: 'https://via.placeholder.com/600x350/4d3a5c/ffffff?text=Roblox+Game',
+      category: 'Game Development',
+      link: 'https://github.com/DanielGord0n',
+      demo: '#',
+      company: 'Personal Project'
     }
   ];
 
@@ -78,8 +106,8 @@ const Projects = () => {
       <div className="projects-header">
         <h1>My Projects</h1>
         <p>
-          Here are some of the projects I've worked on. Each project presented unique challenges 
-          and opportunities to apply and expand my technical skills.
+          Below are key projects from my professional experience. Each project demonstrates my ability to deliver
+          high-quality solutions and measurable business impact across different technical domains.
         </p>
         <div className="project-filters">
           {categories.map((category, index) => (
@@ -105,7 +133,10 @@ const Projects = () => {
               </div>
             </div>
             <div className="project-details">
-              <span className="project-category">{project.category}</span>
+              <div className="project-header">
+                <span className="project-category">{project.category}</span>
+                <span className="project-company">{project.company}</span>
+              </div>
               <h3 className="project-title">{project.title}</h3>
               <p className="project-description">{project.description}</p>
               <div className="project-tech">
