@@ -4,7 +4,7 @@ import '../styles/Resume.css';
 import resumePDF from '../images/Daniel_Gordon_Resume_FullStackDeveloper.pdf';
 
 const Resume = () => {
-  const [activeTab, setActiveTab] = useState('pdf');
+  // Removed tabs since we're only showing the PDF viewer
   
   const experiences = [
     {
@@ -61,23 +61,7 @@ const Resume = () => {
     <div className="resume-container">
       <div className="resume-header">
         <h1>My Resume</h1>
-        <div className="resume-tabs">
-          <button 
-            className={`tab-btn ${activeTab === 'pdf' ? 'active' : ''}`}
-            onClick={() => setActiveTab('pdf')}
-          >
-            View PDF
-          </button>
-          <button 
-            className={`tab-btn ${activeTab === 'download' ? 'active' : ''}`}
-            onClick={() => setActiveTab('download')}
-          >
-            Download Options
-          </button>
-        </div>
       </div>
-      
-      {activeTab === 'pdf' ? (
         <div className="resume-pdf-viewer">
           <div className="pdf-container">
             <iframe 
@@ -115,64 +99,7 @@ const Resume = () => {
             </a>
           </div>
         </div>
-      ) : (
-        <div className="resume-download">
-          <div className="pdf-preview">
-            <iframe 
-              src={`${resumePDF}#view=FitH&page=1`} 
-              title="Daniel Gordon Resume Preview"
-              className="preview-iframe"
-              frameBorder="0"
-            />
-          </div>
-          <div className="download-options">
-            <h2>Download Options</h2>
-            <p>
-              You can download my complete resume in multiple formats. Each includes detailed information about my work experience, education, skills, and certifications.
-            </p>
-            <div className="download-buttons">
-              <a 
-                href={resumePDF} 
-                download="Daniel_Gordon_Resume_FullStackDeveloper.pdf"
-                className="download-btn primary"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                  <polyline points="14 2 14 8 20 8"></polyline>
-                  <path d="M9 15L12 18 15 15"></path>
-                  <path d="M12 18L12 10"></path>
-                </svg>
-                PDF Format
-              </a>
-              <a 
-                href={resumePDF} 
-                download="Daniel_Gordon_Resume_FullStackDeveloper.pdf"
-                className="download-btn secondary"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                  <polyline points="14 2 14 8 20 8"></polyline>
-                  <path d="M9 15L12 18 15 15"></path>
-                  <path d="M12 18L12 10"></path>
-                </svg>
-                Word Format
-              </a>
-            </div>
-            <div className="resume-features">
-              <h3>Resume Features</h3>
-              <ul className="features-list">
-                <li>ATS-optimized format for better visibility</li>
-                <li>Comprehensive skills section highlighting technical abilities</li>
-                <li>Project highlights with measurable results</li>
-                <li>Professional certifications and education</li>
-              </ul>
-            </div>
-            <p className="additional-info">
-              Need a different format or customized version? <Link to="/contact">Contact me</Link> for a tailored version of my resume.
-            </p>
-          </div>
-        </div>
-      )}
+
     </div>
   );
 };
