@@ -1,6 +1,6 @@
-# Michel's Portfolio Website
+# My Personal Portfolio Website
 
-A professional portfolio website for Michel Vivier, featuring a clean, modern design with sections for portfolio projects, resume, and contact information.
+A professional portfolio website for Daniel Gordon, featuring a clean, modern design with sections for portfolio projects, resume, and contact information.
 
 ## Features
 
@@ -8,7 +8,7 @@ A professional portfolio website for Michel Vivier, featuring a clean, modern de
 - Portfolio project showcase
 - Professional resume/experience section
 - Contact form
-- Modern, elegant UI with a warm color palette
+- Modern, elegant UI
 
 ## Technologies Used
 
