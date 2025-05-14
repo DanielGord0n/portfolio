@@ -281,48 +281,75 @@ const Home = () => {
               <div className="interest-card">
                 <div className="interest-icon">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
-                    <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                    <rect x="3" y="9" width="18" height="5" rx="2"></rect>
+                    <circle cx="7" cy="14" r="2"></circle>
+                    <circle cx="17" cy="14" r="2"></circle>
                   </svg>
                 </div>
-                <h3>Reading</h3>
-                <p>I enjoy reading books on technology, science fiction, and personal development. Currently reading "Clean Architecture" by Robert C. Martin.</p>
-              </div>
-              
-              <div className="interest-card">
-                <div className="interest-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                  </svg>
-                </div>
-                <h3>Open Source</h3>
-                <p>I'm passionate about contributing to open-source projects, giving back to the community that has taught me so much.</p>
+                <h3>Cars</h3>
+                <p>I'm an automotive enthusiast who loves everything from classic cars to modern engineering marvels. I enjoy attending car shows and learning about the latest automotive technology.</p>
               </div>
               
               <div className="interest-card">
                 <div className="interest-icon">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <circle cx="12" cy="12" r="10"></circle>
-                    <path d="M12 6v6l4 2"></path>
+                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                    <line x1="2" y1="12" x2="22" y2="12"></line>
                   </svg>
                 </div>
-                <h3>Fitness</h3>
-                <p>Regular exercise helps me stay focused and productive. I enjoy cycling, hiking, and practicing yoga to maintain a healthy work-life balance.</p>
+                <h3>Traveling</h3>
+                <p>Exploring new cultures, landscapes, and cuisines is one of my greatest passions. Immersing myself in different environments helps me gain fresh perspectives that I bring back to my work.</p>
               </div>
               
               <div className="interest-card">
                 <div className="interest-icon">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M8 2v4"></path>
-                    <path d="M16 2v4"></path>
-                    <rect x="2" y="6" width="20" height="16" rx="2"></rect>
-                    <path d="M12 11h4"></path>
-                    <path d="M12 16h4"></path>
-                    <path d="M8 11v5"></path>
+                    <rect x="5" y="5" width="14" height="14" rx="1"></rect>
+                    <rect x="8" y="8" width="3" height="3"></rect>
+                    <rect x="13" y="8" width="3" height="3"></rect>
+                    <rect x="8" y="13" width="3" height="3"></rect>
+                    <rect x="13" y="13" width="3" height="3"></rect>
                   </svg>
                 </div>
-                <h3>Community Involvement</h3>
-                <p>I regularly participate in tech meetups and conferences, both as an attendee and occasionally as a speaker, sharing knowledge and connecting with peers.</p>
+                <h3>Brain Games</h3>
+                <p>I challenge myself daily with chess, crosswords, and Wordle. These mental exercises sharpen my problem-solving skills and keep my analytical thinking fresh for coding challenges.</p>
+              </div>
+              
+              <div className="interest-card">
+                <div className="interest-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M3 20h18L14.5 9l-5 5-3.5-3.5L3 20Z"></path>
+                    <path d="M7.2 6.8a3 3 0 1 0-4.2-4.2 3 3 0 0 0 4.2 4.2"></path>
+                  </svg>
+                </div>
+                <h3>Snowboarding</h3>
+                <p>Hitting the slopes during winter is where I find both thrill and tranquility. The combination of speed, precision, and being surrounded by nature provides a perfect counterbalance to my technical work.</p>
+              </div>
+
+              <div className="interest-card">
+                <div className="interest-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M4 8a4 4 0 0 1 8 0v1a3 3 0 0 1-3 3H4V8Z"></path>
+                    <path d="M12 8a4 4 0 0 1 8 0v1a3 3 0 0 1-3 3h-5V8Z"></path>
+                    <path d="M8 14v3"></path>
+                    <path d="M16 14v3"></path>
+                  </svg>
+                </div>
+                <h3>Mixed Martial Arts</h3>
+                <p>Having trained in seven different martial arts disciplines, I've gained not just physical skills but also mental discipline, resilience, and a strategic approach to challenges that applies to both combat and code.</p>
+              </div>
+              
+              <div className="interest-card">
+                <div className="interest-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M6 12h12"></path>
+                    <rect x="2" y="7" width="4" height="10" rx="1"></rect>
+                    <rect x="18" y="7" width="4" height="10" rx="1"></rect>
+                  </svg>
+                </div>
+                <h3>Gym & Calisthenics</h3>
+                <p>My fitness regimen combines weight training and bodyweight exercises to build functional strength. This discipline enhances my focus and productivity, essential qualities for tackling complex coding projects.</p>
               </div>
             </div>
           </div>
