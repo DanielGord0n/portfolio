@@ -8,7 +8,7 @@ const Projects = () => {
       title: 'AI-Powered WhatsApp Summarizer',
       description: 'Engineered a chat summarization tool that integrates the WhatsApp API with Gemini AI to automatically condense lengthy message threads into concise daily digests, improving information retention and reducing cognitive overload for users.',
       technologies: ['Node.js', 'WhatsApp API', 'Gemini AI', 'RESTful APIs', 'Express'],
-      image: 'https://via.placeholder.com/600x350/2a3f5c/ffffff?text=WhatsApp+AI+Summarizer',
+      image: require('../images/whatsapp-white-icon.png'),
       category: 'Full Stack Development',
       link: 'https://github.com/DanielGord0n',
       demo: '#',
@@ -30,7 +30,7 @@ const Projects = () => {
       title: 'Futures and Fringes CMS Website',
       description: 'Led the UI/UX build of a Framer-powered CMS website, integrating newsletter sign-ups, interactive scroll effects, and dynamic case-study pages to enhance user engagement and provide an intuitive content management experience for the client.',
       technologies: ['Framer', 'CMS Integration', 'UI/UX Design', 'Responsive Design', 'Interactive Elements'],
-      image: 'https://via.placeholder.com/600x350/463a5c/ffffff?text=Futures+and+Fringes',
+      image: require('../images/FF-ICON-WHITE.png'),
       category: 'Frontend Development',
       link: 'https://github.com/DanielGord0n',
       demo: '#',
@@ -52,7 +52,7 @@ const Projects = () => {
       title: 'wluNest - Student Housing Application',
       description: 'Developed a platform aggregating Waterloo-Kitchener rental listings for students. Designed an intuitive UI with interactive maps, personalized filters, and a roommate finder. Integrated real-time updates and direct listing links using Node.js, React, and MySQL. Delivered a polished, fully functional app that significantly streamlined the housing search process.',
       technologies: ['React', 'Node.js', 'MySQL', 'Interactive Maps', 'Real-time Updates'],
-      image: 'https://via.placeholder.com/600x350/5c3a3a/ffffff?text=wluNest',
+      image: require('../images/wilfrid-laurier-university-seeklogo.png'),
       category: 'Full Stack Development',
       link: 'https://github.com/DanielGord0n',
       demo: '#',
@@ -63,7 +63,7 @@ const Projects = () => {
       title: 'Battleships Game',
       description: 'Developed a fully functional recreation of the classic "Battleships" game using Java and Maven, including an intuitive GUI and an AI opponent. Demonstrated problem-solving and coding proficiency with object-oriented principles, AI development, and algorithmic problem-solving.',
       technologies: ['Java', 'Maven', 'Object-Oriented Design', 'GUI Development', 'AI Logic'],
-      image: 'https://via.placeholder.com/600x350/3a5c5c/ffffff?text=Battleships+Game',
+      image: require('../images/battleshipcycles-logo-ftr.png'),
       category: 'Software Development',
       link: 'https://github.com/DanielGord0n',
       demo: '#',
@@ -85,7 +85,7 @@ const Projects = () => {
       title: 'Multiplayer Roblox Game',
       description: 'Working on a multiplayer game and server using Lua and the Roblox framework, building skills in game development, networking, and server-client interaction within a complex environment.',
       technologies: ['Lua', 'Roblox Framework', 'Networking', 'Game Development', 'Server-Client Architecture'],
-      image: 'https://via.placeholder.com/600x350/4d3a5c/ffffff?text=Roblox+Game',
+      image: require('../images/robloxLogo.png'),
       category: 'Game Development',
       link: 'https://github.com/DanielGord0n',
       demo: '#',
@@ -128,8 +128,15 @@ const Projects = () => {
             <div className="project-image">
               <img src={project.image} alt={project.title} />
               <div className="project-links">
-                <a href={project.demo} target="_blank" rel="noopener noreferrer" className="demo-link">Live Demo</a>
-                <a href={project.link} target="_blank" rel="noopener noreferrer" className="code-link">View Code</a>
+                <a href={project.link} target="_blank" rel="noopener noreferrer" className="github-link">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                  </svg>
+                  <span>View on GitHub</span>
+                </a>
+                {project.id === 4 && (
+                  <span className="currently-viewing">You are currently viewing it!</span>
+                )}
               </div>
             </div>
             <div className="project-details">
