@@ -126,7 +126,22 @@ const Projects = () => {
         {filteredProjects.map(project => (
           <div className="project-card" key={project.id}>
             <div className="project-image">
-              {project.title === 'Futures and Fringes CMS Website' ? (
+              {project.title === 'Personal Developer Portfolio' ? (
+                <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%', width: '100%'}}>
+                  <p style={{
+                    width: '100%',
+                    fontSize: '28px', 
+                    fontWeight: '600', 
+                    textAlign: 'center', 
+                    color: '#1a1a1a', 
+                    margin: '0',
+                    padding: '0 20px',
+                    fontFamily: '"Montserrat", "Roboto", sans-serif',
+                    letterSpacing: '0.7px',
+                    lineHeight: '1.5',
+                  }}>You are currently viewing it!</p>
+                </div>
+              ) : project.title === 'Futures and Fringes CMS Website' ? (
                 <div style={{position: 'relative', width: '200%', height: '200%'}}>
                   <img 
                     src={project.image} 
@@ -140,14 +155,22 @@ const Projects = () => {
                   alt={project.title} 
                 />
               )}
-              <div className="project-links">
-                <a href={project.link} target="_blank" rel="noopener noreferrer" className="github-link">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-                  </svg>
-                  <span>{project.title === 'Personal Developer Portfolio' ? 'Currently viewing it' : 'View on GitHub'}</span>
-                </a>
-              </div>
+              {project.title !== 'Multiplayer Roblox Game' && (
+                <div className="project-links">
+                  <a href={project.link} target="_blank" rel="noopener noreferrer" className="github-link">
+                    {project.title === 'Futures and Fringes CMS Website' ? (
+                      <span>Visit website</span>
+                    ) : (
+                      <>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                        </svg>
+                        <span>View on GitHub</span>
+                      </>
+                    )}
+                  </a>
+                </div>
+              )}
             </div>
             <div className="project-details">
               <div className="project-header">
