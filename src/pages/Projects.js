@@ -126,11 +126,20 @@ const Projects = () => {
         {filteredProjects.map(project => (
           <div className="project-card" key={project.id}>
             <div className="project-image">
-              <img 
-                src={project.image} 
-                alt={project.title} 
-                className={project.title === 'Futures and Fringes CMS Website' ? 'ff-icon' : ''}
-              />
+              {project.title === 'Futures and Fringes CMS Website' ? (
+                <div style={{position: 'relative', width: '200%', height: '200%'}}>
+                  <img 
+                    src={project.image} 
+                    alt={project.title}
+                    style={{position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: '800px', height: 'auto'}}
+                  />
+                </div>
+              ) : (
+                <img 
+                  src={project.image} 
+                  alt={project.title} 
+                />
+              )}
               <div className="project-links">
                 <a href={project.link} target="_blank" rel="noopener noreferrer" className="github-link">
                   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
