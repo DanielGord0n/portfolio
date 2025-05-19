@@ -146,7 +146,7 @@ const Home = () => {
               </div>
             </div>
             <div className="project-image">
-              <img src="https://via.placeholder.com/600x350/112240/64ffda?text=WhatsApp+AI+Summarizer" alt="WhatsApp AI Summarizer screenshot" />
+              <img src={require('../images/WhatsappLogoBlack.png')} alt="WhatsApp AI Summarizer" style={{maxWidth: '75%', maxHeight: '75%', position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)'}} />
             </div>
           </div>
           
@@ -182,7 +182,7 @@ const Home = () => {
               </div>
             </div>
             <div className="project-image">
-              <img src="https://via.placeholder.com/600x350/112240/64ffda?text=Email+Digest+System" alt="Email Digest System screenshot" />
+              <img src={require('../images/email.png')} alt="Automated Email Digest System" style={{maxWidth: '75%', maxHeight: '75%', position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)'}} />
             </div>
           </div>
           
@@ -218,7 +218,7 @@ const Home = () => {
               </div>
             </div>
             <div className="project-image">
-              <img src="https://via.placeholder.com/600x350/112240/64ffda?text=Futures+and+Fringes+CMS" alt="Futures and Fringes CMS screenshot" />
+              <img src={require('../images/FF-ICON-BLK (1).png')} alt="Futures and Fringes CMS Website" style={{maxWidth: '75%', maxHeight: '75%', position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)'}} />
             </div>
           </div>
           
@@ -254,7 +254,7 @@ const Home = () => {
               </div>
             </div>
             <div className="project-image">
-              <img src="https://via.placeholder.com/600x350/112240/64ffda?text=wluNest" alt="wluNest Student Housing Application screenshot" />
+              <img src={require('../images/wilfrid-laurier-university-seeklogo.png')} alt="wluNest Student Housing Application" style={{maxWidth: '75%', maxHeight: '75%', position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)'}} />
             </div>
           </div>
         </div>

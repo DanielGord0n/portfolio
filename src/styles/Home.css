@@ -272,6 +272,37 @@
   margin-top: 50px;
 }
 
+.featured-project .project-image {
+  position: relative;
+  flex: 1;
+  margin-left: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f0f0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.featured-project.right .project-image {
+  margin-left: 0;
+  margin-right: 2rem;
+}
+
+.featured-project .project-image img {
+  /* Ensures the image is truly centered with equal padding */
+  max-width: 60%;
+  max-height: 60%;
+  width: auto;
+  height: auto;
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  object-fit: contain;
+}
+
 .featured-project {
   position: relative;
   display: grid;
