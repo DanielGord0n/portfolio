@@ -117,50 +117,32 @@
   transform: translate(-50%, -50%) scale(1.05);
 }
 
-/* Special styling for the FF-ICON-WHITE - now matching other icons */
-.ff-icon {
-  max-width: 100% !important;
-  max-height: 100% !important;
-}
-
-/* Enhanced visibility for the first three logos - dark background for white logos */
-.project-card:nth-child(-n+3) .project-image {
-  background-color: #0f172a;
-  border: 1px solid #4a90e2;
-}
-
-/* Different backgrounds based on logo visibility needs */
+/* Consistent styling for all project images - off-white background */
 .project-image {
-  background-color: #111827;
+  background-color: #f0f0f0;
 }
 
-/* Light background for the first 3 projects with white logos */
-.project-card:nth-child(1) .project-image,
-.project-card:nth-child(2) .project-image,
-.project-card:nth-child(3) .project-image {
-  background-color: #e0e0e0;
-}
-
-/* Make all logos a consistent size */
+/* Consistent styling for all project logos - always visible */
 .project-image img {
   width: auto;
   height: auto;
-  max-width: 70%;
-  max-height: 70%;
-  transition: none;
+  max-width: 75%;
+  max-height: 75%;
+  object-fit: contain;
+  transition: all 0.3s ease;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 1;
 }
 
-/* Special styling for white logos - consistent blue background boxes */
-.project-card:nth-child(1) .project-image img,
-.project-card:nth-child(2) .project-image img,
-.project-card:nth-child(3) .project-image img {
-  filter: brightness(3);
-  width: 100px;
-  height: 100px;
-  background-color: #1e293b;
-  padding: 15px;
-  border-radius: 8px;
-  object-fit: contain;
+/* Special styling ONLY for the FF-ICON to make it properly sized and centered */
+.ff-icon {
+  transform: scale(1.5) !important;
+  transform-origin: center center;
+  max-width: 80% !important;
+  max-height: 80% !important;
 }
 
 .project-links {
