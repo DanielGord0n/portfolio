@@ -26,6 +26,14 @@
   gap: 25px;
 }
 
+.no-gap-compact-skill-bars {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: 1.5rem;
+  width: 100%;
+}
+
 /* Header section with intro and highlights */
 .skills-header {
   text-align: center;
@@ -162,7 +170,149 @@
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
 }
 
-/* Skill category header styling */
+/* Programming Languages Section */
+.languages-section {
+  margin: 3rem 0;
+  text-align: center;
+}
+
+.languages-section h2 {
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  color: var(--text-primary);
+  position: relative;
+  display: inline-block;
+}
+
+.languages-section h2:after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  width: 80px;
+  height: 3px;
+  background: var(--accent-color);
+  transform: translateX(-50%);
+}
+
+.languages-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 2.5rem;
+}
+
+.language-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100px;
+  transition: all 0.3s ease;
+}
+
+.language-item:hover {
+  transform: translateY(-5px);
+}
+
+.language-item:hover .language-icon {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.language-icon {
+  width: 70px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.8rem;
+  font-family: 'Fira Code', monospace;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.language-item span {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.language-icon.javascript {
+  background: linear-gradient(135deg, #F7DF1E 0%, #D4BE0B 100%);
+  color: #000;
+}
+
+.language-icon.typescript {
+  background: linear-gradient(135deg, #3178C6 0%, #235A97 100%);
+  color: white;
+}
+
+.language-icon.python {
+  background: linear-gradient(135deg, #306998 0%, #FFE873 100%);
+  color: white;
+}
+
+.language-icon.java {
+  background: linear-gradient(135deg, #5382A1 0%, #F89820 100%);
+  color: white;
+}
+
+.language-icon.html {
+  background: linear-gradient(135deg, #E44D26 0%, #F16529 100%);
+  color: white;
+}
+
+.language-icon.css {
+  background: linear-gradient(135deg, #264DE4 0%, #2965F1 100%);
+  color: white;
+}
+
+.language-icon.sql {
+  background: linear-gradient(135deg, #00618A 0%, #1A8CFF 100%);
+  color: white;
+}
+
+.language-icon.csharp {
+  background: linear-gradient(135deg, #68217A 0%, #9B4F96 100%);
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .languages-container {
+    gap: 1.5rem;
+  }
+  
+  .language-item {
+    width: 80px;
+  }
+  
+  .language-icon {
+    width: 60px;
+    height: 60px;
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .languages-container {
+    gap: 1rem;
+  }
+  
+  .language-item {
+    width: 70px;
+  }
+  
+  .language-icon {
+    width: 50px;
+    height: 50px;
+    font-size: 1.1rem;
+  }
+}
+
+/* Skill Category Headers */
 .skill-category-header {
   display: flex;
   align-items: center;
@@ -222,92 +372,61 @@
   gap: 2rem;
 }
 
-/* Compact skill bars layout */
-.compact-skill-bars {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.25rem;
-  margin-top: 0.75rem;
-}
-
-/* Add section grouping inside compact skill bars */
-.compact-skill-bars h4 {
-  grid-column: 1 / -1;
-  margin: 1.25rem 0 0.75rem;
-  color: #fff;
-  font-size: 0.9rem;
-  background-color: rgba(74, 144, 226, 0.15);
-  padding: 8px 12px;
-  font-weight: 500;
-  letter-spacing: 0.5px;
-  border-radius: 4px;
-  display: inline-block;
-  max-width: max-content;
-  border-left: 3px solid var(--accent-color);
-}
-
-/* Add spacing to the first h4 */
-.compact-skill-bars h4:first-of-type {
-  margin-top: 0;
-}
-
-/* Style Expert level header differently */
-.compact-skill-bars h4:first-of-type {
-  background-color: rgba(74, 144, 226, 0.25);
-}
-
-/* Compact Skill Items */
-.compact-skill-item {
-  margin-bottom: 0.75rem;
-  position: relative;
-  transition: var(--transition);
-  background: rgba(255, 255, 255, 0.03);
-  padding: 0.5rem 0.75rem;
-  border-radius: 6px;
-  border-left: 2px solid var(--accent-color);
-}
-
-.compact-skill-item:hover {
-  background: rgba(255, 255, 255, 0.06);
-}
-
-.compact-skill-info {
+/* Skill tags container */
+.skill-tags-container {
   display: flex;
-  justify-content: space-between;
-  margin-bottom: 0.25rem;
-  font-size: 0.9rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  padding: 0.5rem;
 }
 
-.compact-skill-name {
+/* Skill tag styling */
+.skill-tag {
+  background-color: rgba(74, 144, 226, 0.1);
+  color: var(--text-secondary);
+  padding: 0.7rem 1.4rem;
+  border-radius: 30px;
+  font-size: 0.95rem;
   font-weight: 500;
-  color: var(--text-primary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(74, 144, 226, 0.2);
+  transition: all 0.3s ease;
+  font-family: 'Fira Code', monospace;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
 }
 
-.compact-skill-percentage {
-  font-size: 0.8rem;
-  color: var(--accent-color);
-  font-weight: 600;
+.skill-tag:hover {
+  background-color: rgba(74, 144, 226, 0.2);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-color: rgba(74, 144, 226, 0.3);
 }
 
-.compact-skill-bar {
-  height: 6px;
-  background: rgba(255, 255, 255, 0.08);
-  border-radius: 3px;
-  overflow: hidden;
-  position: relative;
+/* Media queries for skill tags */
+@media (max-width: 768px) {
+  .skill-tags-container {
+    gap: 0.8rem;
+  }
+  
+  .skill-tag {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+  }
 }
 
-.compact-skill-progress {
-  height: 100%;
-  background: var(--accent-gradient);
-  border-radius: 3px;
-  transform-origin: left;
-  animation: compactProgress 1.2s ease-out forwards;
-}
-
-@keyframes compactProgress {
-  from { transform: scaleX(0); }
-  to { transform: scaleX(1); }
+@media (max-width: 480px) {
+  .skill-tags-container {
+    gap: 0.6rem;
+  }
+  
+  .skill-tag {
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+  }
 }
 
 @media (max-width: 768px) {
@@ -409,10 +528,9 @@
   margin-top: 10px;
   border-radius: 12px;
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-  opacity: 0;
-  transform: translateY(20px);
-  animation: slideUp 0.6s ease-out forwards;
-  animation-delay: 0.6s;
+  opacity: 1; /* Changed from 0 to make it visible by default */
+  transform: translateY(0); /* Changed from translateY(20px) */
+  animation: none; /* Removed animation that was delaying visibility */
 }
 
 .additional-skills h2 {
@@ -522,8 +640,8 @@
 .work-process-section {
   padding: 40px 30px;
   text-align: center;
-  opacity: 0;
-  transform: translateY(20px);
+  opacity: 1; /* Changed from 0 to make it visible by default */
+  transform: translateY(0); /* Changed from translateY(20px) */
   transition: all 0.5s ease-out;
   background-color: var(--bg-secondary);
   border-radius: 12px;
@@ -645,8 +763,8 @@
   background: var(--bg-secondary);
   border-radius: 12px;
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-  opacity: 0;
-  transform: translateY(20px);
+  opacity: 1; /* Changed from 0 to make it visible by default */
+  transform: translateY(0); /* Changed from translateY(20px) */
   transition: all 0.5s ease-out;
 }
 

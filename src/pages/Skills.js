@@ -7,13 +7,15 @@ const Skills = () => {
   const skillBarsRef = useRef(null);
   const workProcessRef = useRef(null);
   const additionalSkillsRef = useRef(null);
+  const programmingLanguagesRef = useRef(null);
   
   // Group refs in an object for easier handling
   const sectionRefs = {
     mainSkills: mainSkillsRef,
     skillBars: skillBarsRef,
     workProcess: workProcessRef,
-    additionalSkills: additionalSkillsRef
+    additionalSkills: additionalSkillsRef,
+    programmingLanguages: programmingLanguagesRef
   };
 
   // Animation for sections on scroll
@@ -164,6 +166,8 @@ const Skills = () => {
   return (
     <div className="skills-page">
       <div className="no-gap-container">
+
+
         {/* Main Skills Header Section */}
         <div className="skills-header" ref={sectionRefs.mainSkills}>
           <h1>My Technical Skills</h1>
@@ -223,12 +227,48 @@ const Skills = () => {
           </div>
         </div>
 
+        {/* Programming Languages Section */}
+        <div className="languages-section" ref={sectionRefs.programmingLanguages}>
+          <h2>Programming Languages</h2>
+          <div className="languages-container">
+            <div className="language-item">
+              <div className="language-icon javascript">JS</div>
+              <span>JavaScript</span>
+            </div>
+            <div className="language-item">
+              <div className="language-icon typescript">TS</div>
+              <span>TypeScript</span>
+            </div>
+            <div className="language-item">
+              <div className="language-icon python">PY</div>
+              <span>Python</span>
+            </div>
+            <div className="language-item">
+              <div className="language-icon java">JV</div>
+              <span>Java</span>
+            </div>
+            <div className="language-item">
+              <div className="language-icon html">HT</div>
+              <span>HTML</span>
+            </div>
+            <div className="language-item">
+              <div className="language-icon css">CS</div>
+              <span>CSS</span>
+            </div>
+            <div className="language-item">
+              <div className="language-icon sql">SQ</div>
+              <span>SQL</span>
+            </div>
+            <div className="language-item">
+              <div className="language-icon csharp">C#</div>
+              <span>C#</span>
+            </div>
+          </div>
+        </div>
+        
         {/* Skill Categories with Progress Bars */}
         <div ref={sectionRefs.skillBars}>
           {skillCategories.map((category, index) => {
-            // Sort skills by level (highest first)
-            const sortedSkills = [...category.skills].sort((a, b) => b.level - a.level);
-            
             return (
               <div className="skill-section" key={index}>
                 <div className="skill-category-header">
@@ -238,19 +278,10 @@ const Skills = () => {
                     <p>{category.description}</p>
                   </div>
                 </div>
-                <div className="compact-skill-bars">
-                  {sortedSkills.map((skill, idx) => (
-                    <div className="compact-skill-item" key={idx}>
-                      <div className="compact-skill-info">
-                        <span className="compact-skill-name">{skill.name}</span>
-                        <span className="compact-skill-percentage">{skill.level}%</span>
-                      </div>
-                      <div className="compact-skill-bar">
-                        <div 
-                          className="compact-skill-progress" 
-                          style={{ width: `${skill.level}%` }}
-                        ></div>
-                      </div>
+                <div className="skill-tags-container">
+                  {category.skills.map((skill, idx) => (
+                    <div className="skill-tag" key={idx}>
+                      {skill.name}
                     </div>
                   ))}
                 </div>
