@@ -91,11 +91,12 @@
   position: relative;
   overflow: hidden;
   height: 200px;
-  background-color: #e2e8f0;
+  background-color: #f0f0f0 !important;
   display: flex;
   justify-content: center;
   align-items: center;
   border: 1px solid #4a90e2;
+  z-index: 1;
 }
 
 .project-image img {
@@ -119,7 +120,7 @@
 
 /* Consistent styling for all project images - off-white background */
 .project-image {
-  background-color: #f0f0f0;
+  background-color: #f0f0f0 !important;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -178,6 +179,7 @@
   transition: all 0.3s ease;
   background: linear-gradient(to right, #4169E1, #4A90E2);
   box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
+  z-index: 2;
 }
 
 .project-card:hover .project-links {

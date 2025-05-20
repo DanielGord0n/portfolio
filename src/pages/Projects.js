@@ -1,7 +1,24 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import '../styles/Projects.css';
 
 const Projects = () => {
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    // Handler to call on window resize
+    function handleResize() {
+      setWindowWidth(window.innerWidth);
+    }
+    
+    // Add event listener
+    window.addEventListener('resize', handleResize);
+    
+    // Call handler right away so state gets updated with initial window size
+    handleResize();
+    
+    // Remove event listener on cleanup
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
   const projects = [
     {
       id: 1,
@@ -125,9 +142,20 @@ const Projects = () => {
       <div className="projects-grid">
         {filteredProjects.map(project => (
           <div className="project-card" key={project.id}>
-            <div className="project-image">
+            <div style={{
+              backgroundColor: '#ffffff',
+              border: '1px solid #4a90e2',
+              position: 'relative',
+              overflow: 'hidden',
+              height: '200px',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              mixBlendMode: 'normal',
+              isolation: 'isolate'
+            }}>
               {project.title === 'Personal Developer Portfolio' ? (
-                <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%', width: '100%'}}>
+                <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%', width: '100%', backgroundColor: '#ffffff'}}>
                   <p style={{
                     width: '100%',
                     fontSize: '28px', 
@@ -142,18 +170,32 @@ const Projects = () => {
                   }}>You are currently viewing it!</p>
                 </div>
               ) : project.title === 'Futures and Fringes CMS Website' ? (
-                <div style={{position: 'relative', width: '200%', height: '200%'}}>
+                <div style={{position: 'relative', width: '200%', height: '200%', backgroundColor: '#ffffff'}}>
                   <img 
                     src={project.image} 
                     alt={project.title}
-                    style={{position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: '800px', height: 'auto'}}
+                    style={{
+                      position: 'absolute', 
+                      top: '50%', 
+                      left: '50%', 
+                      transform: 'translate(-50%, -50%)', 
+                      width: windowWidth < 1200 ? '500px' : '800px', 
+                      height: 'auto'
+                    }}
                   />
                 </div>
               ) : (
-                <img 
-                  src={project.image} 
-                  alt={project.title} 
-                />
+                <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%', width: '100%', backgroundColor: '#ffffff'}}>
+                  <img 
+                    src={project.image} 
+                    alt={project.title}
+                    style={{
+                      maxWidth: '75%',
+                      maxHeight: '75%',
+                      objectFit: 'contain'
+                    }} 
+                  />
+                </div>
               )}
               {project.title !== 'Multiplayer Roblox Game' && (
                 <div className="project-links">
