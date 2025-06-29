@@ -2,6 +2,11 @@ import React, { useEffect, useRef } from 'react';
 import '../styles/Skills.css';
 
 const Skills = () => {
+  // Update document title
+  useEffect(() => {
+    document.title = 'Skills | Daniel Gordon - Full Stack Developer';
+  }, []);
+
   // Create refs directly in the component body
   const mainSkillsRef = useRef(null);
   const skillBarsRef = useRef(null);

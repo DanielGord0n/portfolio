@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import '../styles/Contact.css';
 
 const Contact = () => {
-
+  // Update document title
+  useEffect(() => {
+    document.title = 'Contact | Daniel Gordon - Full Stack Developer';
+  }, []);
 
   const contactInfo = {
     email: "gordondan2@gmail.com",
