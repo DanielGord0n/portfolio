@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
 import '../styles/Home.css';
 import profilePhoto from '../images/profilePhoto.jpeg';
 
@@ -18,6 +17,17 @@ const Home = () => {
     projects: projectsRef,
     interests: interestsRef
   }), []);
+
+  // Set document title for Home page
+  useEffect(() => {
+    document.title = 'Daniel Gordon | Full Stack Developer';
+    
+    // Set meta description
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', 'Daniel Gordon - Full Stack Developer specializing in React, Node.js, and modern web technologies. Currently studying Computer Science at Wilfrid Laurier University.');
+    }
+  }, []);
 
   // Animation for sections on scroll
   useEffect(() => {
@@ -70,11 +80,6 @@ const Home = () => {
 
   return (
     <div className="home-container">
-      <Helmet>
-        <title>Daniel Gordon | Full Stack Developer</title>
-        <meta name="description" content="Daniel Gordon - Full Stack Developer specializing in React, Node.js, and modern web technologies. Currently studying Computer Science at Wilfrid Laurier University." />
-      </Helmet>
-      
       {/* Hero Section */}
       <section className="hero-section" ref={sectionRefs.hero}>
         <div className="hero-content">

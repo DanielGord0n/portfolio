@@ -1,72 +1,23 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
+import React, { useEffect } from 'react';
 import '../styles/Resume.css';
 
 const Resume = () => {
   // PDF path for production
   const resumePDF = '/Daniel_Gordon_Resume_FullStackDeveloper.pdf';
   
-  // Removed tabs since we're only showing the PDF viewer
-  
-  const experiences = [
-    {
-      company: 'TechNova Solutions',
-      position: 'Senior Frontend Developer',
-      period: 'Jan 2023 - Present',
-      description: 'Lead the frontend development team in building responsive web applications using React and TypeScript. Implemented state management solutions with Redux and optimized application performance. Collaborated with UX/UI designers to create intuitive user interfaces.',
-      achievements: [
-        'Reduced load time by 40% through code optimization and lazy loading techniques',
-        'Implemented comprehensive test coverage using Jest and React Testing Library',
-        'Mentored junior developers and established frontend best practices'
-      ]
-    },
-    {
-      company: 'DataViz Inc.',
-      position: 'Full Stack Developer',
-      period: 'Mar 2020 - Dec 2022',
-      description: 'Developed and maintained full-stack web applications using the MERN stack (MongoDB, Express, React, Node.js). Designed and implemented RESTful APIs and database schemas. Collaborated in an Agile development environment.',
-      achievements: [
-        'Built a real-time data visualization dashboard that increased client retention by 25%',
-        'Implemented secure authentication system with JWT and role-based access control',
-        'Contributed to microservices architecture migration'
-      ]
-    },
-    {
-      company: 'WebSphere Solutions',
-      position: 'Junior Web Developer',
-      period: 'Jun 2018 - Feb 2020',
-      description: 'Developed responsive websites and web applications for various clients. Worked with HTML, CSS, JavaScript, and jQuery. Maintained existing client websites and implemented new features based on client requirements.',
-      achievements: [
-        'Created mobile-responsive designs for 15+ client websites',
-        'Implemented e-commerce functionality using Stripe payment integration',
-        'Improved site performance and SEO rankings for multiple clients'
-      ]
+  // Update document title and meta description
+  useEffect(() => {
+    document.title = 'Resume | Daniel Gordon - Full Stack Developer';
+    
+    // Update meta description
+    let metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', 'View and download Daniel Gordon\'s resume. Full Stack Developer with experience in React, Node.js, and modern web technologies.');
     }
-  ];
-  
-  const education = [
-    {
-      institution: 'University of Technology',
-      degree: 'Bachelor of Science in Computer Science',
-      period: '2014 - 2018',
-      details: 'Graduated with honors. Specialized in web development and software engineering.'
-    }
-  ];
-  
-  const certifications = [
-    { name: 'AWS Certified Developer - Associate', issuer: 'Amazon Web Services', year: '2022' },
-    { name: 'MongoDB Certified Developer', issuer: 'MongoDB Inc.', year: '2021' },
-    { name: 'React Developer Certification', issuer: 'Meta', year: '2020' }
-  ];
+  }, []);
 
   return (
     <div className="resume-container">
-      <Helmet>
-        <title>Resume | Daniel Gordon - Full Stack Developer</title>
-        <meta name="description" content="View and download Daniel Gordon's resume. Full Stack Developer with experience in React, Node.js, and modern web technologies." />
-      </Helmet>
-      
       <div className="resume-header">
         <h1>My Resume</h1>
       </div>
