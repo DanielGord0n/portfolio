@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/Resume.css';
-import resumePDF from '../images/Daniel_Gordon_Resume_FullStackDeveloper.pdf';
 
 const Resume = () => {
+  // PDF path for production
+  const resumePDF = '/Daniel_Gordon_Resume_FullStackDeveloper.pdf';
+  
   // Removed tabs since we're only showing the PDF viewer
   
   const experiences = [
