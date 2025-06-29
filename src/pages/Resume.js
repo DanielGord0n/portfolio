@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import '../styles/Resume.css';
 
 const Resume = () => {
@@ -61,6 +62,11 @@ const Resume = () => {
 
   return (
     <div className="resume-container">
+      <Helmet>
+        <title>Resume | Daniel Gordon - Full Stack Developer</title>
+        <meta name="description" content="View and download Daniel Gordon's resume. Full Stack Developer with experience in React, Node.js, and modern web technologies." />
+      </Helmet>
+      
       <div className="resume-header">
         <h1>My Resume</h1>
       </div>

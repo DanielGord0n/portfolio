@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Helmet } from 'react-helmet-async';
 import '../styles/Projects.css';
 
 const Projects = () => {
@@ -120,6 +121,11 @@ const Projects = () => {
 
   return (
     <div className="projects-container">
+      <Helmet>
+        <title>Projects | Daniel Gordon - Full Stack Developer</title>
+        <meta name="description" content="Explore Daniel Gordon's portfolio of full-stack development projects including AI-powered applications, CMS websites, and student housing platforms." />
+      </Helmet>
+      
       <div className="projects-header">
         <h1>My Projects</h1>
         <p>
