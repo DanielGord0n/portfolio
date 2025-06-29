@@ -1,32 +1,55 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/Home.css';
 import profilePhoto from '../images/profilePhoto.jpeg';
 
 const Home = () => {
-  const sectionRefs = {
-    hero: useRef(null),
-    about: useRef(null),
-    projects: useRef(null),
-    interests: useRef(null)
-  };
+  // Create refs directly
+  const heroRef = useRef(null);
+  const aboutRef = useRef(null);
+  const projectsRef = useRef(null);
+  const interestsRef = useRef(null);
+  
+  // Memoize the refs object to prevent unnecessary re-renders
+  const sectionRefs = useMemo(() => ({
+    hero: heroRef,
+    about: aboutRef,
+    projects: projectsRef,
+    interests: interestsRef
+  }), []);
 
   // Animation for sections on scroll
   useEffect(() => {
+    const isMobile = window.innerWidth <= 768;
+    
     const observerOptions = {
-      threshold: 0.25,
-      rootMargin: '0px 0px -100px 0px'
+      threshold: isMobile ? [0, 0.05, 0.1] : [0, 0.1, 0.2], // Even more sensitive on mobile
+      rootMargin: isMobile ? '0px 0px -20px 0px' : '0px 0px -50px 0px' // Less aggressive margin for mobile
     };
 
     const observerCallback = (entries) => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) {
+        // More sensitive triggering - activate when element enters viewport
+        if (entry.isIntersecting && entry.intersectionRatio >= (isMobile ? 0.05 : 0.1)) {
           entry.target.classList.add('animate-in');
         }
       });
     };
 
     const observer = new IntersectionObserver(observerCallback, observerOptions);
+    
+    // Add a timeout fallback for mobile devices
+    const fallbackTimeout = setTimeout(() => {
+      Object.values(sectionRefs).forEach(ref => {
+        if (ref.current && !ref.current.classList.contains('animate-in')) {
+          const rect = ref.current.getBoundingClientRect();
+          // If section is anywhere near the viewport, animate it
+          if (rect.top < window.innerHeight * 1.2) {
+            ref.current.classList.add('animate-in');
+          }
+        }
+      });
+    }, 1000);
     
     Object.values(sectionRefs).forEach(ref => {
       if (ref.current) {
@@ -35,6 +58,7 @@ const Home = () => {
     });
 
     return () => {
+      clearTimeout(fallbackTimeout);
       Object.values(sectionRefs).forEach(ref => {
         if (ref.current) {
           observer.unobserve(ref.current);
