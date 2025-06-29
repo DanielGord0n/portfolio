@@ -182,7 +182,7 @@
 
 .about-image-container {
   position: relative;
-  max-width: 300px;
+  max-width: 550px;
   margin: 0 auto;
 }
 
@@ -191,7 +191,6 @@
   position: relative;
   width: 100%;
   border-radius: var(--radius-md);
-  background-color: var(--accent-primary);
   transition: var(--transition);
 }
 
@@ -217,15 +216,10 @@
 .about-image {
   position: relative;
   border-radius: var(--radius-md);
-  mix-blend-mode: multiply;
-  filter: grayscale(100%) contrast(1);
   transition: var(--transition);
   z-index: 1;
-}
-
-.about-image:hover {
-  filter: none;
-  mix-blend-mode: normal;
+  width: 100%;
+  height: auto;
 }
 
 /* Responsive Styles */

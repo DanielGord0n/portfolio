@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/Home.css';
+import profilePhoto from '../images/profilePhoto.jpeg';
 
 const Home = () => {
   const sectionRefs = {
@@ -97,7 +98,7 @@ const Home = () => {
           <div className="about-image-container">
             <div className="about-image-wrapper">
               <img 
-                src="https://via.placeholder.com/300x300/3a4a5c/ffffff?text=Daniel" 
+                src={profilePhoto} 
                 alt="Daniel Gordon" 
                 className="about-image" 
               />
