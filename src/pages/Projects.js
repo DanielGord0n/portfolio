@@ -27,7 +27,7 @@ const Projects = () => {
       technologies: ['Node.js', 'WhatsApp API', 'Gemini AI', 'RESTful APIs', 'Express'],
       image: require('../images/WhatsappLogoBlack.png'),
       category: 'Full Stack Development',
-      link: 'https://github.com/DanielGord0n',
+      link: 'https://github.com/gordondm/phoenix-bot',
       demo: '#',
       company: 'Contract Work'
     },
@@ -38,7 +38,7 @@ const Projects = () => {
       technologies: ['Node.js', 'Express', 'Cloud Mail Services', 'Scheduled Tasks', 'MySQL/Prisma'],
       image: require('../images/email.png'),
       category: 'Backend Development',
-      link: 'https://github.com/DanielGord0n',
+      link: 'https://github.com/gordondm/phoenix-bot',
       demo: '#',
       company: 'Contract Work'
     },
@@ -49,7 +49,7 @@ const Projects = () => {
       technologies: ['Framer', 'CMS Integration', 'UI/UX Design', 'Responsive Design', 'Interactive Elements'],
       image: require('../images/FF-ICON-BLK (1).png'),
       category: 'Frontend Development',
-      link: 'https://github.com/DanielGord0n',
+      link: 'https://www.futuresandfringes.com/',
       demo: '#',
       company: 'Contract Work'
     },
@@ -71,7 +71,7 @@ const Projects = () => {
       technologies: ['React', 'Node.js', 'MySQL', 'Interactive Maps', 'Real-time Updates'],
       image: require('../images/wilfrid-laurier-university-seeklogo.png'),
       category: 'Full Stack Development',
-      link: 'https://github.com/DanielGord0n',
+      link: 'https://github.com/WluNest/wluNest-App',
       demo: '#',
       company: 'Academic Project'
     },
@@ -82,7 +82,7 @@ const Projects = () => {
       technologies: ['Java', 'Maven', 'Object-Oriented Design', 'GUI Development', 'AI Logic'],
       image: require('../images/battleshipcycles-logo-ftr.png'),
       category: 'Software Development',
-      link: 'https://github.com/DanielGord0n',
+      link: 'https://github.com/y-fysiks/ICS4U-CPT-Battleship',
       demo: '#',
       company: 'Academic Project'
     },
@@ -93,7 +93,7 @@ const Projects = () => {
       technologies: ['React.js', 'Prisma', 'Tailwind CSS', 'Vercel', 'Database Design'],
       image: require('../images/waiver.png'),
       category: 'Frontend Development',
-      link: 'https://github.com/DanielGord0n',
+      link: 'https://github.com/DanielGord0n/pool-waiver',
       demo: '#',
       company: 'Contract Work'
     },
