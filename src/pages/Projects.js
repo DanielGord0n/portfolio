@@ -24,7 +24,7 @@ const Projects = () => {
       id: 1,
       title: 'AI-Powered WhatsApp Summarizer',
       description: 'Engineered a chat summarization tool that integrates the WhatsApp API with Gemini AI to automatically condense lengthy message threads into concise daily digests, improving information retention and reducing cognitive overload for users.',
-      technologies: ['Node.js', 'WhatsApp API', 'Gemini AI', 'RESTful APIs', 'Express'],
+      technologies: ['Node.js', 'WhatsApp API', 'Gemini AI', 'RESTful APIs', 'Express', 'Next.js'],
       image: require('../images/WhatsappLogoBlack.png'),
       category: 'Full Stack Development',
       link: 'https://phoenixbot.up.railway.app/',
@@ -44,6 +44,17 @@ const Projects = () => {
     },
     {
       id: 3,
+      title: 'AI-Powered 3D Avatar Platform',
+      description: 'Refactored and enhanced lip-sync pipelines for 3D avatars in Unity, improving phoneme-to-blend-shape timing accuracy. Built end-to-end AI workflows with OpenAI Whisper for speech-to-text and LangChain orchestration. Integrated lip-sync and AI services as RESTful endpoints with React/Next.js frontend for real-time avatar animations in the browser.',
+      technologies: ['Python', 'JavaScript', 'Unity', 'OpenAI Whisper', 'LangChain', 'React/Next.js', 'RESTful APIs', 'AI/ML'],
+      image: require('../images/MCGLogo.png'),
+      category: 'Full Stack Development',
+      link: 'https://mycleanmesh.com/',
+      demo: '#',
+      company: 'MCG - Digital Assetization Company'
+    },
+    {
+      id: 4,
       title: 'Automated Email Digest System',
       description: 'Developed a scheduled email-delivery system that sends WhatsApp conversation summaries to subscribers, reducing manual review time by over 80% through a Node.js back-end and cloud-based mail services with robust error handling.',
       technologies: ['Node.js', 'Express', 'Cloud Mail Services', 'Scheduled Tasks', 'MySQL/Prisma'],
@@ -54,7 +65,7 @@ const Projects = () => {
       company: 'Contract Work'
     },
     {
-      id: 4,
+      id: 5,
       title: 'Futures and Fringes CMS Website',
       description: 'Led the UI/UX build of a Framer-powered CMS website, integrating newsletter sign-ups, interactive scroll effects, and dynamic case-study pages to enhance user engagement and provide an intuitive content management experience for the client.',
       technologies: ['Framer', 'CMS Integration', 'UI/UX Design', 'Responsive Design', 'Interactive Elements'],
@@ -65,7 +76,7 @@ const Projects = () => {
       company: 'Futures and Fringes'
     },
     {
-      id: 5,
+      id: 6,
       title: 'Personal Developer Portfolio',
       description: 'Designed and developed a custom portfolio website showcasing my projects and skills. Built with React and modern CSS, featuring responsive design, animated transitions, and optimized performance. You are currently viewing it!',
       technologies: ['React', 'Modern CSS', 'Responsive Design', 'JavaScript', 'Git'],
@@ -76,7 +87,7 @@ const Projects = () => {
       company: 'Personal Project'
     },
     {
-      id: 6,
+      id: 7,
       title: 'wluNest - Student Housing Application',
       description: 'Developed a platform aggregating Waterloo-Kitchener rental listings for students. Designed an intuitive UI with interactive maps, personalized filters, and a roommate finder. Integrated real-time updates and direct listing links using Node.js, React, and MySQL. Delivered a polished, fully functional app that significantly streamlined the housing search process.',
       technologies: ['React', 'Node.js', 'MySQL', 'Interactive Maps', 'Real-time Updates'],
@@ -87,7 +98,7 @@ const Projects = () => {
       company: 'Academic Project'
     },
     {
-      id: 7,
+      id: 8,
       title: 'Battleships Game',
       description: 'Developed a fully functional recreation of the classic "Battleships" game using Java and Maven, including an intuitive GUI and an AI opponent. Demonstrated problem-solving and coding proficiency with object-oriented principles, AI development, and algorithmic problem-solving.',
       technologies: ['Java', 'Maven', 'Object-Oriented Design', 'GUI Development', 'AI Logic'],
@@ -98,7 +109,7 @@ const Projects = () => {
       company: 'Academic Project'
     },
     {
-      id: 8,
+      id: 9,
       title: 'Waiver Submission Applications',
       description: 'Designed and implemented applications using React.js, Prisma, Tailwind CSS, and Vercel to manage liability waivers with a robust online database, reducing admin time by 40%. Strengthened knowledge in front-end frameworks, databases, and API integration.',
       technologies: ['React.js', 'Prisma', 'Tailwind CSS', 'Vercel', 'Database Design'],
@@ -109,7 +120,7 @@ const Projects = () => {
       company: 'Contract Work'
     },
     {
-      id: 9,
+      id: 10,
       title: 'Multiplayer Roblox Game',
       description: 'Working on a multiplayer game and server using Lua and the Roblox framework, building skills in game development, networking, and server-client interaction within a complex environment.',
       technologies: ['Lua', 'Roblox Framework', 'Networking', 'Game Development', 'Server-Client Architecture'],
@@ -211,7 +222,7 @@ const Projects = () => {
               {project.title !== 'Multiplayer Roblox Game' && (
                 <div className="project-links">
                   <a href={project.link} target="_blank" rel="noopener noreferrer" className="github-link">
-                    {project.title === 'Futures and Fringes CMS Website' ? (
+                    {project.title === 'Futures and Fringes CMS Website' || project.title === 'AI-Powered WhatsApp Summarizer' || project.title === 'AI-Powered 3D Avatar Platform' ? (
                       <span>Visit website</span>
                     ) : (
                       <>
