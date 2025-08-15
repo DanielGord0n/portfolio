@@ -19,17 +19,6 @@ const Projects = () => {
     // Remove event listener on cleanup
     return () => window.removeEventListener('resize', handleResize);
   }, []);
-
-  // Update document title and meta description
-  useEffect(() => {
-    document.title = 'Projects | Daniel Gordon - Full Stack Developer';
-    
-    // Update meta description
-    let metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', 'Explore Daniel Gordon\'s portfolio of full-stack development projects including AI-powered applications, CMS websites, and student housing platforms.');
-    }
-  }, []);
   const projects = [
     {
       id: 1,
@@ -38,12 +27,23 @@ const Projects = () => {
       technologies: ['Node.js', 'WhatsApp API', 'Gemini AI', 'RESTful APIs', 'Express'],
       image: require('../images/WhatsappLogoBlack.png'),
       category: 'Full Stack Development',
-      link: 'https://github.com/gordondm/phoenix-bot',
+      link: 'https://phoenixbot.up.railway.app/',
       demo: '#',
       company: 'Contract Work'
     },
     {
       id: 2,
+      title: 'LaunchPath Biotech Solutions Architecture',
+      description: 'Spearheaded end-to-end solution architecture for LaunchPath\'s Biotech projects, translating business requirements into scalable C4 diagrams and technical specifications. Orchestrated Agile sprints, developed responsive React frontends with secure Python microservices integration for real-time biosensor data ingestion.',
+      technologies: ['React', 'Python', 'Microservices', 'C4 Architecture', 'Agile', 'Figma', 'Jira', 'Confluence'],
+      image: require('../images/launchpathLogo.png'),
+      category: 'Full Stack Development',
+      link: 'https://github.com/DanielGord0n/aptamer_therapeutic',
+      demo: '#',
+      company: 'LaunchPath Inc.'
+    },
+    {
+      id: 3,
       title: 'Automated Email Digest System',
       description: 'Developed a scheduled email-delivery system that sends WhatsApp conversation summaries to subscribers, reducing manual review time by over 80% through a Node.js back-end and cloud-based mail services with robust error handling.',
       technologies: ['Node.js', 'Express', 'Cloud Mail Services', 'Scheduled Tasks', 'MySQL/Prisma'],
@@ -54,7 +54,7 @@ const Projects = () => {
       company: 'Contract Work'
     },
     {
-      id: 3,
+      id: 4,
       title: 'Futures and Fringes CMS Website',
       description: 'Led the UI/UX build of a Framer-powered CMS website, integrating newsletter sign-ups, interactive scroll effects, and dynamic case-study pages to enhance user engagement and provide an intuitive content management experience for the client.',
       technologies: ['Framer', 'CMS Integration', 'UI/UX Design', 'Responsive Design', 'Interactive Elements'],
@@ -62,21 +62,21 @@ const Projects = () => {
       category: 'Frontend Development',
       link: 'https://www.futuresandfringes.com/',
       demo: '#',
-      company: 'Contract Work'
+      company: 'Futures and Fringes'
     },
     {
-      id: 4,
+      id: 5,
       title: 'Personal Developer Portfolio',
       description: 'Designed and developed a custom portfolio website showcasing my projects and skills. Built with React and modern CSS, featuring responsive design, animated transitions, and optimized performance. You are currently viewing it!',
       technologies: ['React', 'Modern CSS', 'Responsive Design', 'JavaScript', 'Git'],
-      image: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 350" fill="%23f0f0f0"><rect width="600" height="350" fill="%233a4a5c"/><text x="50%" y="50%" text-anchor="middle" dy=".3em" fill="white" font-size="24" font-family="Arial">Portfolio Website</text></svg>',
+      image: 'https://via.placeholder.com/600x350/2b5c5c/ffffff?text=Portfolio+Website',
       category: 'Frontend Development',
       link: 'https://github.com/DanielGord0n',
       demo: '#',
       company: 'Personal Project'
     },
     {
-      id: 5,
+      id: 6,
       title: 'wluNest - Student Housing Application',
       description: 'Developed a platform aggregating Waterloo-Kitchener rental listings for students. Designed an intuitive UI with interactive maps, personalized filters, and a roommate finder. Integrated real-time updates and direct listing links using Node.js, React, and MySQL. Delivered a polished, fully functional app that significantly streamlined the housing search process.',
       technologies: ['React', 'Node.js', 'MySQL', 'Interactive Maps', 'Real-time Updates'],
@@ -87,7 +87,7 @@ const Projects = () => {
       company: 'Academic Project'
     },
     {
-      id: 6,
+      id: 7,
       title: 'Battleships Game',
       description: 'Developed a fully functional recreation of the classic "Battleships" game using Java and Maven, including an intuitive GUI and an AI opponent. Demonstrated problem-solving and coding proficiency with object-oriented principles, AI development, and algorithmic problem-solving.',
       technologies: ['Java', 'Maven', 'Object-Oriented Design', 'GUI Development', 'AI Logic'],
@@ -98,7 +98,7 @@ const Projects = () => {
       company: 'Academic Project'
     },
     {
-      id: 7,
+      id: 8,
       title: 'Waiver Submission Applications',
       description: 'Designed and implemented applications using React.js, Prisma, Tailwind CSS, and Vercel to manage liability waivers with a robust online database, reducing admin time by 40%. Strengthened knowledge in front-end frameworks, databases, and API integration.',
       technologies: ['React.js', 'Prisma', 'Tailwind CSS', 'Vercel', 'Database Design'],
@@ -109,7 +109,7 @@ const Projects = () => {
       company: 'Contract Work'
     },
     {
-      id: 8,
+      id: 9,
       title: 'Multiplayer Roblox Game',
       description: 'Working on a multiplayer game and server using Lua and the Roblox framework, building skills in game development, networking, and server-client interaction within a complex environment.',
       technologies: ['Lua', 'Roblox Framework', 'Networking', 'Game Development', 'Server-Client Architecture'],
