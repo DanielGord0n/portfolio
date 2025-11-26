@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
 import ProjectCard3D from '../components/ProjectCard3D';
 import PageTransition from '../components/PageTransition';
