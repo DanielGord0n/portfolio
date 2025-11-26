@@ -183,7 +183,7 @@ const Home = () => {
           <div className="hero-description">
             {taglineComplete && (
               <TypingText
-                text="I'm a software engineer specializing in building (and occasionally designing) exceptional digital experiences. Currently, I'm focused on building accessible, human-centered products."
+                text="I'm a software engineer specializing in full-stack development and machine learning. Currently, I'm focused on building intelligent, accessible products that bridge the gap between AI and user experience."
                 delay={0}
                 speed={0.01} // Very fast for long text
                 showCursor={true} // Keep cursor blinking at the end
