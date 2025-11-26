@@ -16,14 +16,14 @@ const SkillsSphere = () => {
         isHoveredRef.current = false;
     };
 
-    const texts = [
+    const texts = React.useMemo(() => [
         'React', 'Node.js', 'Python', 'Java', 'C/C++',
         'TypeScript', 'JavaScript', 'Next.js', 'Flutter', 'Dart',
         'PyTorch', 'TensorFlow', 'SQL', 'NoSQL', 'AWS',
         'Docker', 'Git', 'Figma', 'Tailwind', 'Prisma',
         'GraphQL', 'Unity', 'Framer', 'R', 'Bash',
         'Gemini AI', 'Scikit-learn', 'Babylon.js'
-    ];
+    ], []);
 
     useEffect(() => {
         const container = containerRef.current;
@@ -135,7 +135,7 @@ const SkillsSphere = () => {
             cancelAnimationFrame(animationFrameId);
             container.innerHTML = '';
         };
-    }, []); // Empty dependency array ensures effect runs only once
+    }, [texts]); // Added texts to dependency array
 
     return (
         <div

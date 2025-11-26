@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { FaDownload, FaExternalLinkAlt } from 'react-icons/fa';
 import PageTransition from '../components/PageTransition';
 import '../styles/Resume.css';
 

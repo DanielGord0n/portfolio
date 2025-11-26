@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
 import ProjectCard3D from '../components/ProjectCard3D';
 import PageTransition from '../components/PageTransition';
@@ -113,6 +113,17 @@ const Projects = () => {
       technologies: ['React', 'Framer Motion', '3D Tilt', 'Modern CSS'],
       image: require('../images/DG_logo.png'),
       category: 'Frontend Development',
+      link: null,
+      github: 'https://github.com/DanielGord0n',
+      company: 'Personal Project'
+    },
+    {
+      id: 11,
+      title: 'Multiplayer Roblox Game',
+      description: 'Working on a multiplayer game and server using Lua and the Roblox framework, building skills in game development, networking, and server-client interaction within a complex environment.',
+      technologies: ['Lua', 'Roblox Framework', 'Networking', 'Game Development'],
+      image: require('../images/robloxLogo.png'),
+      category: 'Game Development',
       link: null,
       github: 'https://github.com/DanielGord0n',
       company: 'Personal Project'
