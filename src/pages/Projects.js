@@ -67,7 +67,7 @@ const Projects = () => {
       title: 'Personal Developer Portfolio',
       description: 'Designed and developed a custom portfolio website showcasing my projects and skills. You are currently viewing it!',
       technologies: ['React', 'Framer Motion', '3D Tilt', 'Modern CSS'],
-      image: null, // Special case handled in card? Or just use placeholder
+      image: require('../images/DG_logo.png'),
       category: 'Frontend Development',
       link: null,
       github: 'https://github.com/DanielGord0n',
