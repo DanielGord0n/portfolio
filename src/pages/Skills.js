@@ -183,36 +183,27 @@ const Skills = () => {
             I've developed a versatile technical skill set through academic projects and professional experience as a Contract Full Stack Developer.
             Based in Vaughan, Ontario, I'm passionate about creating intuitive, user-focused solutions.
           </p>
-          <div className="skills-overview">
-            <div className="skill-highlight">
-              <div className="highlight-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
-                  <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
+          <div className="dual-specialization">
+            <div className="specialization-card">
+              <div className="specialization-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="16 18 22 12 16 6"></polyline>
+                  <polyline points="8 6 2 12 8 18"></polyline>
                 </svg>
               </div>
-              <h3>1+ Year</h3>
-              <p>Professional Experience</p>
+              <h3>Computer Science</h3>
+              <p>Mastering algorithms, system architecture, and full-stack development to build robust, scalable technical solutions.</p>
             </div>
-            <div className="skill-highlight">
-              <div className="highlight-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+            <div className="specialization-card">
+              <div className="specialization-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                  <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                  <line x1="12" y1="22.08" x2="12" y2="12"></line>
                 </svg>
               </div>
-              <h3>3+</h3>
-              <p>Major Projects</p>
-            </div>
-            <div className="skill-highlight">
-              <div className="highlight-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"></path>
-                  <line x1="16" y1="8" x2="2" y2="22"></line>
-                  <line x1="17.5" y1="15" x2="9" y2="15"></line>
-                </svg>
-              </div>
-              <h3>CS & Mgmt</h3>
-              <p>Dual Specialization</p>
+              <h3>Business Management</h3>
+              <p>Leveraging strategic thinking, agile methodologies, and product management to align technical execution with business goals.</p>
             </div>
           </div>
         </div>
@@ -269,66 +260,6 @@ const Skills = () => {
             );
           })}
         </div>
-
-        {/* Additional Skills Section */}
-        <div className="additional-skills-section" ref={sectionRefs.additionalSkills}>
-          <h2>Additional Skills & Tools</h2>
-          <p className="section-intro">Complementary skills that round out my technical profile</p>
-
-          <div className="additional-skills-grid">
-            <div className="additional-card">
-              <h3>Computer Science</h3>
-              <ul>
-                <li>Data Structures</li>
-                <li>Algorithms</li>
-                <li>Database Management</li>
-                <li>System Architecture</li>
-                <li>Operating Systems</li>
-                <li>Web Development</li>
-                <li>Problem Solving</li>
-              </ul>
-            </div>
-            <div className="additional-card">
-              <h3>Management Skills</h3>
-              <ul>
-                <li>Business Strategy</li>
-                <li>Project Management</li>
-                <li>Agile Methodology</li>
-                <li>Team Collaboration</li>
-                <li>Client Communication</li>
-                <li>Product Strategy</li>
-                <li>Time Management</li>
-                <li>Strategic Planning</li>
-              </ul>
-            </div>
-            <div className="additional-card">
-              <h3>Professional Skills</h3>
-              <ul>
-                <li>End-to-End Feature Development</li>
-                <li>Code Reviews & Quality Assurance</li>
-                <li>Technical Documentation</li>
-                <li>Cross-functional Teamwork</li>
-                <li>User-Centered Design</li>
-                <li>Continuous Learning</li>
-                <li>Problem Analysis</li>
-                <li>Pair Programming</li>
-              </ul>
-            </div>
-            <div className="additional-card">
-              <h3>Development Tools</h3>
-              <ul>
-                <li>VS Code</li>
-                <li>GitHub & Git</li>
-                <li>Figma</li>
-                <li>Framer</li>
-                <li>Postman</li>
-                <li>Chrome DevTools</li>
-                <li>NPM/Yarn</li>
-                <li>Agile Project Tools</li>
-              </ul>
-            </div>
-          </div>
-        </div>
       </div>
 
       {/* Quote/Closing Section */}
@@ -338,7 +269,7 @@ const Skills = () => {
         </blockquote>
         <p className="quote-author">— My Development Philosophy</p>
       </div>
-    </div>
+    </div >
   );
 };
 

@@ -79,14 +79,14 @@ const SkillsSphere = () => {
 
                 if (isHoveredRef.current) {
                     // Grid layout target
-                    const cols = 5;
+                    const cols = 4;
                     const rows = Math.ceil(texts.length / cols);
                     const row = Math.floor(idx / cols);
                     const col = idx % cols;
 
                     // Calculate grid position centered
-                    targetX = (col - (cols - 1) / 2) * 120;
-                    targetY = (row - (rows - 1) / 2) * 50;
+                    targetX = (col - (cols - 1) / 2) * 180;
+                    targetY = (row - (rows - 1) / 2) * 60;
                     targetZ = 0;
                     targetScale = 1;
                     targetOpacity = 1;
