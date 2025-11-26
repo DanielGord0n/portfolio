@@ -116,6 +116,17 @@ const Projects = () => {
       link: null,
       github: 'https://github.com/DanielGord0n',
       company: 'Personal Project'
+    },
+    {
+      id: 11,
+      title: 'Multiplayer Roblox Game',
+      description: 'Working on a multiplayer game and server using Lua and the Roblox framework, building skills in game development, networking, and server-client interaction within a complex environment.',
+      technologies: ['Lua', 'Roblox Framework', 'Networking', 'Game Development'],
+      image: require('../images/robloxLogo.png'),
+      category: 'Game Development',
+      link: null,
+      github: 'https://github.com/DanielGord0n',
+      company: 'Personal Project'
     }
   ];
 

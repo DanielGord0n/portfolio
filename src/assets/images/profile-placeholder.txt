@@ -1,3 +1,0 @@
-This is a placeholder file. In a production environment, you should replace this with your actual profile image.
-
-For now, we'll use placeholder images from an external source when we run the application. The profile image in your design shows a circular image with a light background.
