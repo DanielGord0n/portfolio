@@ -56,6 +56,14 @@ const ProjectCard3D = ({ title, description, tags, links, image, customImageClas
             >
                 <div className="project-image-container">
                     {image && <img src={image} alt={title} className={`project-image ${customImageClass || ''}`} />}
+                    <div className="project-links-3d">
+                        {links.map((link, i) => (
+                            <a key={i} href={link.url} target="_blank" rel="noopener noreferrer" className="project-link-pill">
+                                {link.icon}
+                                <span>{link.url.includes('github') ? 'GitHub' : 'Visit'}</span>
+                            </a>
+                        ))}
+                    </div>
                 </div>
 
                 <div className="project-info">
@@ -67,15 +75,6 @@ const ProjectCard3D = ({ title, description, tags, links, image, customImageClas
                             <li key={i}>{tag}</li>
                         ))}
                     </ul>
-
-                    <div className="project-links-3d">
-                        {links.map((link, i) => (
-                            <a key={i} href={link.url} target="_blank" rel="noopener noreferrer" className="project-link-pill">
-                                {link.icon}
-                                <span>{link.url.includes('github') ? 'GitHub' : 'Visit'}</span>
-                            </a>
-                        ))}
-                    </div>
                 </div>
             </div>
         </motion.div>

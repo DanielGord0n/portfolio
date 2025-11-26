@@ -54,7 +54,8 @@
 
 .project-card-3d:hover .project-image {
     transform: scale(1.05);
-    opacity: 1;
+    opacity: 0.4;
+    filter: blur(5px);
 }
 
 /* Specific override for Futures and Fringes logo */
@@ -97,14 +98,15 @@
 .project-title-3d,
 .project-desc-3d,
 .project-tags-3d {
-    transition: filter 0.3s ease, opacity 0.3s ease;
+    transition: opacity 0.3s ease;
 }
 
+/* Removed blur from text on hover */
 .project-card-3d:hover .project-title-3d,
 .project-card-3d:hover .project-desc-3d,
 .project-card-3d:hover .project-tags-3d {
-    filter: blur(4px);
-    opacity: 0.7;
+    filter: none;
+    opacity: 1;
 }
 
 .project-title-3d {

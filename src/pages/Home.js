@@ -221,7 +221,6 @@ const Home = () => {
       {/* About Section */}
       <section className="about-section" ref={sectionRefs.about}>
         <div className="section-header">
-          <span className="section-number">01.</span>
           <h2 className="section-title">About Me</h2>
           <div className="section-line"></div>
         </div>
