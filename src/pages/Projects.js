@@ -36,7 +36,7 @@ const Projects = () => {
       technologies: ['Node.js', 'WhatsApp API', 'Gemini AI', 'Express', 'NLP'],
       image: require('../images/WhatsappLogoBlack.png'),
       category: 'Full Stack Development',
-      link: 'https://phoenixbot.up.railway.app/',
+      link: 'https://phoenix-bot-web.vercel.app/',
       github: 'https://github.com/DanielGord0n',
       company: 'Contract Work'
     },
