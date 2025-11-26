@@ -285,23 +285,22 @@ const Home = () => {
             </div>
           </div>
 
-          {/* Futures and Fringes CMS Website */}
+          {/* LaunchPath Biotech Architecture */}
           <div className="project-card-horizontal">
-            <h3 className="project-title">Futures and Fringes CMS Website</h3>
+            <h3 className="project-title">LaunchPath Biotech Architecture</h3>
             <div className="project-description">
               <p>
-                Led the UI/UX build of a Framer-powered CMS website, integrating newsletter sign-ups, interactive scroll effects, and dynamic case-study pages to enhance user engagement and provide an intuitive content management experience for the client.
+                Architected a scalable system for a biosensor analytics platform, producing C4 diagrams and technical specifications. Developed a responsive React Native front end with secure integration to Python microservices for real-time biosensor data ingestion.
               </p>
             </div>
             <ul className="project-tech-list">
-              <li>Framer</li>
-              <li>CMS Integration</li>
-              <li>UI/UX Design</li>
-              <li>Responsive Design</li>
-              <li>Interactive Elements</li>
+              <li>React Native</li>
+              <li>Python</li>
+              <li>Microservices</li>
+              <li>C4 Architecture</li>
             </ul>
             <div className="project-links">
-              <a href="https://github.com/DanielGord0n" target="_blank" rel="noopener noreferrer" className="project-link-button">
+              <a href="https://github.com/DanielGord0n/aptamer_therapeutic" target="_blank" rel="noopener noreferrer" className="project-link-button">
                 <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
                 </svg>
@@ -310,27 +309,29 @@ const Home = () => {
             </div>
           </div>
 
-          {/* wluNest - Student Housing Application */}
+          {/* AI-Powered 3D Avatar Platform */}
           <div className="project-card-horizontal">
-            <h3 className="project-title">wluNest - Student Housing Application</h3>
+            <h3 className="project-title">AI-Powered 3D Avatar Platform</h3>
             <div className="project-description">
               <p>
-                Developed a platform aggregating Waterloo-Kitchener rental listings for students. Designed an intuitive UI with interactive maps, personalized filters, and a roommate finder. Integrated real-time updates and direct listing links using Node.js, React, and MySQL.
+                Refactored lip-sync pipelines for 3D avatars in Unity, improving phoneme-to-blend-shape alignment. Prototyped end-to-end AI workflows with Whisper and LangChain. Implemented model-level optimizations reducing inference latency by ~25%.
               </p>
             </div>
             <ul className="project-tech-list">
-              <li>React</li>
-              <li>Node.js</li>
-              <li>MySQL</li>
-              <li>Interactive Maps</li>
-              <li>Real-time Updates</li>
+              <li>Python</li>
+              <li>Unity</li>
+              <li>OpenAI Whisper</li>
+              <li>LangChain</li>
+              <li>Next.js</li>
             </ul>
             <div className="project-links">
-              <a href="https://github.com/DanielGord0n" target="_blank" rel="noopener noreferrer" className="project-link-button">
+              <a href="https://mycleanmesh.com/" target="_blank" rel="noopener noreferrer" className="project-link-button">
                 <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                  <polyline points="15 3 21 3 21 9"></polyline>
+                  <line x1="10" y1="14" x2="21" y2="3"></line>
                 </svg>
-                <span>View on GitHub</span>
+                <span>Live Demo</span>
               </a>
             </div>
           </div>
