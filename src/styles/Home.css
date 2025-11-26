@@ -48,8 +48,8 @@
   margin-bottom: 0;
   transition-delay: 100ms;
   position: relative;
-  background-color: var(--bg-primary);
   overflow: hidden;
+  background: transparent !important;
 }
 
 .hero-content {

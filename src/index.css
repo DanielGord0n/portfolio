@@ -57,12 +57,15 @@
   padding: 0;
 }
 
+html {
+  background-color: var(--bg-primary);
+}
+
 body {
   margin: 0;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: var(--bg-primary);
   color: var(--text-primary);
   font-size: var(--fz-md);
   line-height: 1.6;

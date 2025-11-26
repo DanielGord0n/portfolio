@@ -1,94 +1,95 @@
-import React, { useEffect } from 'react';
-import { FaEnvelope, FaLinkedin, FaGithub, FaMapMarkerAlt, FaPhone } from 'react-icons/fa';
+import React, { useEffect, useState } from 'react';
+import { FaEnvelope, FaLinkedin, FaGithub, FaPhone, FaCopy, FaCheck } from 'react-icons/fa';
+import { motion } from 'framer-motion';
 import PageTransition from '../components/PageTransition';
 import '../styles/Contact.css';
 
+const ContactItem = ({ icon: Icon, label, value, action, copyValue }) => {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = (e) => {
+    e.stopPropagation();
+    navigator.clipboard.writeText(copyValue).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    });
+  };
+
+  return (
+    <motion.div
+      className="command-item"
+      whileHover={{ scale: 1.02, backgroundColor: "rgba(255, 255, 255, 0.05)" }}
+      whileTap={{ scale: 0.98 }}
+      onClick={action}
+    >
+      <div className="command-icon">
+        <Icon />
+      </div>
+      <div className="command-info">
+        <span className="command-label">{label}</span>
+        <span className="command-value">{value}</span>
+      </div>
+      {copyValue && (
+        <button
+          className="command-copy-btn"
+          onClick={handleCopy}
+          title="Copy to clipboard"
+        >
+          {copied ? <FaCheck color="#00E5FF" /> : <FaCopy />}
+        </button>
+      )}
+    </motion.div>
+  );
+};
+
 const Contact = () => {
-  // Update document title
   useEffect(() => {
     document.title = 'Contact | Daniel Gordon - Full Stack Developer';
   }, []);
 
-  const openEmailClient = () => {
-    const emailAddress = "gordondan2@gmail.com";
-    const subject = "Portfolio Inquiry";
-    const body = "Hello Daniel,\n\nI visited your portfolio and would like to connect about...\n\nBest regards,";
-
-    // Try direct Gmail link first
-    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${emailAddress}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    window.open(gmailUrl, '_blank');
+  const openEmail = () => {
+    window.open('mailto:gordondan2@gmail.com', '_blank');
   };
 
   return (
     <div className="contact-container">
-      <div className="contact-content">
-        <div className="contact-header">
-          <h1>Get In Touch</h1>
-          <p>
-            Whether you have a project in mind, a question about my work, or just want to connect,
-            I'm always open to new opportunities and conversations. Let's build something amazing together!
-          </p>
+      <div className="glass-command-center">
+        <div className="command-header">
+          <h1>Let's Connect</h1>
+          <p>Available for new opportunities</p>
         </div>
 
-        <div className="contact-card-glass">
-          <div className="contact-list">
-            <a href="mailto:gordondan2@gmail.com" className="contact-list-item">
-              <div className="icon-box-small">
-                <FaEnvelope />
-              </div>
-              <div className="contact-details">
-                <h3>Email</h3>
-                <p>gordondan2@gmail.com</p>
-              </div>
-              <span className="link-arrow">→</span>
-            </a>
-
-            <a href="tel:+16476220424" className="contact-list-item">
-              <div className="icon-box-small">
-                <FaPhone />
-              </div>
-              <div className="contact-details">
-                <h3>Phone</h3>
-                <p>+1 (647)-622-0424</p>
-              </div>
-              <span className="link-arrow">→</span>
-            </a>
-
-            <a href="https://www.linkedin.com/in/daniel-gordon2/" target="_blank" rel="noopener noreferrer" className="contact-list-item">
-              <div className="icon-box-small">
-                <FaLinkedin />
-              </div>
-              <div className="contact-details">
-                <h3>LinkedIn</h3>
-                <p>Connect professionally</p>
-              </div>
-              <span className="link-arrow">→</span>
-            </a>
-
-            <a href="https://github.com/DanielGord0n" target="_blank" rel="noopener noreferrer" className="contact-list-item">
-              <div className="icon-box-small">
-                <FaGithub />
-              </div>
-              <div className="contact-details">
-                <h3>GitHub</h3>
-                <p>Check out my code</p>
-              </div>
-              <span className="link-arrow">→</span>
-            </a>
-          </div>
-
-          <div className="location-info">
-            <FaMapMarkerAlt className="location-icon" />
-            <span>Based in Vaughan, Ontario • Open to Remote Work</span>
-          </div>
+        <div className="command-grid">
+          <ContactItem
+            icon={FaEnvelope}
+            label="Email"
+            value="gordondan2@gmail.com"
+            action={openEmail}
+            copyValue="gordondan2@gmail.com"
+          />
+          <ContactItem
+            icon={FaPhone}
+            label="Phone"
+            value="+1 (647)-622-0424"
+            action={() => window.location.href = 'tel:+16476220424'}
+            copyValue="+16476220424"
+          />
+          <ContactItem
+            icon={FaLinkedin}
+            label="LinkedIn"
+            value="Daniel Gordon"
+            action={() => window.open('https://www.linkedin.com/in/daniel-gordon2/', '_blank')}
+          />
+          <ContactItem
+            icon={FaGithub}
+            label="GitHub"
+            value="DanielGord0n"
+            action={() => window.open('https://github.com/DanielGord0n', '_blank')}
+          />
         </div>
 
-        <div className="contact-cta-glass">
-          <h2>Let's Connect</h2>
-          <p>The best way to reach me is via email. Click the button below to send me a message directly.</p>
-          <button className="btn-glass-primary" onClick={openEmailClient}>
-            Send Email <FaEnvelope style={{ marginLeft: '10px' }} />
-          </button>
+        <div className="command-footer">
+          <p>Based in Vaughan, Ontario • Open to Remote</p>
         </div>
       </div>
     </div>
