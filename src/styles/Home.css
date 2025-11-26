@@ -49,6 +49,7 @@
   transition-delay: 100ms;
   position: relative;
   background-color: var(--bg-primary);
+  overflow: hidden;
 }
 
 .hero-content {
@@ -58,6 +59,7 @@
   width: 100%;
   max-width: 1000px;
   z-index: 2;
+  position: relative;
 }
 
 .greeting {
@@ -545,6 +547,11 @@
   grid-column: 6 / -1;
   grid-row: 1 / -1;
   z-index: 1;
+}
+
+.home-container {
+  width: 100%;
+  overflow-x: hidden;
 }
 
 .project-image a {

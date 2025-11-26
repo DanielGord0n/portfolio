@@ -1,4 +1,7 @@
 import React, { useEffect, useRef } from 'react';
+import SkillsSphere from '../components/SkillsSphere';
+import ExperienceTimeline from '../components/ExperienceTimeline';
+import PageTransition from '../components/PageTransition';
 import '../styles/Skills.css';
 
 const Skills = () => {
@@ -13,7 +16,7 @@ const Skills = () => {
   const workProcessRef = useRef(null);
   const additionalSkillsRef = useRef(null);
   const programmingLanguagesRef = useRef(null);
-  
+
   // Group refs in an object for easier handling
   const sectionRefs = {
     mainSkills: mainSkillsRef,
@@ -39,7 +42,7 @@ const Skills = () => {
     };
 
     const observer = new IntersectionObserver(observerCallback, observerOptions);
-    
+
     Object.values(sectionRefs).forEach(ref => {
       if (ref.current) {
         observer.observe(ref.current);
@@ -53,7 +56,7 @@ const Skills = () => {
         }
       });
     };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const skillCategories = [
@@ -123,7 +126,7 @@ const Skills = () => {
       ]
     }
   ];
-  
+
   // Work process/methodology
   const workProcess = [
     {
@@ -219,7 +222,7 @@ const Skills = () => {
         <div className="work-process-section" ref={sectionRefs.workProcess}>
           <h2>My Development Process</h2>
           <p className="section-intro">I follow a systematic approach to ensure high-quality deliverables</p>
-          
+
           <div className="process-steps">
             {workProcess.map((step, index) => (
               <div className="process-step" key={index}>
@@ -232,45 +235,18 @@ const Skills = () => {
           </div>
         </div>
 
-        {/* Programming Languages Section */}
-        <div className="languages-section" ref={sectionRefs.programmingLanguages}>
-          <h2>Programming Languages</h2>
-          <div className="languages-container">
-            <div className="language-item">
-              <div className="language-icon javascript">JS</div>
-              <span>JavaScript</span>
-            </div>
-            <div className="language-item">
-              <div className="language-icon typescript">TS</div>
-              <span>TypeScript</span>
-            </div>
-            <div className="language-item">
-              <div className="language-icon python">PY</div>
-              <span>Python</span>
-            </div>
-            <div className="language-item">
-              <div className="language-icon java">JV</div>
-              <span>Java</span>
-            </div>
-            <div className="language-item">
-              <div className="language-icon html">HT</div>
-              <span>HTML</span>
-            </div>
-            <div className="language-item">
-              <div className="language-icon css">CS</div>
-              <span>CSS</span>
-            </div>
-            <div className="language-item">
-              <div className="language-icon sql">SQ</div>
-              <span>SQL</span>
-            </div>
-            <div className="language-item">
-              <div className="language-icon csharp">C#</div>
-              <span>C#</span>
-            </div>
-          </div>
+        {/* Experience Section */}
+        <div className="experience-section" ref={sectionRefs.workProcess}>
+          <h2>Professional Experience</h2>
+          <ExperienceTimeline />
         </div>
-        
+
+        {/* Skills Sphere Section */}
+        <div className="languages-section" ref={sectionRefs.programmingLanguages}>
+          <h2>Technical Skills</h2>
+          <SkillsSphere />
+        </div>
+
         {/* Skill Categories with Progress Bars */}
         <div ref={sectionRefs.skillBars}>
           {skillCategories.map((category, index) => {
@@ -299,7 +275,7 @@ const Skills = () => {
         <div className="additional-skills-section" ref={sectionRefs.additionalSkills}>
           <h2>Additional Skills & Tools</h2>
           <p className="section-intro">Complementary skills that round out my technical profile</p>
-          
+
           <div className="additional-skills-grid">
             <div className="additional-card">
               <h3>Computer Science</h3>
@@ -367,4 +343,4 @@ const Skills = () => {
   );
 };
 
-export default Skills;
+export default PageTransition(Skills);

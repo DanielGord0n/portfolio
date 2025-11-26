@@ -71,7 +71,14 @@
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-  gap: 2.5rem;
+  gap: 2rem;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .project-card {

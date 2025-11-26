@@ -1,7 +1,10 @@
 import React, { useEffect, useRef, useMemo } from 'react';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import '../styles/Home.css';
 import profilePhoto from '../images/profilePhoto.jpeg';
+import MagneticButton from '../components/MagneticButton';
+import PageTransition from '../components/PageTransition';
 
 const Home = () => {
   // Create refs directly
@@ -83,17 +86,68 @@ const Home = () => {
       {/* Hero Section */}
       <section className="hero-section" ref={sectionRefs.hero}>
         <div className="hero-content">
-          <span className="greeting">Hi, my name is</span>
-          <h1 className="hero-title">Daniel Gordon.</h1>
-          <h2 className="hero-subtitle">I build things for the web.</h2>
-          <p className="hero-description">
+          <motion.span
+            className="greeting"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+          >
+            Hi, my name is
+          </motion.span>
+
+          <h1 className="hero-title">
+            {"Daniel Gordon.".split("").map((char, index) => (
+              <motion.span
+                key={index}
+                initial={{ opacity: 0, y: 50, rotateX: -90 }}
+                animate={{ opacity: 1, y: 0, rotateX: 0 }}
+                transition={{
+                  duration: 0.5,
+                  delay: 0.5 + index * 0.05,
+                  type: "spring",
+                  stiffness: 100
+                }}
+                style={{ display: "inline-block" }}
+              >
+                {char === " " ? "\u00A0" : char}
+              </motion.span>
+            ))}
+          </h1>
+
+          <motion.h2
+            className="hero-subtitle"
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 1.5, duration: 0.8 }}
+          >
+            I build things for the web.
+          </motion.h2>
+
+          <motion.p
+            className="hero-description"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 2, duration: 0.8 }}
+          >
             I'm a software engineer specializing in building (and occasionally designing) exceptional digital experiences. Currently, I'm focused on building accessible, human-centered products.
-          </p>
-          <div className="hero-cta">
-            <Link to="/projects" className="btn btn-primary">Check out my work!</Link>
-          </div>
+          </motion.p>
+
+          <motion.div
+            className="hero-cta"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 2.5 }}
+          >
+            <MagneticButton to="/projects">Check out my work!</MagneticButton>
+          </motion.div>
         </div>
-        <div className="scroll-down">
+
+        <motion.div
+          className="scroll-down"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 3, duration: 1 }}
+        >
           <div className="mouse">
             <div className="wheel"></div>
           </div>
@@ -102,7 +156,7 @@ const Home = () => {
             <span></span>
             <span></span>
           </div>
-        </div>
+        </motion.div>
       </section>
 
       {/* About Section */}
@@ -340,4 +394,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default PageTransition(Home);

@@ -1,0 +1,41 @@
+.skills-sphere-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 500px;
+    perspective: 1000px;
+    overflow: hidden;
+}
+
+.skills-sphere {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    transform-style: preserve-3d;
+}
+
+.tag {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-family: 'Fira Code', monospace;
+    font-size: 1.2rem;
+    font-weight: bold;
+    white-space: nowrap;
+    will-change: transform, opacity;
+    cursor: default;
+    user-select: none;
+}
+
+.skills-instruction {
+    position: absolute;
+    bottom: 20px;
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+.skills-instruction.hidden {
+    opacity: 0;
+}
