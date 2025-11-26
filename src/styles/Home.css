@@ -898,6 +898,22 @@
   color: #fff;
 }
 
+.typing-cursor {
+  display: inline-block;
+  margin-left: 2px;
+  color: var(--accent-primary);
+  font-weight: bold;
+}
+
+.hero-title {
+  font-size: 5rem;
+  font-weight: 800;
+  margin: 0;
+  line-height: 1.1;
+  color: var(--text-primary);
+  /* Ensure title is white */
+}
+
 .intro-subtitle {
   font-size: 1.2rem;
   max-width: 800px;

@@ -6,12 +6,71 @@ import profilePhoto from '../images/profilePhoto.jpeg';
 import MagneticButton from '../components/MagneticButton';
 import PageTransition from '../components/PageTransition';
 
+// TypingText Component
+const TypingText = ({ text, delay = 0, speed = 0.03, className, onComplete, showCursor = true }) => {
+  const [displayedText, setDisplayedText] = React.useState('');
+  const [isComplete, setIsComplete] = React.useState(false);
+
+  // Use a ref for the callback to prevent effect re-runs when the function identity changes
+  const onCompleteRef = useRef(onComplete);
+
+  // Update the ref whenever onComplete changes
+  useEffect(() => {
+    onCompleteRef.current = onComplete;
+  }, [onComplete]);
+
+  useEffect(() => {
+    const startTimeout = setTimeout(() => {
+      let currentIndex = 0;
+
+      const typeChar = () => {
+        if (currentIndex < text.length) {
+          setDisplayedText(text.substring(0, currentIndex + 1));
+          currentIndex++;
+          setTimeout(typeChar, speed * 1000);
+        } else {
+          setIsComplete(true);
+          if (onCompleteRef.current) onCompleteRef.current();
+        }
+      };
+
+      typeChar();
+    }, delay * 1000);
+
+    return () => clearTimeout(startTimeout);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [text, delay, speed]); // Removed onComplete from dependencies to prevent reset
+
+  return (
+    <motion.span
+      className={className}
+      initial={{ opacity: 1 }} // Visible immediately to show cursor if needed, but text is empty
+    >
+      {displayedText}
+      {showCursor && !isComplete && (
+        <motion.span
+          animate={{ opacity: [0, 1, 0] }}
+          transition={{ repeat: Infinity, duration: 0.8 }}
+          className="typing-cursor"
+        >
+          |
+        </motion.span>
+      )}
+    </motion.span>
+  );
+};
+
 const Home = () => {
   // Create refs directly
   const heroRef = useRef(null);
   const aboutRef = useRef(null);
   const projectsRef = useRef(null);
   const interestsRef = useRef(null);
+
+  // Animation states
+  const [greetingComplete, setGreetingComplete] = React.useState(false);
+  const [nameComplete, setNameComplete] = React.useState(false);
+  const [taglineComplete, setTaglineComplete] = React.useState(false);
 
   // Memoize the refs object to prevent unnecessary re-renders
   const sectionRefs = useMemo(() => ({
@@ -86,57 +145,57 @@ const Home = () => {
       {/* Hero Section */}
       <section className="hero-section" ref={sectionRefs.hero}>
         <div className="hero-content">
-          <motion.span
-            className="greeting"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-          >
-            Hi, my name is
-          </motion.span>
+          <div className="greeting-wrapper">
+            <TypingText
+              text="Hi, my name is"
+              delay={0.5}
+              speed={0.03}
+              className="greeting"
+              onComplete={() => setGreetingComplete(true)}
+              showCursor={!greetingComplete}
+            />
+          </div>
 
           <h1 className="hero-title">
-            {"Daniel Gordon.".split("").map((char, index) => (
-              <motion.span
-                key={index}
-                initial={{ opacity: 0, y: 50, rotateX: -90 }}
-                animate={{ opacity: 1, y: 0, rotateX: 0 }}
-                transition={{
-                  duration: 0.5,
-                  delay: 0.5 + index * 0.05,
-                  type: "spring",
-                  stiffness: 100
-                }}
-                style={{ display: "inline-block" }}
-              >
-                {char === " " ? "\u00A0" : char}
-              </motion.span>
-            ))}
+            {greetingComplete && (
+              <TypingText
+                text="Daniel Gordon."
+                delay={0}
+                speed={0.05}
+                onComplete={() => setNameComplete(true)}
+                showCursor={!nameComplete}
+              />
+            )}
           </h1>
 
-          <motion.h2
-            className="hero-subtitle"
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 1.5, duration: 0.8 }}
-          >
-            I build things for the web.
-          </motion.h2>
+          <h2 className="hero-subtitle">
+            {nameComplete && (
+              <TypingText
+                text="I build things for the web."
+                delay={0}
+                speed={0.03}
+                onComplete={() => setTaglineComplete(true)}
+                showCursor={!taglineComplete}
+              />
+            )}
+          </h2>
 
-          <motion.p
-            className="hero-description"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 2, duration: 0.8 }}
-          >
-            I'm a software engineer specializing in building (and occasionally designing) exceptional digital experiences. Currently, I'm focused on building accessible, human-centered products.
-          </motion.p>
+          <div className="hero-description">
+            {taglineComplete && (
+              <TypingText
+                text="I'm a software engineer specializing in building (and occasionally designing) exceptional digital experiences. Currently, I'm focused on building accessible, human-centered products."
+                delay={0}
+                speed={0.01} // Very fast for long text
+                showCursor={true} // Keep cursor blinking at the end
+              />
+            )}
+          </div>
 
           <motion.div
             className="hero-cta"
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 2.5 }}
+            animate={{ opacity: taglineComplete ? 1 : 0, y: taglineComplete ? 0 : 20 }}
+            transition={{ delay: 1 }} // Wait a bit after text starts
           >
             <MagneticButton to="/projects">Check out my work!</MagneticButton>
           </motion.div>
