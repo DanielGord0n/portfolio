@@ -23,7 +23,7 @@ const Projects = () => {
       title: 'N-Queens RL Solver',
       description: 'Built Q-learning and policy-gradient agents to converge on N-Queens solutions up to 35× faster than brute-force backtracking. Implemented reward shaping, action masking, and curriculum scaling. Logged results using TensorBoard and performed ablation studies.',
       technologies: ['Python', 'PyTorch', 'Reinforcement Learning', 'TensorBoard'],
-      image: null,
+      image: require('../images/QueenIcon.png'),
       category: 'Machine Learning',
       link: null,
       github: null,
