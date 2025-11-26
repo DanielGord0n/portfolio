@@ -62,7 +62,8 @@
   font-size: 0.9rem;
 }
 
-.filter-btn:hover, .filter-btn.active {
+.filter-btn:hover,
+.filter-btn.active {
   background-color: #4a90e2;
   color: white;
 }
@@ -70,32 +71,43 @@
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-  gap: 2.5rem;
+  gap: 2rem;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .project-card {
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  background-color: rgba(30, 41, 59, 0.8);
-  border: 1px solid rgba(74, 144, 226, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .project-card:hover {
   transform: translateY(-10px);
-  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
+  border-color: var(--accent-primary);
 }
 
 .project-image {
   position: relative;
   overflow: hidden;
   height: 200px;
-  background-color: #f0f0f0 !important;
+  /* background-color: #f0f0f0 !important; REMOVED */
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid #4a90e2;
+  /* border: 1px solid #4a90e2; REMOVED */
   z-index: 1;
 }
 
@@ -120,7 +132,7 @@
 
 /* Consistent styling for all project images - off-white background */
 .project-image {
-  background-color: #f0f0f0 !important;
+  /* background-color: #f0f0f0 !important; REMOVED */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -157,7 +169,8 @@
 }
 
 /* Extremely large FF logo */
-.ff-img {
+/* Extremely large FF logo - REMOVED/UPDATED */
+/* .ff-img {
   width: 700%;
   height: 700%;
   object-fit: contain;
@@ -165,7 +178,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-}
+} */
 
 .project-links {
   position: absolute;
@@ -186,7 +199,9 @@
   opacity: 1;
 }
 
-.github-link, .demo-link, .code-link {
+.github-link,
+.demo-link,
+.code-link {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -309,7 +324,7 @@
   .projects-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .projects-header h1 {
     font-size: 2rem;
   }

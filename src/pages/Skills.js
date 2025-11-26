@@ -1,4 +1,7 @@
 import React, { useEffect, useRef } from 'react';
+import SkillsSphere from '../components/SkillsSphere';
+import ExperienceTimeline from '../components/ExperienceTimeline';
+import PageTransition from '../components/PageTransition';
 import '../styles/Skills.css';
 
 const Skills = () => {
@@ -13,7 +16,7 @@ const Skills = () => {
   const workProcessRef = useRef(null);
   const additionalSkillsRef = useRef(null);
   const programmingLanguagesRef = useRef(null);
-  
+
   // Group refs in an object for easier handling
   const sectionRefs = {
     mainSkills: mainSkillsRef,
@@ -39,7 +42,7 @@ const Skills = () => {
     };
 
     const observer = new IntersectionObserver(observerCallback, observerOptions);
-    
+
     Object.values(sectionRefs).forEach(ref => {
       if (ref.current) {
         observer.observe(ref.current);
@@ -53,33 +56,32 @@ const Skills = () => {
         }
       });
     };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const skillCategories = [
     {
-      title: 'Frontend Development',
+      title: 'Frontend & Mobile',
       icon: (
         <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2"></polygon>
-          <line x1="12" y1="22" x2="12" y2="15.5"></line>
-          <polyline points="22 8.5 12 15.5 2 8.5"></polyline>
+          <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+          <line x1="12" y1="18" x2="12.01" y2="18"></line>
         </svg>
       ),
-      description: 'Creating engaging user interfaces with modern frameworks and responsive design',
+      description: 'Building responsive web and mobile applications with modern frameworks',
       skills: [
-        { name: 'React', level: 90 },
-        { name: 'JavaScript (ES6+)', level: 88 },
-        { name: 'TypeScript', level: 80 },
-        { name: 'HTML5/CSS3', level: 90 },
-        { name: 'UI/UX Design', level: 85 },
-        { name: 'Responsive Design', level: 88 },
-        { name: 'Framer', level: 85 },
-        { name: 'Interactive Elements', level: 82 }
+        { name: 'React / Next.js', level: 90 },
+        { name: 'React Native / Expo', level: 85 },
+        { name: 'TypeScript', level: 85 },
+        { name: 'Flutter / Dart', level: 75 },
+        { name: 'Tailwind CSS', level: 90 },
+        { name: 'Framer / Figma', level: 85 },
+        { name: 'HTML5 / CSS3', level: 95 },
+        { name: 'Three.js / Babylon.js', level: 70 }
       ]
     },
     {
-      title: 'Backend Development',
+      title: 'Backend & Systems',
       icon: (
         <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
@@ -88,20 +90,20 @@ const Skills = () => {
           <line x1="6" y1="18" x2="6.01" y2="18"></line>
         </svg>
       ),
-      description: 'Building robust server-side applications with scalable APIs and database integration',
+      description: 'Architecting robust server-side solutions and managing databases',
       skills: [
-        { name: 'Node.js', level: 88 },
-        { name: 'Express.js', level: 85 },
-        { name: 'RESTful APIs', level: 90 },
-        { name: 'MySQL', level: 85 },
-        { name: 'Prisma ORM', level: 82 },
-        { name: 'Authentication/Security', level: 80 },
-        { name: 'Scheduled Tasks', level: 85 },
-        { name: 'Cloud Services', level: 78 }
+        { name: 'Node.js / Express', level: 88 },
+        { name: 'Python / Flask', level: 90 },
+        { name: 'Java / Maven', level: 85 },
+        { name: 'C / C++', level: 80 },
+        { name: 'SQL (MySQL/Postgres)', level: 85 },
+        { name: 'NoSQL (MongoDB)', level: 80 },
+        { name: 'Prisma ORM', level: 85 },
+        { name: 'Unix / Bash', level: 75 }
       ]
     },
     {
-      title: 'AI & Integration',
+      title: 'AI & Machine Learning',
       icon: (
         <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <path d="M12 2a5 5 0 0 0-5 5v2a5 5 0 0 0 10 0V7a5 5 0 0 0-5-5Z"></path>
@@ -110,20 +112,20 @@ const Skills = () => {
           <path d="m8 22 3.75-14"></path>
         </svg>
       ),
-      description: 'Leveraging AI technologies and APIs to create intelligent applications',
+      description: 'Developing intelligent systems with state-of-the-art ML frameworks',
       skills: [
-        { name: 'Gemini AI Integration', level: 85 },
-        { name: 'WhatsApp API', level: 90 },
-        { name: 'Email Services', level: 88 },
-        { name: 'API Integration', level: 90 },
-        { name: 'Text Summarization', level: 85 },
-        { name: 'CMS Systems', level: 82 },
-        { name: 'Newsletter Integration', level: 80 },
-        { name: 'Third-party APIs', level: 85 }
+        { name: 'PyTorch / TensorFlow', level: 85 },
+        { name: 'Scikit-learn', level: 88 },
+        { name: 'NumPy / Pandas', level: 90 },
+        { name: 'Reinforcement Learning', level: 80 },
+        { name: 'LLM Integration (Gemini)', level: 85 },
+        { name: 'Hugging Face', level: 80 },
+        { name: 'Computer Vision', level: 75 },
+        { name: 'R / Statsmodels', level: 70 }
       ]
     }
   ];
-  
+
   // Work process/methodology
   const workProcess = [
     {
@@ -181,36 +183,27 @@ const Skills = () => {
             I've developed a versatile technical skill set through academic projects and professional experience as a Contract Full Stack Developer.
             Based in Vaughan, Ontario, I'm passionate about creating intuitive, user-focused solutions.
           </p>
-          <div className="skills-overview">
-            <div className="skill-highlight">
-              <div className="highlight-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
-                  <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
+          <div className="dual-specialization">
+            <div className="specialization-card">
+              <div className="specialization-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="16 18 22 12 16 6"></polyline>
+                  <polyline points="8 6 2 12 8 18"></polyline>
                 </svg>
               </div>
-              <h3>1+ Year</h3>
-              <p>Professional Experience</p>
+              <h3>Computer Science</h3>
+              <p>Mastering algorithms, system architecture, and full-stack development to build robust, scalable technical solutions.</p>
             </div>
-            <div className="skill-highlight">
-              <div className="highlight-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+            <div className="specialization-card">
+              <div className="specialization-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                  <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                  <line x1="12" y1="22.08" x2="12" y2="12"></line>
                 </svg>
               </div>
-              <h3>3+</h3>
-              <p>Major Projects</p>
-            </div>
-            <div className="skill-highlight">
-              <div className="highlight-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"></path>
-                  <line x1="16" y1="8" x2="2" y2="22"></line>
-                  <line x1="17.5" y1="15" x2="9" y2="15"></line>
-                </svg>
-              </div>
-              <h3>CS & Mgmt</h3>
-              <p>Dual Specialization</p>
+              <h3>Business Management</h3>
+              <p>Leveraging strategic thinking, agile methodologies, and product management to align technical execution with business goals.</p>
             </div>
           </div>
         </div>
@@ -219,7 +212,7 @@ const Skills = () => {
         <div className="work-process-section" ref={sectionRefs.workProcess}>
           <h2>My Development Process</h2>
           <p className="section-intro">I follow a systematic approach to ensure high-quality deliverables</p>
-          
+
           <div className="process-steps">
             {workProcess.map((step, index) => (
               <div className="process-step" key={index}>
@@ -232,45 +225,18 @@ const Skills = () => {
           </div>
         </div>
 
-        {/* Programming Languages Section */}
-        <div className="languages-section" ref={sectionRefs.programmingLanguages}>
-          <h2>Programming Languages</h2>
-          <div className="languages-container">
-            <div className="language-item">
-              <div className="language-icon javascript">JS</div>
-              <span>JavaScript</span>
-            </div>
-            <div className="language-item">
-              <div className="language-icon typescript">TS</div>
-              <span>TypeScript</span>
-            </div>
-            <div className="language-item">
-              <div className="language-icon python">PY</div>
-              <span>Python</span>
-            </div>
-            <div className="language-item">
-              <div className="language-icon java">JV</div>
-              <span>Java</span>
-            </div>
-            <div className="language-item">
-              <div className="language-icon html">HT</div>
-              <span>HTML</span>
-            </div>
-            <div className="language-item">
-              <div className="language-icon css">CS</div>
-              <span>CSS</span>
-            </div>
-            <div className="language-item">
-              <div className="language-icon sql">SQ</div>
-              <span>SQL</span>
-            </div>
-            <div className="language-item">
-              <div className="language-icon csharp">C#</div>
-              <span>C#</span>
-            </div>
-          </div>
+        {/* Experience Section */}
+        <div className="experience-section" ref={sectionRefs.workProcess}>
+          <h2>Professional Experience</h2>
+          <ExperienceTimeline />
         </div>
-        
+
+        {/* Skills Sphere Section */}
+        <div className="languages-section" ref={sectionRefs.programmingLanguages}>
+          <h2>Technical Skills</h2>
+          <SkillsSphere />
+        </div>
+
         {/* Skill Categories with Progress Bars */}
         <div ref={sectionRefs.skillBars}>
           {skillCategories.map((category, index) => {
@@ -294,66 +260,6 @@ const Skills = () => {
             );
           })}
         </div>
-
-        {/* Additional Skills Section */}
-        <div className="additional-skills-section" ref={sectionRefs.additionalSkills}>
-          <h2>Additional Skills & Tools</h2>
-          <p className="section-intro">Complementary skills that round out my technical profile</p>
-          
-          <div className="additional-skills-grid">
-            <div className="additional-card">
-              <h3>Computer Science</h3>
-              <ul>
-                <li>Data Structures</li>
-                <li>Algorithms</li>
-                <li>Database Management</li>
-                <li>System Architecture</li>
-                <li>Operating Systems</li>
-                <li>Web Development</li>
-                <li>Problem Solving</li>
-              </ul>
-            </div>
-            <div className="additional-card">
-              <h3>Management Skills</h3>
-              <ul>
-                <li>Business Strategy</li>
-                <li>Project Management</li>
-                <li>Agile Methodology</li>
-                <li>Team Collaboration</li>
-                <li>Client Communication</li>
-                <li>Product Strategy</li>
-                <li>Time Management</li>
-                <li>Strategic Planning</li>
-              </ul>
-            </div>
-            <div className="additional-card">
-              <h3>Professional Skills</h3>
-              <ul>
-                <li>End-to-End Feature Development</li>
-                <li>Code Reviews & Quality Assurance</li>
-                <li>Technical Documentation</li>
-                <li>Cross-functional Teamwork</li>
-                <li>User-Centered Design</li>
-                <li>Continuous Learning</li>
-                <li>Problem Analysis</li>
-                <li>Pair Programming</li>
-              </ul>
-            </div>
-            <div className="additional-card">
-              <h3>Development Tools</h3>
-              <ul>
-                <li>VS Code</li>
-                <li>GitHub & Git</li>
-                <li>Figma</li>
-                <li>Framer</li>
-                <li>Postman</li>
-                <li>Chrome DevTools</li>
-                <li>NPM/Yarn</li>
-                <li>Agile Project Tools</li>
-              </ul>
-            </div>
-          </div>
-        </div>
       </div>
 
       {/* Quote/Closing Section */}
@@ -363,8 +269,8 @@ const Skills = () => {
         </blockquote>
         <p className="quote-author">— My Development Philosophy</p>
       </div>
-    </div>
+    </div >
   );
 };
 
-export default Skills;
+export default PageTransition(Skills);
