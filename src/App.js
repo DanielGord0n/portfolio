@@ -2,7 +2,6 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import { AnimatePresence } from 'framer-motion';
 import './App.css';
 
-// Components
 import Header from './components/Header';
 import SmoothScroll from './components/SmoothScroll';
 import HeroBackground from './components/HeroBackground';
