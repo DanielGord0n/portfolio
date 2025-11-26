@@ -6,24 +6,38 @@ const ExperienceTimeline = () => {
     const experiences = [
         {
             id: 1,
-            role: 'Full Stack Developer',
-            company: 'LaunchPath Inc.',
-            period: '2023 - Present',
-            description: 'Architecting scalable solutions for biotech projects, leading agile teams, and developing full-stack applications.'
+            role: 'Research Assistant - AI/ML',
+            company: 'Wilfrid Laurier University',
+            period: 'Sept 2025 - Present',
+            description: 'Reproduced and debugged mathematical constructions from research papers. Applied hybrid ML-driven error-localization to flag suspicious recurrence steps and implemented validated Maple pipelines.'
         },
         {
             id: 2,
-            role: 'Software Developer',
-            company: 'MCG',
-            period: '2022 - 2023',
-            description: 'Enhanced 3D avatar pipelines, integrated AI workflows, and optimized frontend performance.'
+            role: 'Full Stack / AI Developer',
+            company: 'MCG - Digital Assetization Company',
+            period: 'July 2025 - Present',
+            description: 'Refactoring lip-sync pipelines for 3D avatars in Unity. Prototyping end-to-end AI workflows with Whisper and LangChain, and implementing model-level optimizations for 25% lower latency.'
         },
         {
             id: 3,
-            role: 'Freelance Developer',
+            role: 'Junior Solution Architect',
+            company: 'LaunchPath Inc.',
+            period: 'June 2025 - Aug 2025',
+            description: 'Architected scalable systems for biosensor analytics. Led Agile delivery across 3 sprints and built a responsive React Native interface with secure Python microservices integration.'
+        },
+        {
+            id: 4,
+            role: 'Contract Full Stack Developer',
             company: 'Self-Employed',
-            period: '2020 - 2022',
-            description: 'Delivered custom web solutions for various clients, focusing on CMS integration and responsive design.'
+            period: 'April 2024 - Present',
+            description: 'Engineered AI-driven WhatsApp summarization services serving 200+ users. Built modular RESTful APIs and React/Next.js interfaces for 5+ small-business clients.'
+        },
+        {
+            id: 5,
+            role: 'Website Developer (UI/UX)',
+            company: 'Futures and Fringes',
+            period: 'Feb 2025 - Mar 2025',
+            description: 'Designed and launched a CMS-powered website in Framer, improving mobile load times by 25% and boosting user engagement by 15% through interactive features.'
         }
     ];
 

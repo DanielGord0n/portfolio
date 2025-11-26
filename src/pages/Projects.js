@@ -9,9 +9,31 @@ const Projects = () => {
   const projects = [
     {
       id: 1,
+      title: 'TourSage – AI Tour Guide',
+      description: 'Built a cross-platform mobile app that serves dynamic, GPS-aware tours. Implemented "Tour" and "Explore" modes on an interactive map with real-time tracking. Developed a typed REST API that generates itineraries with Gemini AI (RAG + embeddings), enriches stops with Google Places data, and returns structured routes.',
+      technologies: ['React Native', 'Expo', 'Node.js', 'TypeScript', 'Python', 'Gemini AI', 'Google Places API'],
+      image: null, // Placeholder or need to find one
+      category: 'Mobile Development',
+      link: null,
+      github: null,
+      company: 'Personal Project'
+    },
+    {
+      id: 2,
+      title: 'N-Queens RL Solver',
+      description: 'Built Q-learning and policy-gradient agents to converge on N-Queens solutions up to 35× faster than brute-force backtracking. Implemented reward shaping, action masking, and curriculum scaling. Logged results using TensorBoard and performed ablation studies.',
+      technologies: ['Python', 'PyTorch', 'Reinforcement Learning', 'TensorBoard'],
+      image: null,
+      category: 'Machine Learning',
+      link: null,
+      github: null,
+      company: 'Academic Project'
+    },
+    {
+      id: 3,
       title: 'AI-Powered WhatsApp Summarizer',
-      description: 'Engineered a chat summarization tool that integrates the WhatsApp API with Gemini AI to automatically condense lengthy message threads into concise daily digests.',
-      technologies: ['Node.js', 'WhatsApp API', 'Gemini AI', 'Express'],
+      description: 'Engineered a chat summarization tool integrating WhatsApp Web API with Gemini AI to condense chat threads into concise daily digests. Optimized latency and context-window usage via dynamic chunking and caching strategies.',
+      technologies: ['Node.js', 'WhatsApp API', 'Gemini AI', 'Express', 'NLP'],
       image: require('../images/WhatsappLogoBlack.png'),
       category: 'Full Stack Development',
       link: 'https://phoenixbot.up.railway.app/',
@@ -19,10 +41,10 @@ const Projects = () => {
       company: 'Contract Work'
     },
     {
-      id: 2,
+      id: 4,
       title: 'LaunchPath Biotech Architecture',
-      description: 'Spearheaded end-to-end solution architecture for LaunchPath\'s Biotech projects, translating business requirements into scalable C4 diagrams and technical specifications.',
-      technologies: ['React', 'Python', 'Microservices', 'C4 Architecture'],
+      description: 'Architected a scalable system for a biosensor analytics platform, producing C4 diagrams and technical specifications. Developed a responsive React Native front end with secure integration to Python microservices for real-time biosensor data ingestion.',
+      technologies: ['React Native', 'Python', 'Microservices', 'C4 Architecture'],
       image: require('../images/launchpathLogo.png'),
       category: 'Full Stack Development',
       link: null,
@@ -30,9 +52,9 @@ const Projects = () => {
       company: 'LaunchPath Inc.'
     },
     {
-      id: 3,
+      id: 5,
       title: 'AI-Powered 3D Avatar Platform',
-      description: 'Refactored and enhanced lip-sync pipelines for 3D avatars in Unity. Built end-to-end AI workflows with OpenAI Whisper and LangChain.',
+      description: 'Refactored lip-sync pipelines for 3D avatars in Unity, improving phoneme-to-blend-shape alignment. Prototyped end-to-end AI workflows with Whisper and LangChain. Implemented model-level optimizations reducing inference latency by ~25%.',
       technologies: ['Python', 'Unity', 'OpenAI Whisper', 'LangChain', 'Next.js'],
       image: require('../images/MCGLogo.png'),
       category: 'Full Stack Development',
@@ -41,20 +63,9 @@ const Projects = () => {
       company: 'MCG'
     },
     {
-      id: 4,
-      title: 'Automated Email Digest System',
-      description: 'Developed a scheduled email-delivery system that sends WhatsApp conversation summaries to subscribers, reducing manual review time by over 80%.',
-      technologies: ['Node.js', 'Express', 'Cloud Mail', 'MySQL'],
-      image: require('../images/email.png'),
-      category: 'Backend Development',
-      link: null,
-      github: 'https://github.com/gordondm/phoenix-bot',
-      company: 'Contract Work'
-    },
-    {
-      id: 5,
+      id: 6,
       title: 'Futures and Fringes CMS',
-      description: 'Led the UI/UX build of a Framer-powered CMS website, integrating newsletter sign-ups and interactive scroll effects.',
+      description: 'Designed and launched a CMS-powered website in Framer, improving mobile load times by 25% and boosting user engagement by 15%. Integrated interactive features like scroll-triggered animations and newsletter sign-ups.',
       technologies: ['Framer', 'CMS', 'UI/UX Design', 'Interactive'],
       image: require('../images/FF-ICON-BLK.png'),
       category: 'Frontend Development',
@@ -63,20 +74,9 @@ const Projects = () => {
       company: 'Futures and Fringes'
     },
     {
-      id: 6,
-      title: 'Personal Developer Portfolio',
-      description: 'Designed and developed a custom portfolio website showcasing my projects and skills. You are currently viewing it!',
-      technologies: ['React', 'Framer Motion', '3D Tilt', 'Modern CSS'],
-      image: require('../images/DG_logo.png'),
-      category: 'Frontend Development',
-      link: null,
-      github: 'https://github.com/DanielGord0n',
-      company: 'Personal Project'
-    },
-    {
       id: 7,
       title: 'wluNest - Student Housing',
-      description: 'Developed a platform aggregating Waterloo-Kitchener rental listings. Integrated real-time updates and direct listing links.',
+      description: 'Developed a platform aggregating Waterloo-Kitchener rental listings. Designed an intuitive UI with interactive maps, personalized filters, and a roommate finder. Integrated real-time updates and direct listing links.',
       technologies: ['React', 'Node.js', 'MySQL', 'Maps API'],
       image: require('../images/wilfrid-laurier-university-seeklogo.png'),
       category: 'Full Stack Development',
@@ -87,7 +87,7 @@ const Projects = () => {
     {
       id: 8,
       title: 'Battleships Game',
-      description: 'Developed a fully functional recreation of the classic "Battleships" game using Java and Maven, including an intuitive GUI and an AI opponent.',
+      description: 'Developed a fully functional recreation of "Battleships" using Java/Maven with an intuitive GUI. Implemented an AI opponent using minimax-style decision trees and pruning heuristics.',
       technologies: ['Java', 'Maven', 'OOP', 'GUI', 'AI Logic'],
       image: require('../images/battleshipcycles-logo-ftr.png'),
       category: 'Software Development',
@@ -98,7 +98,7 @@ const Projects = () => {
     {
       id: 9,
       title: 'Waiver Submission App',
-      description: 'Designed and implemented applications using React.js and Prisma to manage liability waivers with a robust online database.',
+      description: 'Designed and implemented applications using React.js and Prisma to manage liability waivers with a robust online database, reducing admin time by 40%.',
       technologies: ['React.js', 'Prisma', 'Tailwind CSS', 'Vercel'],
       image: require('../images/waiver.png'),
       category: 'Frontend Development',
@@ -108,11 +108,11 @@ const Projects = () => {
     },
     {
       id: 10,
-      title: 'Multiplayer Roblox Game',
-      description: 'Working on a multiplayer game and server using Lua and the Roblox framework, building skills in game development and networking.',
-      technologies: ['Lua', 'Roblox', 'Networking', 'Game Dev'],
-      image: require('../images/robloxLogo.png'),
-      category: 'Game Development',
+      title: 'Personal Developer Portfolio',
+      description: 'Designed and developed a custom portfolio website showcasing my projects and skills. You are currently viewing it!',
+      technologies: ['React', 'Framer Motion', '3D Tilt', 'Modern CSS'],
+      image: require('../images/DG_logo.png'),
+      category: 'Frontend Development',
       link: null,
       github: 'https://github.com/DanielGord0n',
       company: 'Personal Project'
@@ -161,7 +161,7 @@ const Projects = () => {
               tags={project.technologies}
               links={links}
               image={project.image}
-              customImageClass={project.id === 5 ? 'ff-img' : ''}
+              customImageClass={project.id === 6 ? 'ff-img' : ''}
             />
           );
         })}

@@ -17,10 +17,12 @@ const SkillsSphere = () => {
     };
 
     const texts = [
-        'React', 'Node.js', 'Python', 'JavaScript', 'TypeScript',
-        'HTML5', 'CSS3', 'Next.js', 'Express', 'MongoDB',
-        'PostgreSQL', 'GraphQL', 'AWS', 'Docker', 'Git',
-        'Figma', 'Tailwind', 'Framer Motion', 'Three.js', 'Unity'
+        'React', 'Node.js', 'Python', 'Java', 'C/C++',
+        'TypeScript', 'JavaScript', 'Next.js', 'Flutter', 'Dart',
+        'PyTorch', 'TensorFlow', 'SQL', 'NoSQL', 'AWS',
+        'Docker', 'Git', 'Figma', 'Tailwind', 'Prisma',
+        'GraphQL', 'Unity', 'Framer', 'R', 'Bash',
+        'Gemini AI', 'Scikit-learn', 'Babylon.js'
     ];
 
     useEffect(() => {

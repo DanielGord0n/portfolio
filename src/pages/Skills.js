@@ -61,28 +61,27 @@ const Skills = () => {
 
   const skillCategories = [
     {
-      title: 'Frontend Development',
+      title: 'Frontend & Mobile',
       icon: (
         <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2"></polygon>
-          <line x1="12" y1="22" x2="12" y2="15.5"></line>
-          <polyline points="22 8.5 12 15.5 2 8.5"></polyline>
+          <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+          <line x1="12" y1="18" x2="12.01" y2="18"></line>
         </svg>
       ),
-      description: 'Creating engaging user interfaces with modern frameworks and responsive design',
+      description: 'Building responsive web and mobile applications with modern frameworks',
       skills: [
-        { name: 'React', level: 90 },
-        { name: 'JavaScript (ES6+)', level: 88 },
-        { name: 'TypeScript', level: 80 },
-        { name: 'HTML5/CSS3', level: 90 },
-        { name: 'UI/UX Design', level: 85 },
-        { name: 'Responsive Design', level: 88 },
-        { name: 'Framer', level: 85 },
-        { name: 'Interactive Elements', level: 82 }
+        { name: 'React / Next.js', level: 90 },
+        { name: 'React Native / Expo', level: 85 },
+        { name: 'TypeScript', level: 85 },
+        { name: 'Flutter / Dart', level: 75 },
+        { name: 'Tailwind CSS', level: 90 },
+        { name: 'Framer / Figma', level: 85 },
+        { name: 'HTML5 / CSS3', level: 95 },
+        { name: 'Three.js / Babylon.js', level: 70 }
       ]
     },
     {
-      title: 'Backend Development',
+      title: 'Backend & Systems',
       icon: (
         <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
@@ -91,20 +90,20 @@ const Skills = () => {
           <line x1="6" y1="18" x2="6.01" y2="18"></line>
         </svg>
       ),
-      description: 'Building robust server-side applications with scalable APIs and database integration',
+      description: 'Architecting robust server-side solutions and managing databases',
       skills: [
-        { name: 'Node.js', level: 88 },
-        { name: 'Express.js', level: 85 },
-        { name: 'RESTful APIs', level: 90 },
-        { name: 'MySQL', level: 85 },
-        { name: 'Prisma ORM', level: 82 },
-        { name: 'Authentication/Security', level: 80 },
-        { name: 'Scheduled Tasks', level: 85 },
-        { name: 'Cloud Services', level: 78 }
+        { name: 'Node.js / Express', level: 88 },
+        { name: 'Python / Flask', level: 90 },
+        { name: 'Java / Maven', level: 85 },
+        { name: 'C / C++', level: 80 },
+        { name: 'SQL (MySQL/Postgres)', level: 85 },
+        { name: 'NoSQL (MongoDB)', level: 80 },
+        { name: 'Prisma ORM', level: 85 },
+        { name: 'Unix / Bash', level: 75 }
       ]
     },
     {
-      title: 'AI & Integration',
+      title: 'AI & Machine Learning',
       icon: (
         <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <path d="M12 2a5 5 0 0 0-5 5v2a5 5 0 0 0 10 0V7a5 5 0 0 0-5-5Z"></path>
@@ -113,16 +112,16 @@ const Skills = () => {
           <path d="m8 22 3.75-14"></path>
         </svg>
       ),
-      description: 'Leveraging AI technologies and APIs to create intelligent applications',
+      description: 'Developing intelligent systems with state-of-the-art ML frameworks',
       skills: [
-        { name: 'Gemini AI Integration', level: 85 },
-        { name: 'WhatsApp API', level: 90 },
-        { name: 'Email Services', level: 88 },
-        { name: 'API Integration', level: 90 },
-        { name: 'Text Summarization', level: 85 },
-        { name: 'CMS Systems', level: 82 },
-        { name: 'Newsletter Integration', level: 80 },
-        { name: 'Third-party APIs', level: 85 }
+        { name: 'PyTorch / TensorFlow', level: 85 },
+        { name: 'Scikit-learn', level: 88 },
+        { name: 'NumPy / Pandas', level: 90 },
+        { name: 'Reinforcement Learning', level: 80 },
+        { name: 'LLM Integration (Gemini)', level: 85 },
+        { name: 'Hugging Face', level: 80 },
+        { name: 'Computer Vision', level: 75 },
+        { name: 'R / Statsmodels', level: 70 }
       ]
     }
   ];
