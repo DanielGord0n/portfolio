@@ -35,7 +35,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: transparent;
+    background-color: #ffffff;
 }
 
 .project-image {
@@ -46,8 +46,10 @@
     object-fit: contain;
     padding: 0;
     transition: transform 0.5s ease;
-    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.9));
     opacity: 0.9;
+    border: none;
+    outline: none;
+    border-radius: 0;
 }
 
 .project-card-3d:hover .project-image {

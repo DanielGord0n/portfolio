@@ -56,7 +56,6 @@ const ProjectCard3D = ({ title, description, tags, links, image }) => {
             >
                 <div className="project-image-container">
                     {image && <img src={image} alt={title} className="project-image" />}
-                    <div className="project-image-overlay"></div>
                 </div>
 
                 <div className="project-info">

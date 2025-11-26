@@ -103,11 +103,11 @@
   position: relative;
   overflow: hidden;
   height: 200px;
-  background-color: #f0f0f0 !important;
+  /* background-color: #f0f0f0 !important; REMOVED */
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid #4a90e2;
+  /* border: 1px solid #4a90e2; REMOVED */
   z-index: 1;
 }
 
@@ -132,7 +132,7 @@
 
 /* Consistent styling for all project images - off-white background */
 .project-image {
-  background-color: #f0f0f0 !important;
+  /* background-color: #f0f0f0 !important; REMOVED */
   display: flex;
   justify-content: center;
   align-items: center;
