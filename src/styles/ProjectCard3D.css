@@ -57,6 +57,17 @@
     opacity: 1;
 }
 
+/* Specific override for Futures and Fringes logo */
+.project-image.ff-img {
+    transform: scale(2.25);
+    /* Increased by another 50% (1.5 * 1.5 = 2.25) */
+}
+
+.project-card-3d:hover .project-image.ff-img {
+    transform: scale(2.3);
+    /* Maintain scale on hover */
+}
+
 .project-image-overlay {
     position: absolute;
     top: 0;
@@ -79,6 +90,21 @@
     flex-grow: 1;
     overflow: hidden;
     /* Prevent spillover */
+    position: relative;
+    /* Needed for absolute positioning of buttons */
+}
+
+.project-title-3d,
+.project-desc-3d,
+.project-tags-3d {
+    transition: filter 0.3s ease, opacity 0.3s ease;
+}
+
+.project-card-3d:hover .project-title-3d,
+.project-card-3d:hover .project-desc-3d,
+.project-card-3d:hover .project-tags-3d {
+    filter: blur(4px);
+    opacity: 0.7;
 }
 
 .project-title-3d {
@@ -94,6 +120,7 @@
     line-height: 1.6;
     flex-grow: 1;
     margin-bottom: 20px;
+    /* Removed scrollbar styles */
 }
 
 .project-tags-3d {
@@ -117,27 +144,43 @@
 
 .project-links-3d {
     display: flex;
-    gap: 10px;
+    gap: 15px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.9);
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 10;
+    width: 100%;
+    justify-content: center;
+}
+
+.project-card-3d:hover .project-links-3d {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
 }
 
 .project-link-pill {
     display: flex;
     align-items: center;
     gap: 8px;
-    padding: 8px 16px;
-    background: transparent;
-    border: 1px solid var(--border-color);
-    border-radius: 20px;
-    color: var(--text-secondary);
+    padding: 12px 24px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--accent-primary);
+    border-radius: 30px;
+    color: var(--text-primary);
     text-decoration: none;
-    font-size: 0.85rem;
-    font-weight: 500;
+    font-size: 1rem;
+    font-weight: 600;
     transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
 .project-link-pill:hover {
     background: var(--accent-primary);
     border-color: var(--accent-primary);
     color: var(--bg-primary);
-    transform: translateY(-2px);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 229, 255, 0.4);
 }

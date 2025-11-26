@@ -169,7 +169,8 @@
 }
 
 /* Extremely large FF logo */
-.ff-img {
+/* Extremely large FF logo - REMOVED/UPDATED */
+/* .ff-img {
   width: 700%;
   height: 700%;
   object-fit: contain;
@@ -177,7 +178,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-}
+} */
 
 .project-links {
   position: absolute;

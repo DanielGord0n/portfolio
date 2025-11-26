@@ -161,6 +161,7 @@ const Projects = () => {
               tags={project.technologies}
               links={links}
               image={project.image}
+              customImageClass={project.id === 5 ? 'ff-img' : ''}
             />
           );
         })}

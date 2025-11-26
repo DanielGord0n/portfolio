@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import '../styles/ProjectCard3D.css';
 
-const ProjectCard3D = ({ title, description, tags, links, image }) => {
+const ProjectCard3D = ({ title, description, tags, links, image, customImageClass }) => {
     const ref = useRef(null);
 
     const x = useMotionValue(0);
@@ -55,7 +55,7 @@ const ProjectCard3D = ({ title, description, tags, links, image }) => {
                 className="project-card-content"
             >
                 <div className="project-image-container">
-                    {image && <img src={image} alt={title} className="project-image" />}
+                    {image && <img src={image} alt={title} className={`project-image ${customImageClass || ''}`} />}
                 </div>
 
                 <div className="project-info">
