@@ -12,7 +12,7 @@ const Projects = () => {
       title: 'TourSage – AI Tour Guide',
       description: 'Built a cross-platform mobile app that serves dynamic, GPS-aware tours. Implemented "Tour" and "Explore" modes on an interactive map with real-time tracking. Developed a typed REST API that generates itineraries with Gemini AI (RAG + embeddings), enriches stops with Google Places data, and returns structured routes.',
       technologies: ['React Native', 'Expo', 'Node.js', 'TypeScript', 'Python', 'Gemini AI', 'Google Places API'],
-      image: null, // Placeholder or need to find one
+      image: require('../images/TourSageLogo.png'),
       category: 'Mobile Development',
       link: null,
       github: null,

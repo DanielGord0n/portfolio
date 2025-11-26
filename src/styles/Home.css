@@ -41,10 +41,10 @@
 .hero-section {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: flex-start;
   min-height: 100vh;
-  padding: 0;
+  padding-top: 120px;
   margin-bottom: 0;
   transition-delay: 100ms;
   position: relative;

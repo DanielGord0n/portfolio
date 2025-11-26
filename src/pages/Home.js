@@ -147,7 +147,7 @@ const Home = () => {
         <div className="hero-content">
           <div className="greeting-wrapper">
             <TypingText
-              text="Hi, my name is"
+              text="Hello world, my name is"
               delay={0.5}
               speed={0.03}
               className="greeting"
