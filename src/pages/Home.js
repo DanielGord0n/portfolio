@@ -229,22 +229,19 @@ const Home = () => {
         <div className="about-content">
           <div className="about-text">
             <p>
-              Hello! My name is Daniel and I enjoy creating things that live on the internet.
-              My interest in web development started back in 2020 when I decided to try editing custom Tumblr themes —
-              turns out hacking together HTML & CSS was pretty fun!
+              Hello! I'm Daniel, a software engineer with a passion for building intelligent, scalable systems. My journey began with a curiosity for how things work, which quickly evolved into a deep dive into full-stack development and artificial intelligence.
             </p>
             <p>
-              Fast-forward to today, and I've had the privilege of working at a start-up, a huge corporation, and a student-led design studio.
-              My main focus these days is building accessible, inclusive products and digital experiences for a variety of clients.
+              Today, I specialize in bridging the gap between complex AI models and user-friendly applications. I've architected biosensor platforms, developed AI-powered mobile apps, and engineered reinforcement learning agents. Whether it's fine-tuning LLMs or building cross-platform mobile experiences, I love solving difficult problems with cutting-edge technology.
             </p>
             <p>Here are a few technologies I've been working with recently:</p>
             <ul className="skills-list">
               <li>JavaScript (ES6+)</li>
-              <li>React</li>
+              <li>React / Next.js</li>
               <li>Node.js</li>
               <li>TypeScript</li>
-              <li>Python</li>
-              <li>AWS</li>
+              <li>Python / PyTorch</li>
+              <li>Flutter / Dart</li>
             </ul>
           </div>
           <div className="about-image-container">
