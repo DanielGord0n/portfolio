@@ -1,39 +1,72 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../styles/Resume.css';
 
 const Resume = () => {
-  // PDF path for production
-  const resumePDF = '/Daniel_Gordon_Resume_FullStackDeveloper.pdf';
+  const [resumeType, setResumeType] = useState('SWE'); // 'SWE' or 'ML'
+
+  // PDF paths
+  const resumes = {
+    SWE: {
+      path: '/Daniel_Gordon_Resume_SWE.pdf',
+      filename: 'Daniel_Gordon_Resume_SWE.pdf',
+      title: 'Software Engineering Resume'
+    },
+    ML: {
+      path: '/DanielGordon_Resume_ML.pdf',
+      filename: 'DanielGordon_Resume_ML.pdf',
+      title: 'Machine Learning Resume'
+    }
+  };
+
+  const currentResume = resumes[resumeType];
   
   // Update document title and meta description
   useEffect(() => {
-    document.title = 'Resume | Daniel Gordon - Full Stack Developer';
+    document.title = `Resume | Daniel Gordon - ${resumeType === 'SWE' ? 'Software Engineer' : 'Machine Learning Engineer'}`;
     
     // Update meta description
     let metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
-      metaDescription.setAttribute('content', 'View and download Daniel Gordon\'s resume. Full Stack Developer with experience in React, Node.js, and modern web technologies.');
+      metaDescription.setAttribute('content', `View and download Daniel Gordon's ${resumeType === 'SWE' ? 'Software Engineering' : 'Machine Learning'} resume.`);
     }
-  }, []);
+  }, [resumeType]);
 
   return (
     <div className="resume-container">
       <div className="resume-header">
         <h1>My Resume</h1>
+        <div className="resume-toggle-container">
+          <div className="resume-toggle">
+            <button 
+              className={`toggle-btn ${resumeType === 'SWE' ? 'active' : ''}`}
+              onClick={() => setResumeType('SWE')}
+            >
+              Software Engineering
+            </button>
+            <button 
+              className={`toggle-btn ${resumeType === 'ML' ? 'active' : ''}`}
+              onClick={() => setResumeType('ML')}
+            >
+              Machine Learning
+            </button>
+            <div className={`toggle-slider ${resumeType === 'ML' ? 'slide-right' : ''}`}></div>
+          </div>
+        </div>
       </div>
+
         <div className="resume-pdf-viewer">
           <div className="pdf-container">
             <iframe 
-              src={`${resumePDF}#view=FitH`} 
-              title="Daniel Gordon Resume"
+              src={`${currentResume.path}#view=FitH`} 
+              title={currentResume.title}
               className="pdf-iframe"
               frameBorder="0"
             />
           </div>
           <div className="pdf-actions">
             <a 
-              href={resumePDF} 
-              download="Daniel_Gordon_Resume_FullStackDeveloper.pdf"
+              href={currentResume.path} 
+              download={currentResume.filename}
               className="pdf-download-btn"
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -44,7 +77,7 @@ const Resume = () => {
               Download PDF
             </a>
             <a 
-              href={resumePDF} 
+              href={currentResume.path} 
               target="_blank"
               rel="noopener noreferrer"
               className="pdf-open-btn"

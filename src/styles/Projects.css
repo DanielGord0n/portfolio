@@ -62,7 +62,8 @@
   font-size: 0.9rem;
 }
 
-.filter-btn:hover, .filter-btn.active {
+.filter-btn:hover,
+.filter-btn.active {
   background-color: #4a90e2;
   color: white;
 }
@@ -77,14 +78,18 @@
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  background-color: rgba(30, 41, 59, 0.8);
-  border: 1px solid rgba(74, 144, 226, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .project-card:hover {
   transform: translateY(-10px);
-  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
+  border-color: var(--accent-primary);
 }
 
 .project-image {
@@ -186,7 +191,9 @@
   opacity: 1;
 }
 
-.github-link, .demo-link, .code-link {
+.github-link,
+.demo-link,
+.code-link {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -309,7 +316,7 @@
   .projects-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .projects-header h1 {
     font-size: 2rem;
   }

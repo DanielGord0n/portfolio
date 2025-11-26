@@ -9,7 +9,7 @@ const Home = () => {
   const aboutRef = useRef(null);
   const projectsRef = useRef(null);
   const interestsRef = useRef(null);
-  
+
   // Memoize the refs object to prevent unnecessary re-renders
   const sectionRefs = useMemo(() => ({
     hero: heroRef,
@@ -21,7 +21,7 @@ const Home = () => {
   // Set document title for Home page
   useEffect(() => {
     document.title = 'Daniel Gordon | Full Stack Developer';
-    
+
     // Set meta description
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
@@ -32,7 +32,7 @@ const Home = () => {
   // Animation for sections on scroll
   useEffect(() => {
     const isMobile = window.innerWidth <= 768;
-    
+
     const observerOptions = {
       threshold: isMobile ? [0, 0.05, 0.1] : [0, 0.1, 0.2], // Even more sensitive on mobile
       rootMargin: isMobile ? '0px 0px -20px 0px' : '0px 0px -50px 0px' // Less aggressive margin for mobile
@@ -48,7 +48,7 @@ const Home = () => {
     };
 
     const observer = new IntersectionObserver(observerCallback, observerOptions);
-    
+
     // Add a timeout fallback for mobile devices
     const fallbackTimeout = setTimeout(() => {
       Object.values(sectionRefs).forEach(ref => {
@@ -61,7 +61,7 @@ const Home = () => {
         }
       });
     }, 1000);
-    
+
     Object.values(sectionRefs).forEach(ref => {
       if (ref.current) {
         observer.observe(ref.current);
@@ -83,17 +83,24 @@ const Home = () => {
       {/* Hero Section */}
       <section className="hero-section" ref={sectionRefs.hero}>
         <div className="hero-content">
-          <span className="greeting">Hello world, my name is</span>
+          <span className="greeting">Hi, my name is</span>
           <h1 className="hero-title">Daniel Gordon.</h1>
           <h2 className="hero-subtitle">I build things for the web.</h2>
-          
           <p className="hero-description">
-            I'm a Full Stack Developer specializing in building exceptional digital experiences. 
-            Currently, I'm focused on building accessible, human-centered products using modern frameworks and technologies.
+            I'm a software engineer specializing in building (and occasionally designing) exceptional digital experiences. Currently, I'm focused on building accessible, human-centered products.
           </p>
-          
           <div className="hero-cta">
-            <Link to="/projects" className="btn">View My Work</Link>
+            <Link to="/projects" className="btn btn-primary">Check out my work!</Link>
+          </div>
+        </div>
+        <div className="scroll-down">
+          <div className="mouse">
+            <div className="wheel"></div>
+          </div>
+          <div className="arrow-scroll">
+            <span></span>
+            <span></span>
+            <span></span>
           </div>
         </div>
       </section>
@@ -101,42 +108,35 @@ const Home = () => {
       {/* About Section */}
       <section className="about-section" ref={sectionRefs.about}>
         <div className="section-header">
+          <span className="section-number">01.</span>
           <h2 className="section-title">About Me</h2>
           <div className="section-line"></div>
         </div>
-        
+
         <div className="about-content">
           <div className="about-text">
             <p>
-              Hello! I'm Daniel Gordon, currently in my fourth year of the Honours Bachelor of Computer Science and Management program at Wilfrid Laurier University. Based in Vaughan, Ontario, I've been drawn to software development by a lifelong passion for problem-solving and building tools that make users' lives easier.
+              Hello! My name is Daniel and I enjoy creating things that live on the internet.
+              My interest in web development started back in 2020 when I decided to try editing custom Tumblr themes —
+              turns out hacking together HTML & CSS was pretty fun!
             </p>
             <p>
-              Over the past year as a Contract Full Stack Developer, I've engineered an AI-powered WhatsApp chat summarizer by integrating the WhatsApp API with Gemini AI, developed a scheduled email-delivery system using Node.js, and led the UI/UX build of a Framer-powered CMS website with interactive features.
+              Fast-forward to today, and I've had the privilege of working at a start-up, a huge corporation, and a student-led design studio.
+              My main focus these days is building accessible, inclusive products and digital experiences for a variety of clients.
             </p>
-            <p>
-              I focus on writing clean, well-structured code and continuously improving my development skills. I'm eager to collaborate on team projects and value feedback that helps me grow as a developer.
-            </p>
-            <p>
-              Here are the core technologies I work with daily:
-            </p>
-            
+            <p>Here are a few technologies I've been working with recently:</p>
             <ul className="skills-list">
+              <li>JavaScript (ES6+)</li>
               <li>React</li>
               <li>Node.js</li>
-              <li>MySQL</li>
-              <li>Prisma</li>
-              <li>RESTful APIs</li>
-              <li>JavaScript/TypeScript</li>
+              <li>TypeScript</li>
+              <li>Python</li>
+              <li>AWS</li>
             </ul>
           </div>
-          
           <div className="about-image-container">
             <div className="about-image-wrapper">
-              <img 
-                src={profilePhoto} 
-                alt="Daniel Gordon" 
-                className="about-image" 
-              />
+              <img src={profilePhoto} alt="Profile" className="about-image" />
             </div>
           </div>
         </div>
@@ -148,14 +148,14 @@ const Home = () => {
           <h2 className="section-title">Some Things I've Built</h2>
           <div className="section-line"></div>
         </div>
-        
+
         <div className="projects-horizontal-grid">
           {/* WhatsApp Summarizer */}
           <div className="project-card-horizontal">
             <h3 className="project-title">AI-Powered WhatsApp Summarizer</h3>
             <div className="project-description">
               <p>
-                Engineered a chat summarization tool that integrates the WhatsApp API with Gemini AI to automatically condense lengthy message threads into concise daily digests, improving information retention and reducing cognitive overload for users.                
+                Engineered a chat summarization tool that integrates the WhatsApp API with Gemini AI to automatically condense lengthy message threads into concise daily digests, improving information retention and reducing cognitive overload for users.
               </p>
             </div>
             <ul className="project-tech-list">
@@ -174,13 +174,13 @@ const Home = () => {
               </a>
             </div>
           </div>
-          
+
           {/* Futures and Fringes CMS Website */}
           <div className="project-card-horizontal">
             <h3 className="project-title">Futures and Fringes CMS Website</h3>
             <div className="project-description">
               <p>
-                Led the UI/UX build of a Framer-powered CMS website, integrating newsletter sign-ups, interactive scroll effects, and dynamic case-study pages to enhance user engagement and provide an intuitive content management experience for the client.             
+                Led the UI/UX build of a Framer-powered CMS website, integrating newsletter sign-ups, interactive scroll effects, and dynamic case-study pages to enhance user engagement and provide an intuitive content management experience for the client.
               </p>
             </div>
             <ul className="project-tech-list">
@@ -199,7 +199,7 @@ const Home = () => {
               </a>
             </div>
           </div>
-          
+
           {/* wluNest - Student Housing Application */}
           <div className="project-card-horizontal">
             <h3 className="project-title">wluNest - Student Housing Application</h3>
@@ -225,25 +225,25 @@ const Home = () => {
             </div>
           </div>
         </div>
-        
+
         <div className="more-projects">
           <Link to="/projects" className="btn">View All Projects</Link>
         </div>
       </section>
-      
+
       {/* Personal Interests Section */}
       <section className="interests-section" ref={sectionRefs.interests}>
         <div className="section-header">
           <h2 className="section-title">Beyond Coding</h2>
           <div className="section-line"></div>
         </div>
-        
+
         <div className="interests-container">
           <div className="interests-content">
             <p>
               When I'm not coding, you'll find me engaged in various activities that fuel my creativity and keep me balanced. I'm a firm believer that diverse interests contribute to becoming a better developer.
             </p>
-            
+
             <div className="interests-grid">
               <div className="interest-card">
                 <div className="interest-icon">
@@ -256,7 +256,7 @@ const Home = () => {
                 <h3>Cars</h3>
                 <p>I'm an automotive enthusiast who loves everything from classic cars to modern engineering marvels. I enjoy attending car shows and learning about the latest automotive technology.</p>
               </div>
-              
+
               <div className="interest-card">
                 <div className="interest-icon">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -268,7 +268,7 @@ const Home = () => {
                 <h3>Traveling</h3>
                 <p>Exploring new cultures, landscapes, and cuisines is one of my greatest passions. Immersing myself in different environments helps me gain fresh perspectives that I bring back to my work.</p>
               </div>
-              
+
               <div className="interest-card">
                 <div className="interest-icon">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -282,7 +282,7 @@ const Home = () => {
                 <h3>Brain Games</h3>
                 <p>I challenge myself daily with chess, crosswords, and Wordle. These mental exercises sharpen my problem-solving skills and keep my analytical thinking fresh for coding challenges.</p>
               </div>
-              
+
               <div className="interest-card">
                 <div className="interest-icon">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -306,7 +306,7 @@ const Home = () => {
                 <h3>Mixed Martial Arts</h3>
                 <p>Having trained in seven different martial arts disciplines, I've gained not just physical skills but also mental discipline, resilience, and a strategic approach to challenges that applies to both combat and code.</p>
               </div>
-              
+
               <div className="interest-card">
                 <div className="interest-icon">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -321,12 +321,12 @@ const Home = () => {
             </div>
           </div>
         </div>
-        
+
         <div className="skills-cta">
           <Link to="/skills" className="btn">View My Skills</Link>
         </div>
       </section>
-      
+
       {/* Contact CTA Section */}
       <section className="contact-cta">
         <h2>Get In Touch</h2>

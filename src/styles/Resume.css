@@ -35,40 +35,66 @@
   transform: none;
 }
 
-.resume-tabs {
+/* Resume Toggle */
+.resume-toggle-container {
   display: flex;
   justify-content: center;
-  gap: 1rem;
-  margin-top: 2rem;
-  flex-wrap: wrap;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
 }
 
-.tab-btn {
-  padding: 0.8rem 1.5rem;
+.resume-toggle {
+  display: flex;
+  position: relative;
   background-color: var(--bg-secondary);
+  border-radius: 30px;
+  padding: 5px;
   border: 1px solid var(--border-color);
-  border-radius: var(--radius-md);
-  cursor: pointer;
-  font-size: var(--fz-sm);
-  font-family: var(--font-sans);
-  font-weight: 500;
-  transition: var(--transition);
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.toggle-btn {
+  position: relative;
+  z-index: 2;
+  background: transparent;
+  border: none;
   color: var(--text-secondary);
+  padding: 10px 25px;
+  font-family: 'Fira Code', monospace;
+  font-size: var(--fz-xs);
+  cursor: pointer;
+  transition: color 0.3s ease;
+  font-weight: 500;
+  border-radius: 25px;
+  outline: none;
 }
 
-.tab-btn.active {
-  background: var(--accent-gradient);
+.toggle-btn:hover {
+  color: var(--text-primary);
+  transform: none;
+  box-shadow: none;
+}
+
+.toggle-btn.active {
   color: var(--bg-primary);
-  border-color: var(--accent-primary);
-  box-shadow: var(--card-shadow);
+  font-weight: 600;
 }
 
-.tab-btn:hover:not(.active) {
-  background-color: var(--bg-tertiary);
-  transform: translateY(-3px);
-  box-shadow: var(--card-shadow);
-  border-color: var(--accent-primary);
-  color: var(--accent-primary);
+.toggle-slider {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: calc(50% - 5px);
+  height: calc(100% - 10px);
+  background: var(--accent-gradient);
+  border-radius: 25px;
+  transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  z-index: 1;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.slide-right {
+  transform: translateX(100%);
 }
 
 /* View Resume Tab */
@@ -298,7 +324,8 @@
   margin-top: 1rem;
 }
 
-.pdf-download-btn, .pdf-open-btn {
+.pdf-download-btn,
+.pdf-open-btn {
   display: inline-flex;
   align-items: center;
   gap: 0.75rem;
@@ -322,7 +349,8 @@
   border: 1px solid var(--border-color);
 }
 
-.pdf-download-btn:hover, .pdf-open-btn:hover {
+.pdf-download-btn:hover,
+.pdf-open-btn:hover {
   transform: translateY(-3px);
   box-shadow: var(--card-shadow);
 }
@@ -558,6 +586,7 @@
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -565,28 +594,33 @@
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 @media (max-width: 968px) {
   .resume-download {
     grid-template-columns: 1fr;
   }
-  
+
   .pdf-preview {
     margin-bottom: 2rem;
     height: 400px;
   }
-  
+
   .pdf-container {
     height: 600px;
   }
-  
+
   .resume-tabs {
     gap: 0.75rem;
   }
-  
+
   .tab-btn {
     padding: 0.7rem 1.25rem;
     font-size: var(--fz-xs);
@@ -597,38 +631,39 @@
   .resume-container {
     padding: 3rem 1.5rem;
   }
-  
+
   .experience-header {
     flex-direction: column;
     align-items: flex-start;
   }
-  
+
   .period {
     margin-top: 0.5rem;
   }
-  
+
   .certifications {
     grid-template-columns: 1fr;
   }
-  
+
   .pdf-container {
     height: 500px;
   }
-  
+
   .pdf-actions {
     flex-direction: column;
     align-items: center;
   }
-  
-  .pdf-download-btn, .pdf-open-btn {
+
+  .pdf-download-btn,
+  .pdf-open-btn {
     width: 100%;
     justify-content: center;
   }
-  
+
   .download-buttons {
     flex-direction: column;
   }
-  
+
   .download-btn {
     width: 100%;
     justify-content: center;
@@ -639,37 +674,41 @@
   .resume-container {
     padding: 2rem 1rem;
   }
-  
+
   .resume-header h1 {
     font-size: 1.75rem;
   }
-  
+
   .resume-tabs {
     flex-direction: column;
     gap: 0.5rem;
   }
-  
+
   .tab-btn {
     width: 100%;
   }
-  
-  .experience, .education-item, .certification-item {
+
+  .experience,
+  .education-item,
+  .certification-item {
     padding: 1.5rem;
   }
-  
+
   .pdf-container {
     height: 400px;
   }
-  
+
   .pdf-preview {
     height: 300px;
   }
-  
-  .company, .institution {
+
+  .company,
+  .institution {
     font-size: var(--fz-lg);
   }
-  
-  .position, .degree {
+
+  .position,
+  .degree {
     font-size: var(--fz-md);
   }
 }
