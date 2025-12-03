@@ -77,7 +77,8 @@ const Skills = () => {
         { name: 'Tailwind CSS', level: 90 },
         { name: 'Framer / Figma', level: 85 },
         { name: 'HTML5 / CSS3', level: 95 },
-        { name: 'Three.js / Babylon.js', level: 70 }
+        { name: 'Three.js / Babylon.js', level: 70 },
+        { name: 'Electron', level: 65 }
       ]
     },
     {
@@ -99,7 +100,8 @@ const Skills = () => {
         { name: 'SQL (MySQL/Postgres)', level: 85 },
         { name: 'NoSQL (MongoDB)', level: 80 },
         { name: 'Prisma ORM', level: 85 },
-        { name: 'Unix / Bash', level: 75 }
+        { name: 'Unix / Bash', level: 75 },
+        { name: 'WireShark', level: 60 }
       ]
     },
     {
@@ -121,7 +123,8 @@ const Skills = () => {
         { name: 'LLM Integration (Gemini)', level: 85 },
         { name: 'Hugging Face', level: 80 },
         { name: 'Computer Vision', level: 75 },
-        { name: 'R / Statsmodels', level: 70 }
+        { name: 'R / Statsmodels', level: 70 },
+        { name: 'Genetic Algorithms', level: 75 }
       ]
     }
   ];

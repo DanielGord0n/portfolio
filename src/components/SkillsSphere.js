@@ -22,7 +22,9 @@ const SkillsSphere = () => {
         'PyTorch', 'TensorFlow', 'SQL', 'NoSQL', 'AWS',
         'Docker', 'Git', 'Figma', 'Tailwind', 'Prisma',
         'GraphQL', 'Unity', 'Framer', 'R', 'Bash',
-        'Gemini AI', 'Scikit-learn', 'Babylon.js'
+        'Gemini AI', 'Scikit-learn', 'Babylon.js', 'WireShark',
+        'Electron', 'Flask', 'Unix', 'Expo', 'Hugging Face',
+        'Venv', 'Shell Scripting', 'Maven', 'PostgreSQL', 'MongoDB'
     ], []);
 
     useEffect(() => {
@@ -47,7 +49,7 @@ const SkillsSphere = () => {
             tag.innerText = text;
             tag.style.color = 'var(--accent-primary)';
             const { x, y, z } = computePosition(idx);
-            tag.style.transform = `translate3d(${x}px, ${y}px, ${z}px)`;
+            tag.style.transform = `translate3d(${x}px, ${y}px, ${z}px) translate(-50%, -50%)`;
             tag.dataset.x = x;
             tag.dataset.y = y;
             tag.dataset.z = z;
@@ -79,16 +81,16 @@ const SkillsSphere = () => {
 
                 if (isHoveredRef.current) {
                     // Grid layout target
-                    const cols = 4;
+                    const cols = 5;
                     const rows = Math.ceil(texts.length / cols);
                     const row = Math.floor(idx / cols);
                     const col = idx % cols;
 
                     // Calculate grid position centered
-                    targetX = (col - (cols - 1) / 2) * 180;
-                    targetY = (row - (rows - 1) / 2) * 60;
+                    targetX = (col - (cols - 1) / 2) * 160;
+                    targetY = (row - (rows - 1) / 2) * 50;
                     targetZ = 0;
-                    targetScale = 1;
+                    targetScale = 1.2;
                     targetOpacity = 1;
                 } else {
                     // Sphere rotation target
@@ -121,7 +123,7 @@ const SkillsSphere = () => {
 
                 // Apply transforms
                 const { x, y, z, scale, opacity } = currentPositions[idx];
-                tag.style.transform = `translate3d(${x}px, ${y}px, ${z}px) scale(${scale})`;
+                tag.style.transform = `translate3d(${x}px, ${y}px, ${z}px) scale(${scale}) translate(-50%, -50%)`;
                 tag.style.opacity = opacity;
                 tag.style.zIndex = Math.round(scale * 100);
             });

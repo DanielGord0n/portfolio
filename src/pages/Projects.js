@@ -20,9 +20,9 @@ const Projects = () => {
     },
     {
       id: 2,
-      title: 'N-Queens RL Solver',
-      description: 'Built Q-learning and policy-gradient agents to converge on N-Queens solutions up to 35× faster than brute-force backtracking. Implemented reward shaping, action masking, and curriculum scaling. Logged results using TensorBoard and performed ablation studies.',
-      technologies: ['Python', 'PyTorch', 'Reinforcement Learning', 'TensorBoard'],
+      title: 'N-Queens RL & CSP Solver',
+      description: 'Implemented an optimized Min-Conflicts CSP solver capable of scaling to N=1,000,000 with ~20s solution times. Designed greedy initialization and constant-time conflict repair to reduce runtime to O(n). Built benchmarking tools to verify correctness and performance.',
+      technologies: ['Python', 'Min-Conflicts CSP', 'Optimization', 'PyTorch', 'Benchmarking'],
       image: require('../images/QueenIcon.png'),
       category: 'Machine Learning',
       link: null,

@@ -9,7 +9,11 @@ const ExperienceTimeline = () => {
             role: 'Research Assistant - AI/ML',
             company: 'Wilfrid Laurier University',
             period: 'Sept 2025 - Present',
-            description: 'Reproduced and debugged mathematical constructions from research papers. Applied hybrid ML-driven error-localization to flag suspicious recurrence steps and implemented validated Maple pipelines.'
+            description: [
+                'Verified Sarukhanian’s δ-code constructions by implementing computational checks that identified a sign error in Proposition 1; corrected the formula and produced a zero-NPAF sequence matching theoretical expectations.',
+                'Applied evolutionary and stochastic optimization (Genetic Algorithms, Simulated Annealing) to repair the incorrect Proposition 2 structure, reducing NPAF errors from 16 non-zero shifts to 3 across a search space >10²⁰ combinations.',
+                'Combined exhaustive search (2¹⁶ sign patterns, 16k sequence combinations) with symbolic Maple verification to mathematically disprove the published construction and validate all computational findings.'
+            ]
         },
         {
             id: 2,
@@ -56,7 +60,15 @@ const ExperienceTimeline = () => {
                         <span className="timeline-period">{exp.period}</span>
                         <h3 className="timeline-role">{exp.role}</h3>
                         <h4 className="timeline-company">{exp.company}</h4>
-                        <p className="timeline-description">{exp.description}</p>
+                        {Array.isArray(exp.description) ? (
+                            <ul className="timeline-description-list">
+                                {exp.description.map((item, i) => (
+                                    <li key={i}>{item}</li>
+                                ))}
+                            </ul>
+                        ) : (
+                            <p className="timeline-description">{exp.description}</p>
+                        )}
                     </div>
                 </motion.div>
             ))}
