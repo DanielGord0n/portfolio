@@ -172,7 +172,7 @@ const Home = () => {
           <h2 className="hero-subtitle">
             {nameComplete && (
               <TypingText
-                text="I build things for the web."
+                text="I build AI-powered platforms and scalable systems."
                 delay={0}
                 speed={0.03}
                 onComplete={() => setTaglineComplete(true)}
@@ -184,7 +184,7 @@ const Home = () => {
           <div className="hero-description">
             {taglineComplete && (
               <TypingText
-                text="I'm a software engineer specializing in full-stack development and machine learning. Currently, I'm focused on building intelligent, accessible products that bridge the gap between AI and user experience."
+                text="I’m a software engineer focused on AI platform engineering and solutions engineering. I build production-ready APIs, integrate AI workflows into real applications, and translate business requirements into reliable, scalable technical solutions."
                 delay={0}
                 speed={0.01} // Very fast for long text
                 showCursor={true} // Keep cursor blinking at the end
@@ -198,7 +198,7 @@ const Home = () => {
             animate={{ opacity: taglineComplete ? 1 : 0, y: taglineComplete ? 0 : 20 }}
             transition={{ delay: 1 }} // Wait a bit after text starts
           >
-            <MagneticButton to="/projects">Check out my work!</MagneticButton>
+            <MagneticButton to="/projects">View featured projects</MagneticButton>
           </motion.div>
         </div>
 
@@ -229,19 +229,31 @@ const Home = () => {
         <div className="about-content">
           <div className="about-text">
             <p>
-              Hello! I'm Daniel, a software engineer with a passion for building intelligent, scalable systems. My journey began with a curiosity for how things work, which quickly evolved into a deep dive into full-stack development and artificial intelligence.
+              Hi - I’m Daniel, a software engineer who builds and ships AI-powered systems.
             </p>
             <p>
-              Today, I specialize in bridging the gap between complex AI models and user-friendly applications. I've architected biosensor platforms, developed AI-powered mobile apps, and engineered reinforcement learning agents. Whether it's fine-tuning LLMs or building cross-platform mobile experiences, I love solving difficult problems with cutting-edge technology.
+              My work sits at the intersection of AI platform engineering, backend development, and solutions engineering. I’ve delivered real-time AI workflows, API services, and end-to-end integrations that support both product teams and non-technical stakeholders.
+            </p>
+            <p>Recently, I’ve worked on:</p>
+            <ul className="about-list-bullets">
+              <li>AI workflow prototyping and benchmarking (accuracy vs latency tradeoffs)</li>
+              <li>Building RESTful services to expose AI capabilities in production applications</li>
+              <li>Solution architecture and technical documentation (e.g., C4 diagrams, specifications)</li>
+              <li>Data validation and testing pipelines to improve reliability and correctness</li>
+            </ul>
+            <p>
+              I’m most interested in internship roles where I can own systems end-to-end - from architecture and implementation to debugging, optimization, and delivery.
             </p>
             <p>Here are a few technologies I've been working with recently:</p>
             <ul className="skills-list">
-              <li>JavaScript (ES6+)</li>
+              <li>TypeScript / JavaScript</li>
+              <li>Python</li>
               <li>React / Next.js</li>
-              <li>Node.js</li>
-              <li>TypeScript</li>
-              <li>Python / PyTorch</li>
-              <li>Flutter / Dart</li>
+              <li>Node.js / Express</li>
+              <li>REST APIs</li>
+              <li>Docker</li>
+              <li>SQL (Postgres/MySQL)</li>
+              <li>Git</li>
             </ul>
           </div>
           <div className="about-image-container">
@@ -265,12 +277,12 @@ const Home = () => {
             <h3 className="project-title">AI-Powered WhatsApp Summarizer</h3>
             <div className="project-description">
               <p>
-                Engineered a chat summarization tool that integrates the WhatsApp API with Gemini AI to automatically condense lengthy message threads into concise daily digests, improving information retention and reducing cognitive overload for users.
+                Built an AI summarization system for high-volume WhatsApp chat threads, producing daily digests for users. Designed backend services and APIs, implemented validation and reliability checks, and optimized summarization performance for usability and response time.
               </p>
             </div>
             <ul className="project-tech-list">
               <li>Node.js</li>
-              <li>WhatsApp API</li>
+              <li>WhatsApp Web</li>
               <li>Gemini AI</li>
               <li>RESTful APIs</li>
               <li>Express</li>
@@ -290,7 +302,7 @@ const Home = () => {
             <h3 className="project-title">LaunchPath Biotech Architecture</h3>
             <div className="project-description">
               <p>
-                Architected a scalable system for a biosensor analytics platform, producing C4 diagrams and technical specifications. Developed a responsive React Native front end with secure integration to Python microservices for real-time biosensor data ingestion.
+                Owned solution architecture for a biosensor analytics platform: translated requirements into C4 diagrams and technical specs, coordinated Agile delivery, and built a React Native frontend integrated with Python microservices for real-time data ingestion and reporting.
               </p>
             </div>
             <ul className="project-tech-list">
@@ -314,7 +326,7 @@ const Home = () => {
             <h3 className="project-title">AI-Powered 3D Avatar Platform</h3>
             <div className="project-description">
               <p>
-                Refactored lip-sync pipelines for 3D avatars in Unity, improving phoneme-to-blend-shape alignment. Prototyped end-to-end AI workflows with Whisper and LangChain. Implemented model-level optimizations reducing inference latency by ~25%.
+                Refactored a Python/JavaScript lip-sync ML pipeline for 3D avatars in Unity. Built AI workflows with speech-to-text and LLM orchestration, benchmarked model tradeoffs, and exposed capabilities as REST APIs for real-time browser-based avatar animation. Reduced inference latency by ~25%.
               </p>
             </div>
             <ul className="project-tech-list">
@@ -340,10 +352,10 @@ const Home = () => {
         <div className="more-projects">
           <Link to="/projects" className="btn">View All Projects</Link>
         </div>
-      </section>
+      </section >
 
       {/* Personal Interests Section */}
-      <section className="interests-section" ref={sectionRefs.interests}>
+      < section className="interests-section" ref={sectionRefs.interests} >
         <div className="section-header">
           <h2 className="section-title">Beyond Coding</h2>
           <div className="section-line"></div>
@@ -410,18 +422,18 @@ const Home = () => {
         <div className="skills-cta">
           <Link to="/skills" className="btn">View My Skills</Link>
         </div>
-      </section>
+      </section >
 
       {/* Contact CTA Section */}
-      <section className="contact-cta">
+      < section className="contact-cta" >
         <h2>Get In Touch</h2>
         <p>
           Whether you have a project in mind, a question about my work, or just want to connect,
           I'm always open to new opportunities and conversations. Let's build something amazing together!
         </p>
         <Link to="/contact" className="btn btn-primary">Say Hello</Link>
-      </section>
-    </div>
+      </section >
+    </div >
   );
 };
 

@@ -5,81 +5,93 @@ import PageTransition from '../components/PageTransition';
 import '../styles/Projects.css';
 
 const Projects = () => {
+  const [filter, setFilter] = useState('All');
 
+  // Hardcoded project data to ensure availability
   const projects = [
-    {
-      id: 1,
-      title: 'TourSage – AI Tour Guide',
-      description: 'Built a cross-platform mobile app that serves dynamic, GPS-aware tours. Implemented "Tour" and "Explore" modes on an interactive map with real-time tracking. Developed a typed REST API that generates itineraries with Gemini AI (RAG + embeddings), enriches stops with Google Places data, and returns structured routes.',
-      technologies: ['React Native', 'Expo', 'Node.js', 'TypeScript', 'Python', 'Gemini AI', 'Google Places API'],
-      image: require('../images/TourSageLogo.png'),
-      category: 'Mobile Development',
-      link: null,
-      github: null,
-      company: 'Personal Project'
-    },
-    {
-      id: 2,
-      title: 'N-Queens RL & CSP Solver',
-      description: 'Implemented an optimized Min-Conflicts CSP solver capable of scaling to N=1,000,000 with ~20s solution times. Designed greedy initialization and constant-time conflict repair to reduce runtime to O(n). Built benchmarking tools to verify correctness and performance.',
-      technologies: ['Python', 'Min-Conflicts CSP', 'Optimization', 'PyTorch', 'Benchmarking'],
-      image: require('../images/QueenIcon.png'),
-      category: 'Machine Learning',
-      link: null,
-      github: null,
-      company: 'Academic Project'
-    },
-    {
-      id: 3,
-      title: 'AI-Powered WhatsApp Summarizer',
-      description: 'Engineered a chat summarization tool integrating WhatsApp Web API with Gemini AI to condense chat threads into concise daily digests. Optimized latency and context-window usage via dynamic chunking and caching strategies.',
-      technologies: ['Node.js', 'WhatsApp API', 'Gemini AI', 'Express', 'NLP'],
-      image: require('../images/WhatsappLogoBlack.png'),
-      category: 'Full Stack Development',
-      link: 'https://phoenix-bot-web.vercel.app/',
-      github: 'https://github.com/DanielGord0n',
-      company: 'Contract Work'
-    },
-    {
-      id: 4,
-      title: 'LaunchPath Biotech Architecture',
-      description: 'Architected a scalable system for a biosensor analytics platform, producing C4 diagrams and technical specifications. Developed a responsive React Native front end with secure integration to Python microservices for real-time biosensor data ingestion.',
-      technologies: ['React Native', 'Python', 'Microservices', 'C4 Architecture'],
-      image: require('../images/launchpathLogo.png'),
-      category: 'Full Stack Development',
-      link: null,
-      github: 'https://github.com/DanielGord0n/aptamer_therapeutic',
-      company: 'LaunchPath Inc.'
-    },
+    // --- FEATURED ---
     {
       id: 5,
       title: 'AI-Powered 3D Avatar Platform',
-      description: 'Refactored lip-sync pipelines for 3D avatars in Unity, improving phoneme-to-blend-shape alignment. Prototyped end-to-end AI workflows with Whisper and LangChain. Implemented model-level optimizations reducing inference latency by ~25%.',
+      description: 'Refactored a Python/JavaScript lip-sync ML pipeline for 3D avatars in Unity. Built AI workflows with speech-to-text and LLM orchestration, benchmarked model tradeoffs, and exposed capabilities as REST APIs for real-time browser-based avatar animation. Reduced inference latency by ~25%.',
       technologies: ['Python', 'Unity', 'OpenAI Whisper', 'LangChain', 'Next.js'],
       image: require('../images/MCGLogo.png'),
       category: 'Full Stack Development',
+      isFeatured: true,
       link: 'https://mycleanmesh.com/',
       github: null,
       company: 'MCG'
     },
     {
-      id: 6,
-      title: 'Futures and Fringes CMS',
-      description: 'Designed and launched a CMS-powered website in Framer, improving mobile load times by 25% and boosting user engagement by 15%. Integrated interactive features like scroll-triggered animations and newsletter sign-ups.',
-      technologies: ['Framer', 'CMS', 'UI/UX Design', 'Interactive'],
-      image: require('../images/FF-ICON-BLK.png'),
-      category: 'Frontend Development',
-      link: 'https://www.futuresandfringes.com/',
+      id: 4,
+      title: 'LaunchPath Biotech Architecture',
+      description: 'Owned solution architecture for a biosensor analytics platform: translated requirements into C4 diagrams and technical specs, coordinated Agile delivery, and built a React Native frontend integrated with Python microservices for real-time data ingestion and reporting.',
+      technologies: ['React Native', 'Python', 'Microservices', 'C4 Architecture'],
+      image: require('../images/launchpathLogo.png'),
+      category: 'Full Stack Development',
+      isFeatured: true,
+      link: null,
+      github: 'https://github.com/DanielGord0n/aptamer_therapeutic',
+      company: 'LaunchPath Inc.'
+    },
+    {
+      id: 3,
+      title: 'AI-Powered WhatsApp Summarizer',
+      description: 'Built an AI summarization system for high-volume WhatsApp chat threads, producing daily digests for users. Designed backend services and APIs, implemented validation and reliability checks, and optimized summarization performance for usability and response time.',
+      technologies: ['Node.js', 'WhatsApp Web', 'Gemini AI', 'Express', 'NLP'],
+      image: require('../images/WhatsappLogoBlack.png'),
+      category: 'Full Stack Development',
+      isFeatured: true,
+      link: 'https://phoenix-bot-web.vercel.app/',
+      github: 'https://github.com/DanielGord0n',
+      company: 'Contract Work'
+    },
+    {
+      id: 1,
+      title: 'TourSage - AI Tour Guide',
+      description: 'Built a cross-platform tour guide app with dynamic routes, maps integration, and an API that returns structured itineraries. Focused on clean data outputs and UX-driven iteration.',
+      technologies: ['React Native', 'Expo', 'Node.js', 'TypeScript', 'Google Places API'],
+      image: require('../images/TourSageLogo.png'),
+      category: 'Mobile Development',
+      isFeatured: true, // Optional featured as per instructions
+      link: null,
       github: null,
-      company: 'Futures and Fringes'
+      company: 'Personal Project'
+    },
+
+    // --- ADDITIONAL ---
+    {
+      id: 2,
+      title: 'N-Queens RL & CSP Solver',
+      description: 'Implemented an optimized Min-Conflicts CSP solver scaling to N=1,000,000. Designed greedy initialization and constant-time conflict repair to reduce runtime to O(n).',
+      technologies: ['Python', 'Min-Conflicts CSP', 'Optimization', 'PyTorch'],
+      image: require('../images/QueenIcon.png'),
+      category: 'Machine Learning',
+      isFeatured: false,
+      link: null,
+      github: null,
+      company: 'Academic Project'
+    },
+    {
+      id: 9,
+      title: 'Waiver Submission App',
+      description: 'Built a full-stack liability waiver management system using React and Prisma. Reduced administrative processing time by 40% through automated database storage and retrieval.',
+      technologies: ['React.js', 'Prisma', 'Tailwind CSS', 'Vercel'],
+      image: require('../images/waiver.png'),
+      category: 'Frontend Development',
+      isFeatured: false,
+      link: null,
+      github: 'https://github.com/DanielGord0n/pool-waiver',
+      company: 'Contract Work'
     },
     {
       id: 7,
       title: 'wluNest - Student Housing',
-      description: 'Developed a platform aggregating Waterloo-Kitchener rental listings. Designed an intuitive UI with interactive maps, personalized filters, and a roommate finder. Integrated real-time updates and direct listing links.',
+      description: 'Developed a rental aggregation platform (React/Node.js/MySQL) with interactive maps. Implemented real-time data updates and responsive UI components.',
       technologies: ['React', 'Node.js', 'MySQL', 'Maps API'],
       image: require('../images/wilfrid-laurier-university-seeklogo.png'),
       category: 'Full Stack Development',
+      isFeatured: false,
       link: null,
       github: 'https://github.com/WluNest/wluNest-App',
       company: 'Academic Project'
@@ -87,55 +99,89 @@ const Projects = () => {
     {
       id: 8,
       title: 'Battleships Game',
-      description: 'Developed a fully functional recreation of "Battleships" using Java/Maven with an intuitive GUI. Implemented an AI opponent using minimax-style decision trees and pruning heuristics.',
-      technologies: ['Java', 'Maven', 'OOP', 'GUI', 'AI Logic'],
+      description: 'Implemented a Battleships game in Java with a Swing GUI and OOP design patterns. Built an AI opponent using minimax-style heuristics and state pruning.',
+      technologies: ['Java', 'Maven', 'OOP', 'GUI'],
       image: require('../images/battleshipcycles-logo-ftr.png'),
       category: 'Software Development',
+      isFeatured: false,
       link: null,
       github: 'https://github.com/y-fysiks/ICS4U-CPT-Battleship',
       company: 'Academic Project'
     },
     {
-      id: 9,
-      title: 'Waiver Submission App',
-      description: 'Designed and implemented applications using React.js and Prisma to manage liability waivers with a robust online database, reducing admin time by 40%.',
-      technologies: ['React.js', 'Prisma', 'Tailwind CSS', 'Vercel'],
-      image: require('../images/waiver.png'),
+      id: 6,
+      title: 'Futures and Fringes CMS',
+      description: 'Designed and launched a CMS-powered website in Framer. Improved mobile load times by 25% and integrated interactive features for better user engagement.',
+      technologies: ['Framer', 'CMS', 'UI/UX Design'],
+      image: require('../images/FF-ICON-BLK.png'),
       category: 'Frontend Development',
-      link: null,
-      github: 'https://github.com/DanielGord0n/pool-waiver',
-      company: 'Contract Work'
+      isFeatured: false,
+      link: 'https://www.futuresandfringes.com/',
+      github: null,
+      company: 'Futures and Fringes'
     },
     {
-      id: 10,
-      title: 'Personal Developer Portfolio',
-      description: 'Designed and developed a custom portfolio website showcasing my projects and skills. You are currently viewing it!',
-      technologies: ['React', 'Framer Motion', '3D Tilt', 'Modern CSS'],
-      image: require('../images/DG_logo.png'),
-      category: 'Frontend Development',
+      id: 11,
+      title: 'Multiplayer Roblox Game',
+      description: 'Working on a multiplayer game using Lua and the Roblox framework. Focus on networking, server-client interaction, and game state management.',
+      technologies: ['Lua', 'Roblox Framework', 'Networking'],
+      image: require('../images/robloxLogo.png'),
+      category: 'Game Development',
+      isFeatured: false,
       link: null,
       github: 'https://github.com/DanielGord0n',
       company: 'Personal Project'
     },
     {
-      id: 11,
-      title: 'Multiplayer Roblox Game',
-      description: 'Working on a multiplayer game and server using Lua and the Roblox framework, building skills in game development, networking, and server-client interaction within a complex environment.',
-      technologies: ['Lua', 'Roblox Framework', 'Networking', 'Game Development'],
-      image: require('../images/robloxLogo.png'),
-      category: 'Game Development',
+      id: 10,
+      title: 'Personal Developer Portfolio',
+      description: 'Designed and developed a custom portfolio website using React and Framer Motion. You are currently viewing it!',
+      technologies: ['React', 'Framer Motion', '3D Tilt', 'Modern CSS'],
+      image: require('../images/DG_logo.png'),
+      category: 'Frontend Development',
+      isFeatured: false,
       link: null,
       github: 'https://github.com/DanielGord0n',
       company: 'Personal Project'
     }
   ];
 
-  const [filter, setFilter] = useState('All');
-  const categories = ['All', ...new Set(projects.map(project => project.category))];
+  // Derive categories
+  const categories = ['All', 'Featured', ...new Set(projects.map(p => p.category))];
 
-  const filteredProjects = filter === 'All'
-    ? projects
-    : projects.filter(project => project.category === filter);
+  // Helper to render a grid of projects
+  const renderGrid = (items) => (
+    <div className="projects-grid">
+      {items.map(project => {
+        const links = [];
+        if (project.github) links.push({ url: project.github, icon: <FaGithub size={20} /> });
+        if (project.link) links.push({ url: project.link, icon: <FaExternalLinkAlt size={18} /> });
+
+        return (
+          <ProjectCard3D
+            key={project.id}
+            title={project.title}
+            description={project.description}
+            tags={project.technologies}
+            links={links}
+            image={project.image}
+            customImageClass={project.id === 6 ? 'ff-img' : ''}
+          />
+        );
+      })}
+    </div>
+  );
+
+  // Get the projects to display based on filter
+  let projectsToDisplay;
+
+  if (filter === 'All') {
+    projectsToDisplay = projects; // Show all projects
+  } else if (filter === 'Featured') {
+    projectsToDisplay = projects.filter(p => p.isFeatured);
+  } else {
+    projectsToDisplay = projects.filter(p => p.category === filter);
+  }
 
   return (
     <div className="projects-container">
@@ -158,25 +204,7 @@ const Projects = () => {
         </div>
       </div>
 
-      <div className="projects-grid">
-        {filteredProjects.map(project => {
-          const links = [];
-          if (project.github) links.push({ url: project.github, icon: <FaGithub size={20} /> });
-          if (project.link) links.push({ url: project.link, icon: <FaExternalLinkAlt size={18} /> });
-
-          return (
-            <ProjectCard3D
-              key={project.id}
-              title={project.title}
-              description={project.description}
-              tags={project.technologies}
-              links={links}
-              image={project.image}
-              customImageClass={project.id === 6 ? 'ff-img' : ''}
-            />
-          );
-        })}
-      </div>
+      {renderGrid(projectsToDisplay)}
     </div>
   );
 };
