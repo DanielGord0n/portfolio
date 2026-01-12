@@ -937,6 +937,26 @@
   opacity: 1;
 }
 
+/* Tablet */
+@media (max-width: 1024px) {
+  .hero-logo {
+    position: static;
+    display: block;
+    margin: 0 auto 2rem auto;
+    width: 220px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .hero-logo {
+    position: static;
+    display: block;
+    margin: 0 auto 1.5rem auto;
+    width: 180px;
+  }
+}
+
 .intro-subtitle {
   font-size: 1.2rem;
   max-width: 800px;
