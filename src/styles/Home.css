@@ -922,6 +922,21 @@
   color: var(--text-primary);
 }
 
+.hero-role::after {
+  content: none;
+  display: none;
+}
+
+.hero-logo {
+  position: absolute;
+  top: 200px;
+  right: 5%;
+  width: 320px;
+  height: auto;
+  filter: brightness(0) invert(1);
+  opacity: 1;
+}
+
 .intro-subtitle {
   font-size: 1.2rem;
   max-width: 800px;

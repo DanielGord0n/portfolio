@@ -92,6 +92,7 @@ const Home = () => {
     <div className="home-container">
       {/* Hero Section */}
       <section className="hero-section" ref={sectionRefs.hero}>
+        <img src={require('../images/DG_logo.png')} alt="DG Logo" className="hero-logo" />
         <div className="hero-content">
           <div className="greeting-wrapper">
             <TypingText
