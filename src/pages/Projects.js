@@ -13,7 +13,7 @@ const Projects = () => {
     {
       id: 5,
       title: 'AI-Powered 3D Avatar Platform',
-      description: 'Refactored a Python/JavaScript lip-sync ML pipeline for 3D avatars in Unity. Built AI workflows with speech-to-text and LLM orchestration, benchmarked model tradeoffs, and exposed capabilities as REST APIs for real-time browser-based avatar animation. Reduced inference latency by ~25%.',
+      description: 'Engineered a scalable lip-sync ML pipeline for real-time 3D avatar animation. Architected the Python/Next.js infrastructure to orchestrate LLM responses and speech generation, exposing capabilities via optimized REST APIs. Reduced global inference latency by ~25% through model benchmarking and systems optimization.',
       technologies: ['Python', 'Unity', 'OpenAI Whisper', 'LangChain', 'Next.js'],
       image: require('../images/MCGLogo.png'),
       category: 'Full Stack Development',
@@ -25,7 +25,7 @@ const Projects = () => {
     {
       id: 4,
       title: 'LaunchPath Biotech Architecture',
-      description: 'Owned solution architecture for a biosensor analytics platform: translated requirements into C4 diagrams and technical specs, coordinated Agile delivery, and built a React Native frontend integrated with Python microservices for real-time data ingestion and reporting.',
+      description: 'Owned the full-stack solution architecture for a biosensor analytics platform. Designed C4 system diagrams, defined API specifications, and implemented a React Native + Python microservices ecosystem for real-time data ingestion. Delivered a secure, production-ready system for clinical data reporting.',
       technologies: ['React Native', 'Python', 'Microservices', 'C4 Architecture'],
       image: require('../images/launchpathLogo.png'),
       category: 'Full Stack Development',
@@ -37,8 +37,8 @@ const Projects = () => {
     {
       id: 3,
       title: 'AI-Powered WhatsApp Summarizer',
-      description: 'Built an AI summarization system for high-volume WhatsApp chat threads, producing daily digests for users. Designed backend services and APIs, implemented validation and reliability checks, and optimized summarization performance for usability and response time.',
-      technologies: ['Node.js', 'WhatsApp Web', 'Gemini AI', 'Express', 'NLP'],
+      description: 'Developed an automated AI summarization system processing high-volume chat data. Built robust backend services to handle message streams, implemented failure recovery mechanisms, and optimized Gemini AI prompts for reliable daily digests. Focused on system stability and data consistency.',
+      technologies: ['Node.js', 'WhatsApp Web', 'Gemini AI', 'Express', 'System Design'],
       image: require('../images/WhatsappLogoBlack.png'),
       category: 'Full Stack Development',
       isFeatured: true,

@@ -914,6 +914,14 @@
   /* Ensure title is white */
 }
 
+.hero-role {
+  font-size: 3rem;
+  font-weight: 700;
+  margin: 1rem 0;
+  line-height: 1.2;
+  color: var(--text-primary);
+}
+
 .intro-subtitle {
   font-size: 1.2rem;
   max-width: 800px;

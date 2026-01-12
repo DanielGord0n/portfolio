@@ -70,7 +70,7 @@ const Resume = () => {
               className={`resume-toggle-btn ${resumeType === 'FullStack' ? 'active' : ''}`}
               onClick={() => setResumeType('FullStack')}
             >
-              Full-Stack SWE
+              Applied AI Engineer
             </button>
             <div
               className="toggle-pill"

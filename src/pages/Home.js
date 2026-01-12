@@ -1,65 +1,12 @@
-import React, { useEffect, useRef, useMemo } from 'react';
+import React, { useEffect, useRef, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import '../styles/Home.css';
+import '../styles/MagneticButton.css';
 import profilePhoto from '../images/profilePhoto.jpeg';
-import MagneticButton from '../components/MagneticButton';
 import PageTransition from '../components/PageTransition';
+import TypingText from '../components/TypingText';
 import { FaCar, FaPlaneDeparture, FaBrain, FaSnowboarding, FaFistRaised, FaDumbbell } from 'react-icons/fa';
-
-// TypingText Component
-const TypingText = ({ text, delay = 0, speed = 0.03, className, onComplete, showCursor = true }) => {
-  const [displayedText, setDisplayedText] = React.useState('');
-  const [isComplete, setIsComplete] = React.useState(false);
-
-  // Use a ref for the callback to prevent effect re-runs when the function identity changes
-  const onCompleteRef = useRef(onComplete);
-
-  // Update the ref whenever onComplete changes
-  useEffect(() => {
-    onCompleteRef.current = onComplete;
-  }, [onComplete]);
-
-  useEffect(() => {
-    const startTimeout = setTimeout(() => {
-      let currentIndex = 0;
-
-      const typeChar = () => {
-        if (currentIndex < text.length) {
-          setDisplayedText(text.substring(0, currentIndex + 1));
-          currentIndex++;
-          setTimeout(typeChar, speed * 1000);
-        } else {
-          setIsComplete(true);
-          if (onCompleteRef.current) onCompleteRef.current();
-        }
-      };
-
-      typeChar();
-    }, delay * 1000);
-
-    return () => clearTimeout(startTimeout);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [text, delay, speed]); // Removed onComplete from dependencies to prevent reset
-
-  return (
-    <motion.span
-      className={className}
-      initial={{ opacity: 1 }} // Visible immediately to show cursor if needed, but text is empty
-    >
-      {displayedText}
-      {showCursor && !isComplete && (
-        <motion.span
-          animate={{ opacity: [0, 1, 0] }}
-          transition={{ repeat: Infinity, duration: 0.8 }}
-          className="typing-cursor"
-        >
-          |
-        </motion.span>
-      )}
-    </motion.span>
-  );
-};
 
 const Home = () => {
   // Create refs directly
@@ -83,12 +30,12 @@ const Home = () => {
 
   // Set document title for Home page
   useEffect(() => {
-    document.title = 'Daniel Gordon | Full Stack Developer';
+    document.title = 'Daniel Gordon | Software Engineer (AI Platforms & Solutions)';
 
     // Set meta description
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
-      metaDescription.setAttribute('content', 'Daniel Gordon - Full Stack Developer specializing in React, Node.js, and modern web technologies. Currently studying Computer Science at Wilfrid Laurier University.');
+      metaDescription.setAttribute('content', 'Daniel Gordon - Software Engineer (AI Platforms & Solutions). Building scalable AI systems and production-ready infrastructure.');
     }
   }, []);
 
@@ -169,36 +116,42 @@ const Home = () => {
             )}
           </h1>
 
-          <h2 className="hero-subtitle">
-            {nameComplete && (
-              <TypingText
-                text="I build AI-powered platforms and scalable systems."
-                delay={0}
-                speed={0.03}
-                onComplete={() => setTaglineComplete(true)}
-                showCursor={!taglineComplete}
-              />
-            )}
-          </h2>
-
-          <div className="hero-description">
-            {taglineComplete && (
-              <TypingText
-                text="I’m a software engineer focused on AI platform engineering and solutions engineering. I build production-ready APIs, integrate AI workflows into real applications, and translate business requirements into reliable, scalable technical solutions."
-                delay={0}
-                speed={0.01} // Very fast for long text
-                showCursor={true} // Keep cursor blinking at the end
-              />
-            )}
-          </div>
-
           <motion.div
-            className="hero-cta"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: taglineComplete ? 1 : 0, y: taglineComplete ? 0 : 20 }}
-            transition={{ delay: 1 }} // Wait a bit after text starts
+            className="intro-section"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
           >
-            <MagneticButton to="/projects">View featured projects</MagneticButton>
+            <h2 className="hero-role">
+              <TypingText
+                text="Software Engineer"
+                delay={1.5}
+                speed={0.04}
+                showCursor={false}
+              />
+              <br />
+              <span style={{ color: 'var(--accent-primary)' }}>
+                <TypingText
+                  text="(AI Platforms & Solutions)"
+                  delay={1.5}
+                  speed={0.04}
+                  showCursor={false}
+                />
+              </span>
+            </h2>
+            <div className="hero-description">
+              <TypingText
+                text="I build scalable AI systems and production-ready infrastructure. Specializing in bridging the gap between machine learning models and real-world product constraints."
+                delay={1.5}
+                speed={0.02}
+                showCursor={true}
+              />
+            </div>
+            <div className="hero-cta">
+              <Link to="/projects" className="magnetic-btn">
+                View featured projects
+              </Link>
+            </div>
           </motion.div>
         </div>
 
@@ -206,7 +159,7 @@ const Home = () => {
           className="scroll-down"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 3, duration: 1 }}
+          transition={{ delay: 2, duration: 1 }}
         >
           <div className="mouse">
             <div className="wheel"></div>
@@ -229,31 +182,27 @@ const Home = () => {
         <div className="about-content">
           <div className="about-text">
             <p>
-              Hi - I’m Daniel, a software engineer who builds and ships AI-powered systems.
+              I am a Software Engineer focused on <strong>AI Platforms & Solutions</strong>.
+              My work centers on designing and implementing the systems that make AI useful, reliable, and scalable in production environments.
             </p>
             <p>
-              My work sits at the intersection of AI platform engineering, backend development, and solutions engineering. I’ve delivered real-time AI workflows, API services, and end-to-end integrations that support both product teams and non-technical stakeholders.
+              I don't just train models; I build the end-to-end infrastructure that serves them.
+              From architecting real-time inference pipelines to optimizing backend performance for high-load applications,
+              I bridge the critical gap between research-grade ML and robust, deployable software.
             </p>
-            <p>Recently, I’ve worked on:</p>
-            <ul className="about-list-bullets">
-              <li>AI workflow prototyping and benchmarking (accuracy vs latency tradeoffs)</li>
-              <li>Building RESTful services to expose AI capabilities in production applications</li>
-              <li>Solution architecture and technical documentation (e.g., C4 diagrams, specifications)</li>
-              <li>Data validation and testing pipelines to improve reliability and correctness</li>
-            </ul>
             <p>
-              I’m most interested in internship roles where I can own systems end-to-end - from architecture and implementation to debugging, optimization, and delivery.
+              Whether integrating LLMs into complex workflows or engineering custom solutions for unique business needs,
+              I bring a systems-first approach to every challenge.
             </p>
-            <p>Here are a few technologies I've been working with recently:</p>
+
+            <p>Here are a few technologies I work with:</p>
             <ul className="skills-list">
-              <li>TypeScript / JavaScript</li>
-              <li>Python</li>
-              <li>React / Next.js</li>
-              <li>Node.js / Express</li>
-              <li>REST APIs</li>
-              <li>Docker</li>
-              <li>SQL (Postgres/MySQL)</li>
-              <li>Git</li>
+              <li>Python & Typescript</li>
+              <li>React & Next.js</li>
+              <li>FastAPI & Node.js</li>
+              <li>Docker & AWS</li>
+              <li>LLM Orchestration (LangChain)</li>
+              <li>System Architecture</li>
             </ul>
           </div>
           <div className="about-image-container">
