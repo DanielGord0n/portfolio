@@ -287,13 +287,6 @@ const Skills = () => {
         </div>
       </div>
 
-      {/* Quote/Closing Section */}
-      <div className="skills-quote">
-        <blockquote>
-          "I thrive in environments where designers, product managers, and developers work closely to iterate quickly on features that directly improve client satisfaction."
-        </blockquote>
-        <p className="quote-author">- My Development Philosophy</p>
-      </div>
     </div >
   );
 };
