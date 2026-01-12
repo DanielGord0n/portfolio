@@ -11,6 +11,18 @@ const Projects = () => {
   const projects = [
     // --- FEATURED ---
     {
+      id: 12,
+      title: 'AI/ML Research Assistant',
+      description: 'Designed automated validation and stress-testing pipelines to evaluate algorithmic behavior across 1,000+ experimental runs. Analyzed large-scale experimental outputs to identify failure patterns and discrepancies. Produced reproducible reports summarizing empirical findings, emphasizing reliability over theoretical novelty.',
+      technologies: ['Python', 'Data Analysis', 'ML Pipelines', 'Automated Testing', 'Research'],
+      image: require('../images/wilfrid-laurier-university-seeklogo.png'),
+      category: 'Machine Learning',
+      isFeatured: true,
+      link: null,
+      github: null,
+      company: 'Wilfrid Laurier University'
+    },
+    {
       id: 5,
       title: 'AI-Powered 3D Avatar Platform',
       description: 'Engineered a scalable lip-sync ML pipeline for real-time 3D avatar animation. Architected the Python/Next.js infrastructure to orchestrate LLM responses and speech generation, exposing capabilities via optimized REST APIs. Reduced global inference latency by ~25% through model benchmarking and systems optimization.',
