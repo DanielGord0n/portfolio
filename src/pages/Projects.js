@@ -23,6 +23,18 @@ const Projects = () => {
       company: 'Wilfrid Laurier University'
     },
     {
+      id: 13,
+      title: 'Viva RGC Website & CMS',
+      description: 'Architected a full-stack platform with a custom CMS using Next.js 16 and Supabase. Enabled real-time content management for non-technical staff while delivering a high-performance, glassmorphic public site. Features strong typing, RLS security, and dynamic scheduling for complex athletic programs.',
+      technologies: ['Next.js 16', 'TypeScript', 'Supabase', 'Tailwind CSS', 'Framer Motion'],
+      image: require('../images/VivaLogo (1).png'),
+      category: 'Full Stack Development',
+      isFeatured: true,
+      link: 'https://www.vivargc.com/',
+      github: null,
+      company: 'Viva RGC'
+    },
+    {
       id: 5,
       title: 'AI-Powered 3D Avatar Platform',
       description: 'Engineered a scalable lip-sync ML pipeline for real-time 3D avatar animation. Architected the Python/Next.js infrastructure to orchestrate LLM responses and speech generation, exposing capabilities via optimized REST APIs. Reduced global inference latency by ~25% through model benchmarking and systems optimization.',
