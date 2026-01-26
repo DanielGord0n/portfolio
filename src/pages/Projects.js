@@ -121,12 +121,12 @@ const Projects = () => {
       company: 'Academic Project'
     },
     {
-      id: 8,
+      id: 124,
       title: 'Battleships Game',
       description: 'Implemented a Battleships game in Java with a Swing GUI and OOP design patterns. Built an AI opponent using minimax-style heuristics and state pruning.',
       technologies: ['Java', 'Maven', 'OOP', 'GUI'],
       image: require('../images/battleshipcycles-logo-ftr.png'),
-      category: 'Software Development',
+      category: 'Game Development',
       isFeatured: false,
       link: null,
       github: 'https://github.com/y-fysiks/ICS4U-CPT-Battleship',
