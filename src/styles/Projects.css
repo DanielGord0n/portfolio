@@ -329,3 +329,28 @@
     font-size: 2rem;
   }
 }
+
+.projects-section-group {
+  margin-bottom: 4rem;
+  width: 100%;
+}
+
+.section-group-title {
+  font-size: 1.8rem;
+  color: var(--text-primary);
+  margin-bottom: 1.5rem;
+  border-left: 4px solid #4a90e2;
+  padding-left: 1rem;
+  position: relative;
+}
+
+/* Override global h2::after for section titles */
+.section-group-title::after {
+  display: none;
+}
+
+/* Container for the split view (All/Featured filters) */
+.split-view-container {
+  display: block;
+  width: 100%;
+}

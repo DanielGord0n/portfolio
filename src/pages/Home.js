@@ -2,64 +2,11 @@ import React, { useEffect, useRef, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import '../styles/Home.css';
+import '../styles/MagneticButton.css';
 import profilePhoto from '../images/profilePhoto.jpeg';
-import MagneticButton from '../components/MagneticButton';
 import PageTransition from '../components/PageTransition';
+import TypingText from '../components/TypingText';
 import { FaCar, FaPlaneDeparture, FaBrain, FaSnowboarding, FaFistRaised, FaDumbbell } from 'react-icons/fa';
-
-// TypingText Component
-const TypingText = ({ text, delay = 0, speed = 0.03, className, onComplete, showCursor = true }) => {
-  const [displayedText, setDisplayedText] = React.useState('');
-  const [isComplete, setIsComplete] = React.useState(false);
-
-  // Use a ref for the callback to prevent effect re-runs when the function identity changes
-  const onCompleteRef = useRef(onComplete);
-
-  // Update the ref whenever onComplete changes
-  useEffect(() => {
-    onCompleteRef.current = onComplete;
-  }, [onComplete]);
-
-  useEffect(() => {
-    const startTimeout = setTimeout(() => {
-      let currentIndex = 0;
-
-      const typeChar = () => {
-        if (currentIndex < text.length) {
-          setDisplayedText(text.substring(0, currentIndex + 1));
-          currentIndex++;
-          setTimeout(typeChar, speed * 1000);
-        } else {
-          setIsComplete(true);
-          if (onCompleteRef.current) onCompleteRef.current();
-        }
-      };
-
-      typeChar();
-    }, delay * 1000);
-
-    return () => clearTimeout(startTimeout);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [text, delay, speed]); // Removed onComplete from dependencies to prevent reset
-
-  return (
-    <motion.span
-      className={className}
-      initial={{ opacity: 1 }} // Visible immediately to show cursor if needed, but text is empty
-    >
-      {displayedText}
-      {showCursor && !isComplete && (
-        <motion.span
-          animate={{ opacity: [0, 1, 0] }}
-          transition={{ repeat: Infinity, duration: 0.8 }}
-          className="typing-cursor"
-        >
-          |
-        </motion.span>
-      )}
-    </motion.span>
-  );
-};
 
 const Home = () => {
   // Create refs directly
@@ -71,7 +18,6 @@ const Home = () => {
   // Animation states
   const [greetingComplete, setGreetingComplete] = React.useState(false);
   const [nameComplete, setNameComplete] = React.useState(false);
-  const [taglineComplete, setTaglineComplete] = React.useState(false);
 
   // Memoize the refs object to prevent unnecessary re-renders
   const sectionRefs = useMemo(() => ({
@@ -83,12 +29,12 @@ const Home = () => {
 
   // Set document title for Home page
   useEffect(() => {
-    document.title = 'Daniel Gordon | Full Stack Developer';
+    document.title = 'Daniel Gordon | Software Engineer (AI Platforms & Solutions)';
 
     // Set meta description
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
-      metaDescription.setAttribute('content', 'Daniel Gordon - Full Stack Developer specializing in React, Node.js, and modern web technologies. Currently studying Computer Science at Wilfrid Laurier University.');
+      metaDescription.setAttribute('content', 'Daniel Gordon - Software Engineer (AI Platforms & Solutions). Building scalable AI systems and production-ready infrastructure.');
     }
   }, []);
 
@@ -145,6 +91,7 @@ const Home = () => {
     <div className="home-container">
       {/* Hero Section */}
       <section className="hero-section" ref={sectionRefs.hero}>
+        <img src={require('../images/DG_logo.png')} alt="DG Logo" className="hero-logo" />
         <div className="hero-content">
           <div className="greeting-wrapper">
             <TypingText
@@ -169,36 +116,42 @@ const Home = () => {
             )}
           </h1>
 
-          <h2 className="hero-subtitle">
-            {nameComplete && (
-              <TypingText
-                text="I build things for the web."
-                delay={0}
-                speed={0.03}
-                onComplete={() => setTaglineComplete(true)}
-                showCursor={!taglineComplete}
-              />
-            )}
-          </h2>
-
-          <div className="hero-description">
-            {taglineComplete && (
-              <TypingText
-                text="I'm a software engineer specializing in full-stack development and machine learning. Currently, I'm focused on building intelligent, accessible products that bridge the gap between AI and user experience."
-                delay={0}
-                speed={0.01} // Very fast for long text
-                showCursor={true} // Keep cursor blinking at the end
-              />
-            )}
-          </div>
-
           <motion.div
-            className="hero-cta"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: taglineComplete ? 1 : 0, y: taglineComplete ? 0 : 20 }}
-            transition={{ delay: 1 }} // Wait a bit after text starts
+            className="intro-section"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
           >
-            <MagneticButton to="/projects">Check out my work!</MagneticButton>
+            <h2 className="hero-role">
+              <TypingText
+                text="Software Engineer"
+                delay={1.5}
+                speed={0.04}
+                showCursor={false}
+              />
+              <br />
+              <span style={{ color: 'var(--accent-primary)' }}>
+                <TypingText
+                  text="(AI Platforms & Solutions)"
+                  delay={1.5}
+                  speed={0.04}
+                  showCursor={false}
+                />
+              </span>
+            </h2>
+            <div className="hero-description">
+              <TypingText
+                text="I build scalable AI systems and production-ready infrastructure. Specializing in bridging the gap between machine learning models and real-world product constraints."
+                delay={1.5}
+                speed={0.02}
+                showCursor={true}
+              />
+            </div>
+            <div className="hero-cta">
+              <Link to="/projects" className="magnetic-btn">
+                View featured projects
+              </Link>
+            </div>
           </motion.div>
         </div>
 
@@ -206,7 +159,7 @@ const Home = () => {
           className="scroll-down"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 3, duration: 1 }}
+          transition={{ delay: 2, duration: 1 }}
         >
           <div className="mouse">
             <div className="wheel"></div>
@@ -229,19 +182,27 @@ const Home = () => {
         <div className="about-content">
           <div className="about-text">
             <p>
-              Hello! I'm Daniel, a software engineer with a passion for building intelligent, scalable systems. My journey began with a curiosity for how things work, which quickly evolved into a deep dive into full-stack development and artificial intelligence.
+              I am a Software Engineer focused on <strong>AI Platforms & Solutions</strong>.
+              My work centers on designing and implementing the systems that make AI useful, reliable, and scalable in production environments.
             </p>
             <p>
-              Today, I specialize in bridging the gap between complex AI models and user-friendly applications. I've architected biosensor platforms, developed AI-powered mobile apps, and engineered reinforcement learning agents. Whether it's fine-tuning LLMs or building cross-platform mobile experiences, I love solving difficult problems with cutting-edge technology.
+              I don't just train models; I build the end-to-end infrastructure that serves them.
+              From architecting real-time inference pipelines to optimizing backend performance for high-load applications,
+              I bridge the critical gap between research-grade ML and robust, deployable software.
             </p>
-            <p>Here are a few technologies I've been working with recently:</p>
+            <p>
+              Whether integrating LLMs into complex workflows or engineering custom solutions for unique business needs,
+              I bring a systems-first approach to every challenge.
+            </p>
+
+            <p>Here are a few technologies I work with:</p>
             <ul className="skills-list">
-              <li>JavaScript (ES6+)</li>
-              <li>React / Next.js</li>
-              <li>Node.js</li>
-              <li>TypeScript</li>
-              <li>Python / PyTorch</li>
-              <li>Flutter / Dart</li>
+              <li>Python & Typescript</li>
+              <li>React & Next.js</li>
+              <li>FastAPI & Node.js</li>
+              <li>Docker & AWS</li>
+              <li>LLM Orchestration (LangChain)</li>
+              <li>System Architecture</li>
             </ul>
           </div>
           <div className="about-image-container">
@@ -265,12 +226,12 @@ const Home = () => {
             <h3 className="project-title">AI-Powered WhatsApp Summarizer</h3>
             <div className="project-description">
               <p>
-                Engineered a chat summarization tool that integrates the WhatsApp API with Gemini AI to automatically condense lengthy message threads into concise daily digests, improving information retention and reducing cognitive overload for users.
+                Built an AI summarization system for high-volume WhatsApp chat threads, producing daily digests for users. Designed backend services and APIs, implemented validation and reliability checks, and optimized summarization performance for usability and response time.
               </p>
             </div>
             <ul className="project-tech-list">
               <li>Node.js</li>
-              <li>WhatsApp API</li>
+              <li>WhatsApp Web</li>
               <li>Gemini AI</li>
               <li>RESTful APIs</li>
               <li>Express</li>
@@ -290,7 +251,7 @@ const Home = () => {
             <h3 className="project-title">LaunchPath Biotech Architecture</h3>
             <div className="project-description">
               <p>
-                Architected a scalable system for a biosensor analytics platform, producing C4 diagrams and technical specifications. Developed a responsive React Native front end with secure integration to Python microservices for real-time biosensor data ingestion.
+                Owned solution architecture for a biosensor analytics platform: translated requirements into C4 diagrams and technical specs, coordinated Agile delivery, and built a React Native frontend integrated with Python microservices for real-time data ingestion and reporting.
               </p>
             </div>
             <ul className="project-tech-list">
@@ -314,7 +275,7 @@ const Home = () => {
             <h3 className="project-title">AI-Powered 3D Avatar Platform</h3>
             <div className="project-description">
               <p>
-                Refactored lip-sync pipelines for 3D avatars in Unity, improving phoneme-to-blend-shape alignment. Prototyped end-to-end AI workflows with Whisper and LangChain. Implemented model-level optimizations reducing inference latency by ~25%.
+                Refactored a Python/JavaScript lip-sync ML pipeline for 3D avatars in Unity. Built AI workflows with speech-to-text and LLM orchestration, benchmarked model tradeoffs, and exposed capabilities as REST APIs for real-time browser-based avatar animation. Reduced inference latency by ~25%.
               </p>
             </div>
             <ul className="project-tech-list">
@@ -340,10 +301,10 @@ const Home = () => {
         <div className="more-projects">
           <Link to="/projects" className="btn">View All Projects</Link>
         </div>
-      </section>
+      </section >
 
       {/* Personal Interests Section */}
-      <section className="interests-section" ref={sectionRefs.interests}>
+      < section className="interests-section" ref={sectionRefs.interests} >
         <div className="section-header">
           <h2 className="section-title">Beyond Coding</h2>
           <div className="section-line"></div>
@@ -410,18 +371,18 @@ const Home = () => {
         <div className="skills-cta">
           <Link to="/skills" className="btn">View My Skills</Link>
         </div>
-      </section>
+      </section >
 
       {/* Contact CTA Section */}
-      <section className="contact-cta">
+      < section className="contact-cta" >
         <h2>Get In Touch</h2>
         <p>
           Whether you have a project in mind, a question about my work, or just want to connect,
           I'm always open to new opportunities and conversations. Let's build something amazing together!
         </p>
         <Link to="/contact" className="btn btn-primary">Say Hello</Link>
-      </section>
-    </div>
+      </section >
+    </div >
   );
 };
 

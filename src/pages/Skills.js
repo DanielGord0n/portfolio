@@ -61,23 +61,21 @@ const Skills = () => {
 
   const skillCategories = [
     {
-      title: 'Frontend & Mobile',
+      title: 'AI Platform & Integration',
       icon: (
         <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
-          <line x1="12" y1="18" x2="12.01" y2="18"></line>
+          <path d="M12 2a5 5 0 0 0-5 5v2a5 5 0 0 0 10 0V7a5 5 0 0 0-5-5Z"></path>
+          <path d="M19 11c.6 0 1.1.2 1.5.7l1 1c.4.4.6.9.5 1.4-.1.6-.5 1.1-1 1.4l-4.7 2.8c-.7.4-1.5.6-2.3.6h-1.2"></path>
+          <path d="M8 10.2c-1 0-1.9.5-2.5 1.2l-.7.8c-.6.7-1 1.6-1 2.5 0 .9.3 1.8 1 2.5l.7.8c.6.7 1.5 1.2 2.5 1.2"></path>
+          <path d="m8 22 3.75-14"></path>
         </svg>
       ),
-      description: 'Building responsive web and mobile applications with modern frameworks',
+      description: 'Building and optimizing intelligent workflows and model pipelines',
       skills: [
-        { name: 'React / Next.js', level: 90 },
-        { name: 'React Native / Expo', level: 85 },
-        { name: 'TypeScript', level: 85 },
-        { name: 'Flutter / Dart', level: 75 },
-        { name: 'Tailwind CSS', level: 90 },
-        { name: 'Framer / Figma', level: 85 },
-        { name: 'HTML5 / CSS3', level: 95 },
-        { name: 'Three.js / Babylon.js', level: 70 }
+        { name: 'AI Workflows (Speech-to-Text, LLM Orchestration)', level: 90 },
+        { name: 'Model Benchmarking (Accuracy vs Latency)', level: 85 },
+        { name: 'NLP Pipelines / Evaluation', level: 85 },
+        { name: 'Prompt / Output Validation', level: 88 }
       ]
     },
     {
@@ -90,38 +88,65 @@ const Skills = () => {
           <line x1="6" y1="18" x2="6.01" y2="18"></line>
         </svg>
       ),
-      description: 'Architecting robust server-side solutions and managing databases',
+      description: 'Architecting robust server-side solutions and scalable APIs',
       skills: [
-        { name: 'Node.js / Express', level: 88 },
-        { name: 'Python / Flask', level: 90 },
-        { name: 'Java / Maven', level: 85 },
-        { name: 'C / C++', level: 80 },
-        { name: 'SQL (MySQL/Postgres)', level: 85 },
-        { name: 'NoSQL (MongoDB)', level: 80 },
-        { name: 'Prisma ORM', level: 85 },
-        { name: 'Unix / Bash', level: 75 }
+        { name: 'Node.js / Express', level: 90 },
+        { name: 'Python (services, scripting)', level: 90 },
+        { name: 'REST APIs', level: 95 },
+        { name: 'Microservices Integration', level: 85 },
+        { name: 'SQL (Postgres/MySQL)', level: 85 },
+        { name: 'MongoDB', level: 80 },
+        { name: 'Docker', level: 75 },
+        { name: 'Git', level: 90 }
       ]
     },
     {
-      title: 'AI & Machine Learning',
+      title: 'Architecture & Delivery',
       icon: (
         <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M12 2a5 5 0 0 0-5 5v2a5 5 0 0 0 10 0V7a5 5 0 0 0-5-5Z"></path>
-          <path d="M19 11c.6 0 1.1.2 1.5.7l1 1c.4.4.6.9.5 1.4-.1.6-.5 1.1-1 1.4l-4.7 2.8c-.7.4-1.5.6-2.3.6h-1.2"></path>
-          <path d="M8 10.2c-1 0-1.9.5-2.5 1.2l-.7.8c-.6.7-1 1.6-1 2.5 0 .9.3 1.8 1 2.5l.7.8c.6.7 1.5 1.2 2.5 1.2"></path>
-          <path d="m8 22 3.75-14"></path>
+          <polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon>
+          <line x1="8" y1="2" x2="8" y2="18"></line>
+          <line x1="16" y1="6" x2="16" y2="22"></line>
         </svg>
       ),
-      description: 'Developing intelligent systems with state-of-the-art ML frameworks',
+      description: 'Translating business requirements into technical specifications',
       skills: [
-        { name: 'PyTorch / TensorFlow', level: 85 },
-        { name: 'Scikit-learn', level: 88 },
-        { name: 'NumPy / Pandas', level: 90 },
-        { name: 'Reinforcement Learning', level: 80 },
-        { name: 'LLM Integration (Gemini)', level: 85 },
-        { name: 'Hugging Face', level: 80 },
-        { name: 'Computer Vision', level: 75 },
-        { name: 'R / Statsmodels', level: 70 }
+        { name: 'Solution Architecture (C4 Diagrams)', level: 85 },
+        { name: 'Technical Specifications', level: 90 },
+        { name: 'Agile Delivery (Jira/Confluence)', level: 85 },
+        { name: 'Stakeholder Communication / Demos', level: 95 }
+      ]
+    },
+    {
+      title: 'Frontend (secondary)',
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+          <line x1="12" y1="18" x2="12.01" y2="18"></line>
+        </svg>
+      ),
+      description: 'Building responsive interfaces to support platform goals',
+      skills: [
+        { name: 'React / Next.js', level: 90 },
+        { name: 'React Native', level: 85 },
+        { name: 'TypeScript', level: 85 }
+      ]
+    },
+    {
+      title: 'Additional Tools',
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <circle cx="12" cy="12" r="1"></circle>
+          <circle cx="19" cy="12" r="1"></circle>
+          <circle cx="5" cy="12" r="1"></circle>
+        </svg>
+      ),
+      description: 'Technologies previously used or learning in progress',
+      skills: [
+        { name: 'Flutter / Dart', level: 75 },
+        { name: 'Framer', level: 80 },
+        { name: 'Babylon.js / Three.js', level: 70 },
+        { name: 'AWS (Learning - Cert in progress)', level: 50 }
       ]
     }
   ];
@@ -262,13 +287,6 @@ const Skills = () => {
         </div>
       </div>
 
-      {/* Quote/Closing Section */}
-      <div className="skills-quote">
-        <blockquote>
-          "I thrive in environments where designers, product managers, and developers work closely to iterate quickly on features that directly improve client satisfaction."
-        </blockquote>
-        <p className="quote-author">— My Development Philosophy</p>
-      </div>
     </div >
   );
 };

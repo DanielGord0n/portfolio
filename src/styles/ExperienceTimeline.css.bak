@@ -110,16 +110,3 @@
         left: 0%;
     }
 }
-.timeline-description-list {
-    list-style-type: disc;
-    padding-left: 20px;
-    margin-top: 10px;
-    color: var(--text-secondary);
-    font-size: 0.95rem;
-    line-height: 1.6;
-    text-align: left;
-}
-
-.timeline-description-list li {
-    margin-bottom: 8px;
-}

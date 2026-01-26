@@ -3,55 +3,83 @@ import PageTransition from '../components/PageTransition';
 import '../styles/Resume.css';
 
 const Resume = () => {
-  const [resumeType, setResumeType] = useState('SWE'); // 'SWE' or 'ML'
+  const [resumeType, setResumeType] = useState('AI'); // 'AI', 'Solutions', 'FullStack'
 
-  // PDF paths
+  // PDF paths - using placeholders or assuming filenames based on prompt
   const resumes = {
-    SWE: {
-      path: '/Daniel_Gordon_Resume_SWE.pdf',
-      filename: 'Daniel_Gordon_Resume_SWE.pdf',
-      title: 'Software Engineering Resume'
+    AI: {
+      path: '/DanielGordon_Resume_SWE_AIPlatform.pdf',
+      filename: 'DanielGordon_Resume_SWE_AIPlatform.pdf',
+      title: 'AI Platform Engineering Resume'
     },
-    ML: {
-      path: '/DanielGordon_Resume_ML.pdf',
-      filename: 'DanielGordon_Resume_ML.pdf',
-      title: 'Machine Learning Resume'
+    Solutions: {
+      path: '/DanielGordon_Resume_SolutionsEngineer.pdf',
+      filename: 'DanielGordon_Resume_SolutionsEngineer.pdf',
+      title: 'Solutions Engineering Resume'
+    },
+    FullStack: {
+      path: '/DanielGordon_Resume_AppliedAI.pdf',
+      filename: 'DanielGordon_Resume_AppliedAI.pdf',
+      title: 'Applied AI & Full-Stack Resume'
     }
   };
 
   const currentResume = resumes[resumeType];
 
+  // Helper to determine pill position
+  const getPillPosition = () => {
+    switch (resumeType) {
+      case 'AI': return '0%';
+      case 'Solutions': return '100%'; // 100% of the pill width (x=width)
+      case 'FullStack': return '200%';
+      default: return '0%';
+    }
+  };
+
   // Update document title and meta description
   useEffect(() => {
-    document.title = `Resume | Daniel Gordon - ${resumeType === 'SWE' ? 'Software Engineer' : 'Machine Learning Engineer'}`;
+    document.title = `Resume | Daniel Gordon - ${currentResume.title}`;
 
     // Update meta description
     let metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
-      metaDescription.setAttribute('content', `View and download Daniel Gordon's ${resumeType === 'SWE' ? 'Software Engineering' : 'Machine Learning'} resume.`);
+      metaDescription.setAttribute('content', `View and download Daniel Gordon's ${currentResume.title}.`);
     }
-  }, [resumeType]);
+  }, [resumeType, currentResume.title]);
 
   return (
     <div className="resume-container">
       <div className="resume-header">
         <h1>My Resume</h1>
+
         <div className="resume-toggle-container">
-          <div className="resume-toggle">
+          <div className="resume-toggle-nav">
             <button
-              className={`toggle-btn ${resumeType === 'SWE' ? 'active' : ''}`}
-              onClick={() => setResumeType('SWE')}
+              className={`resume-toggle-btn ${resumeType === 'AI' ? 'active' : ''}`}
+              onClick={() => setResumeType('AI')}
             >
-              Software Engineering
+              AI / Platform SWE
             </button>
             <button
-              className={`toggle-btn ${resumeType === 'ML' ? 'active' : ''}`}
-              onClick={() => setResumeType('ML')}
+              className={`resume-toggle-btn ${resumeType === 'Solutions' ? 'active' : ''}`}
+              onClick={() => setResumeType('Solutions')}
             >
-              Machine Learning
+              Solutions Engineer
             </button>
-            <div className={`toggle-slider ${resumeType === 'ML' ? 'slide-right' : ''}`}></div>
+            <button
+              className={`resume-toggle-btn ${resumeType === 'FullStack' ? 'active' : ''}`}
+              onClick={() => setResumeType('FullStack')}
+            >
+              Applied AI Engineer
+            </button>
+            <div
+              className="toggle-pill"
+              style={{ transform: `translateX(${getPillPosition()})` }}
+            ></div>
           </div>
+          <p className="resume-note">
+            These resume versions are tailored to different internship tracks. The content is consistent across roles; emphasis changes by job type.
+          </p>
         </div>
       </div>
 
