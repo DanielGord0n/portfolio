@@ -1,6 +1,6 @@
-import React, { useEffect, useRef, useMemo, useState } from 'react';
+import React, { useEffect, useRef, useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
 import '../styles/Home.css';
 import '../styles/MagneticButton.css';
 import profilePhoto from '../images/profilePhoto.jpeg';
@@ -18,7 +18,6 @@ const Home = () => {
   // Animation states
   const [greetingComplete, setGreetingComplete] = React.useState(false);
   const [nameComplete, setNameComplete] = React.useState(false);
-  const [taglineComplete, setTaglineComplete] = React.useState(false);
 
   // Memoize the refs object to prevent unnecessary re-renders
   const sectionRefs = useMemo(() => ({
