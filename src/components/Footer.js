@@ -8,7 +8,7 @@ const Footer = () => {
       <div className="footer-inner">
         <div className="footer-left">
           <span className="footer-name">Daniel Gordon</span>
-          <span className="footer-role">Software Engineer — Cloud, DevOps &amp; AI Systems</span>
+          <span className="footer-role">Software Engineer / Cloud, DevOps &amp; AI Systems</span>
         </div>
 
         <div className="footer-links">
@@ -24,7 +24,7 @@ const Footer = () => {
         </div>
 
         <div className="footer-right">
-          <span className="footer-note">Designed &amp; built from scratch — React, Framer Motion, vanilla CSS</span>
+          <span className="footer-note">Hand-built in React, Remotion &amp; vanilla CSS. No templates.</span>
         </div>
       </div>
     </footer>

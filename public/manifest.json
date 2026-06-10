@@ -1,6 +1,6 @@
 {
   "short_name": "Daniel Gordon",
-  "name": "Daniel Gordon | Software Engineer — Cloud, DevOps & AI Systems",
+  "name": "Daniel Gordon | Software Engineer: Cloud, DevOps & AI Systems",
   "icons": [
     {
       "src": "favicon.png",
@@ -10,6 +10,6 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#0A0E14",
-  "background_color": "#0A0E14"
+  "theme_color": "#0C0F0E",
+  "background_color": "#0C0F0E"
 }

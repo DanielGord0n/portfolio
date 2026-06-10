@@ -4,7 +4,7 @@
   align-items: center;
   padding: 0 50px;
   height: 76px;
-  background-color: rgba(10, 14, 20, 0.8);
+  background-color: rgba(12, 15, 14, 0.82);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border-color);
@@ -25,32 +25,37 @@
 .header-visible {
   transform: translateY(0);
   box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.6);
-  background-color: rgba(10, 14, 20, 0.92);
+  background-color: rgba(12, 15, 14, 0.93);
 }
 
 .logo a {
-  font-family: var(--font-mono);
-  font-size: var(--fz-md);
   text-decoration: none;
-  font-weight: 600;
-  color: var(--accent-primary);
   display: flex;
-  align-items: baseline;
-  gap: 10px;
+  align-items: center;
+  gap: 12px;
   padding: 10px 0;
-  letter-spacing: 0.05em;
 }
 
-.logo-bracket {
-  color: var(--text-muted);
-  font-weight: 400;
+.logo-mark {
+  height: 34px;
+  width: auto;
+  filter: invert(1);
+  opacity: 0.95;
+  transition: var(--transition);
+}
+
+.logo a:hover .logo-mark {
+  opacity: 1;
+  transform: scale(1.04);
 }
 
 .logo-name {
-  font-size: var(--fz-xs);
-  font-weight: 400;
-  color: var(--text-secondary);
-  letter-spacing: 0.08em;
+  font-family: var(--font-display);
+  font-size: var(--fz-lg);
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--silver);
+  letter-spacing: 0.1em;
 }
 
 .nav ul {

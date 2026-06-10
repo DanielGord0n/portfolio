@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import dgLogo from '../images/opt/DG_logo.png';
 import '../styles/Header.css';
 
 const NAV_ITEMS = [
@@ -61,8 +62,8 @@ const Header = () => {
     <header className={headerClass}>
       <div className="logo">
         <Link to="/">
-          <span className="logo-bracket">[</span>DG<span className="logo-bracket">]</span>
-          <span className="logo-name">daniel gordon</span>
+          <img src={dgLogo} alt="DG" className="logo-mark" />
+          <span className="logo-name">Daniel Gordon</span>
         </Link>
       </div>
 

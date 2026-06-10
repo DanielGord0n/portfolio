@@ -48,7 +48,7 @@ const SkillsSphere = () => {
             const tag = document.createElement('div');
             tag.className = 'tag';
             tag.innerText = text;
-            tag.style.color = 'var(--accent-primary)';
+            tag.style.color = idx % 3 === 0 ? 'var(--accent-secondary)' : 'var(--silver)';
             const { x, y, z } = computePosition(idx);
             tag.style.transform = `translate3d(${x}px, ${y}px, ${z}px) translate(-50%, -50%)`;
             tag.dataset.x = x;

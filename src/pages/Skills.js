@@ -89,12 +89,12 @@ const Skills = () => {
       {/* Header */}
       <motion.div className="skills-header" {...sectionReveal}>
         <span className="section-marker">capabilities</span>
-        <h1>Skills &amp; Experience</h1>
+        <h1 className="silver-text">Skills &amp; Experience</h1>
         <p className="skills-intro">
           4th-year Honours Computer Science and Management student at Wilfrid Laurier University,
           AWS Certified Cloud Practitioner, and currently a DevOps / Cloud Engineering Intern at
           WellnessLiving. My skill set spans cloud operations at fleet scale, AI systems in
-          production, and high-performance computing — built by owning real systems end-to-end.
+          production, and high-performance computing. All of it built by owning real systems end to end.
         </p>
       </motion.div>
 

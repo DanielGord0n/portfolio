@@ -2,10 +2,10 @@ import React, { useRef, useMemo } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import '../styles/ProjectCard3D.css';
 
-const ProjectCard3D = ({ index, title, company, category, description, tags, links }) => {
+const ProjectCard3D = ({ index, title, company, category, description, tags, links, image, imageDark }) => {
     const ref = useRef(null);
 
-    // Tilt only on devices that can hover — touch devices get a static card
+    // Tilt only on devices that can hover; touch devices get a static card
     const canTilt = useMemo(
         () => typeof window !== 'undefined' && window.matchMedia('(hover: hover) and (pointer: fine)').matches,
         []
@@ -64,7 +64,13 @@ const ProjectCard3D = ({ index, title, company, category, description, tags, lin
                 className="project-card-content"
             >
                 <div className="card-top-row">
-                    <div className="card-monogram">{monogram}</div>
+                    {image ? (
+                        <div className={`card-logo ${imageDark ? 'card-logo-light-chip' : ''}`}>
+                            <img src={image} alt={`${title} logo`} loading="lazy" />
+                        </div>
+                    ) : (
+                        <div className="card-monogram">{monogram}</div>
+                    )}
                     <div className="card-top-meta">
                         {index != null && (
                             <span className="card-index">{String(index).padStart(2, '0')}</span>

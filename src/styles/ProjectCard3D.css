@@ -1,16 +1,36 @@
 .project-card-3d {
     position: relative;
     height: 100%;
-    border-radius: var(--radius-lg);
-    background: linear-gradient(160deg, var(--bg-tertiary), var(--bg-secondary) 60%);
+    border-radius: var(--radius-md);
+    background: var(--panel-gradient);
     border: 1px solid var(--border-color);
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
     will-change: transform;
+    overflow: hidden;
+}
+
+/* Racing stripe along the top edge, revealed on hover */
+.project-card-3d::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(to right, var(--accent-primary) 0 60%, var(--silver-dim) 60% 70%, transparent 70%);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+    z-index: 2;
+}
+
+.project-card-3d:hover::before {
+    transform: scaleX(1);
 }
 
 .project-card-3d:hover {
-    border-color: var(--accent-tint-30);
-    box-shadow: var(--card-hover-shadow), 0 0 0 1px var(--accent-tint-08);
+    border-color: var(--border-strong);
+    box-shadow: var(--card-hover-shadow);
 }
 
 .project-card-content {
@@ -27,20 +47,40 @@
     margin-bottom: 1.25rem;
 }
 
+.card-logo {
+    width: 52px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-md);
+    background: rgba(220, 227, 222, 0.94);
+    border: 1px solid var(--border-strong);
+    padding: 7px;
+    flex-shrink: 0;
+}
+
+.card-logo img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
 .card-monogram {
-    width: 46px;
-    height: 46px;
+    width: 52px;
+    height: 52px;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: var(--radius-md);
     background: var(--accent-tint-08);
     border: 1px solid var(--accent-tint-15);
-    color: var(--accent-primary);
+    color: var(--accent-secondary);
     font-family: var(--font-display);
     font-weight: 700;
-    font-size: 1.05rem;
-    letter-spacing: 0.02em;
+    font-size: 1.2rem;
+    letter-spacing: 0.04em;
     flex-shrink: 0;
 }
 
@@ -70,8 +110,9 @@
     background: var(--bg-accent);
     border: 1px solid var(--border-color);
     padding: 3px 9px;
-    border-radius: var(--radius-pill);
-    letter-spacing: 0.04em;
+    border-radius: var(--radius-sm);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
     white-space: nowrap;
 }
 
@@ -82,7 +123,7 @@
 }
 
 .project-title-3d {
-    font-size: 1.2rem;
+    font-size: 1.35rem;
     margin-bottom: 0.2rem;
     color: var(--text-primary);
 }
@@ -90,15 +131,15 @@
 .card-company {
     font-family: var(--font-mono);
     font-size: var(--fz-xxs);
-    color: var(--accent-dim);
-    letter-spacing: 0.06em;
+    color: var(--accent-primary);
+    letter-spacing: 0.08em;
     margin-bottom: 0.8rem;
 }
 
 .project-desc-3d {
     font-size: var(--fz-sm);
     color: var(--text-secondary);
-    line-height: 1.6;
+    line-height: 1.65;
     flex: 1;
     margin-bottom: 1.1rem;
 }
@@ -140,12 +181,12 @@
     background: var(--bg-accent);
     border: 1px solid var(--border-strong);
     padding: 6px 13px;
-    border-radius: var(--radius-pill);
+    border-radius: var(--radius-sm);
     transition: var(--transition);
 }
 
 .project-link-pill:hover {
-    color: var(--bg-primary);
+    color: #06130D;
     background: var(--accent-primary);
     border-color: var(--accent-primary);
     transform: translateY(-2px);

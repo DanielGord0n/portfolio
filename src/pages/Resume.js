@@ -12,7 +12,7 @@ const Resume = () => {
 
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
-      metaDescription.setAttribute('content', "View and download Daniel Gordon's resume — Software Engineer (Cloud, DevOps & AI Systems).");
+      metaDescription.setAttribute('content', "View and download Daniel Gordon's resume. Software Engineer (Cloud, DevOps & AI Systems).");
     }
   }, []);
 
@@ -20,10 +20,10 @@ const Resume = () => {
     <div className="resume-container">
       <div className="resume-header">
         <span className="section-marker">curriculum vitae</span>
-        <h1>Resume</h1>
+        <h1 className="silver-text">Resume</h1>
         <p className="resume-note">
-          One resume, kept current — covering cloud/DevOps work at WellnessLiving, AI platform
-          engineering, HPC research, and TellTours.
+          One resume, kept current. It covers the cloud and DevOps work at WellnessLiving, AI
+          platform engineering, HPC research, and TellTours.
         </p>
       </div>
 
@@ -31,7 +31,7 @@ const Resume = () => {
         <div className="pdf-container">
           <iframe
             src={`${RESUME_PATH}#view=FitH`}
-            title="Daniel Gordon — Resume"
+            title="Daniel Gordon Resume"
             className="pdf-iframe"
             frameBorder="0"
           />
