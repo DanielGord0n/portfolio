@@ -1,388 +1,255 @@
-import React, { useEffect, useRef, useMemo } from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { FaGithub, FaExternalLinkAlt, FaCar, FaPlaneDeparture, FaBrain, FaSnowboarding, FaFistRaised, FaDumbbell } from 'react-icons/fa';
 import '../styles/Home.css';
-import '../styles/MagneticButton.css';
 import profilePhoto from '../images/profilePhoto.jpeg';
 import PageTransition from '../components/PageTransition';
 import TypingText from '../components/TypingText';
-import { FaCar, FaPlaneDeparture, FaBrain, FaSnowboarding, FaFistRaised, FaDumbbell } from 'react-icons/fa';
+import ProjectCard3D from '../components/ProjectCard3D';
+
+const heroStagger = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.09, delayChildren: 0.15 },
+  },
+};
+
+const heroItem = {
+  hidden: { opacity: 0, y: 18 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] } },
+};
+
+const sectionReveal = {
+  initial: { opacity: 0, y: 28 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, margin: '-60px' },
+  transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
+};
+
+// All figures verified — see PORTFOLIO_HANDOFF.md
+const stats = [
+  { value: '455', label: 'S3 buckets audited across a 17-account AWS org' },
+  { value: '79', label: 'production EC2 instances hardened fleet-wide' },
+  { value: '10,000+', label: 'CPU cores coordinated via SLURM' },
+  { value: '4', label: 'national HPC clusters running my solver' },
+];
+
+const featuredProjects = [
+  {
+    index: 1,
+    title: 'TellTours',
+    company: 'Co-founder · telltours.com',
+    category: 'AI / Mobile',
+    description:
+      'AI tour guide app generating real-time, context-aware narration as you walk, drive, or ride through any city. Provider-agnostic AI pipeline routing between Gemini, OpenAI, and Ollama; prompts externalized to Firestore for zero-redeploy tuning; keyless CI/CD on GCP. Pre-release — beta waitlist live.',
+    tags: ['React Native', 'GCP', 'Gemini', 'Node.js'],
+    links: [{ url: 'https://telltours.com', icon: <FaExternalLinkAlt size={13} />, label: 'telltours.com' }],
+  },
+  {
+    index: 2,
+    title: 'BS45 Quantum Explorer',
+    company: 'Research · Wilfrid Laurier University',
+    category: 'HPC / C++',
+    description:
+      'Distributed C++17 backtracking solver searching for BS(45,44) — an unsolved open problem in combinatorial mathematics — across 4 national supercomputing clusters, coordinating 10,000+ CPU cores via SLURM with custom pruning that cuts the naive search space ~100x.',
+    tags: ['C++17', 'OpenMP', 'SLURM', 'HPC'],
+    links: [{ url: 'https://github.com/DanielGord0n/BS45_Quantum_Explorer', icon: <FaGithub size={14} />, label: 'GitHub' }],
+  },
+  {
+    index: 3,
+    title: 'Phoenix Bot',
+    company: 'Self-employed · shipped v0.2.1',
+    category: 'Desktop / AI',
+    description:
+      'Cross-platform Electron desktop app automating WhatsApp group-chat summarization with Gemini. Solves the core architectural challenge of sustaining a persistent Puppeteer/headless-Chrome session inside an Electron main process — with OS keychain credential storage and local SQLite state.',
+    tags: ['Electron', 'Puppeteer', 'Gemini', 'SQLite'],
+    links: [
+      { url: 'https://phoenix-bot-web.vercel.app/', icon: <FaExternalLinkAlt size={13} />, label: 'Live' },
+      { url: 'https://github.com/DanielGord0n/phoenix-bot-desktop', icon: <FaGithub size={14} />, label: 'GitHub' },
+    ],
+  },
+];
+
+const interests = [
+  { icon: <FaCar size={20} />, title: 'Cars', text: 'Automotive enthusiast — from classics to modern engineering marvels.' },
+  { icon: <FaPlaneDeparture size={20} />, title: 'Traveling', text: 'New cultures, landscapes, and cuisines for fresh perspective.' },
+  { icon: <FaBrain size={20} />, title: 'Brain Games', text: 'Daily chess, crosswords, and Wordle to keep the analysis sharp.' },
+  { icon: <FaSnowboarding size={20} />, title: 'Snowboarding', text: 'Speed, precision, and mountains every winter.' },
+  { icon: <FaFistRaised size={20} />, title: 'Martial Arts', text: 'Trained across seven disciplines — discipline, resilience, strategy.' },
+  { icon: <FaDumbbell size={20} />, title: 'Gym & Calisthenics', text: 'Functional strength from weights and bodyweight work.' },
+];
 
 const Home = () => {
-  // Create refs directly
-  const heroRef = useRef(null);
-  const aboutRef = useRef(null);
-  const projectsRef = useRef(null);
-  const interestsRef = useRef(null);
-
-  // Animation states
-  const [greetingComplete, setGreetingComplete] = React.useState(false);
-  const [nameComplete, setNameComplete] = React.useState(false);
-
-  // Memoize the refs object to prevent unnecessary re-renders
-  const sectionRefs = useMemo(() => ({
-    hero: heroRef,
-    about: aboutRef,
-    projects: projectsRef,
-    interests: interestsRef
-  }), []);
-
-  // Set document title for Home page
   useEffect(() => {
-    document.title = 'Daniel Gordon | Software Engineer (AI Platforms & Solutions)';
+    document.title = 'Daniel Gordon | Software Engineer — Cloud, DevOps & AI Systems';
 
-    // Set meta description
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
-      metaDescription.setAttribute('content', 'Daniel Gordon - Software Engineer (AI Platforms & Solutions). Building scalable AI systems and production-ready infrastructure.');
+      metaDescription.setAttribute(
+        'content',
+        'Daniel Gordon — Software Engineer building and operating production systems end-to-end across cloud infrastructure, AI pipelines, and client deployments.'
+      );
     }
   }, []);
-
-  // Animation for sections on scroll
-  useEffect(() => {
-    const isMobile = window.innerWidth <= 768;
-
-    const observerOptions = {
-      threshold: isMobile ? [0, 0.05, 0.1] : [0, 0.1, 0.2], // Even more sensitive on mobile
-      rootMargin: isMobile ? '0px 0px -20px 0px' : '0px 0px -50px 0px' // Less aggressive margin for mobile
-    };
-
-    const observerCallback = (entries) => {
-      entries.forEach(entry => {
-        // More sensitive triggering - activate when element enters viewport
-        if (entry.isIntersecting && entry.intersectionRatio >= (isMobile ? 0.05 : 0.1)) {
-          entry.target.classList.add('animate-in');
-        }
-      });
-    };
-
-    const observer = new IntersectionObserver(observerCallback, observerOptions);
-
-    // Add a timeout fallback for mobile devices
-    const fallbackTimeout = setTimeout(() => {
-      Object.values(sectionRefs).forEach(ref => {
-        if (ref.current && !ref.current.classList.contains('animate-in')) {
-          const rect = ref.current.getBoundingClientRect();
-          // If section is anywhere near the viewport, animate it
-          if (rect.top < window.innerHeight * 1.2) {
-            ref.current.classList.add('animate-in');
-          }
-        }
-      });
-    }, 1000);
-
-    Object.values(sectionRefs).forEach(ref => {
-      if (ref.current) {
-        observer.observe(ref.current);
-      }
-    });
-
-    return () => {
-      clearTimeout(fallbackTimeout);
-      Object.values(sectionRefs).forEach(ref => {
-        if (ref.current) {
-          observer.unobserve(ref.current);
-        }
-      });
-    };
-  }, [sectionRefs]);
 
   return (
     <div className="home-container">
       {/* Hero Section */}
-      <section className="hero-section" ref={sectionRefs.hero}>
-        <img src={require('../images/DG_logo.png')} alt="DG Logo" className="hero-logo" />
-        <div className="hero-content">
-          <div className="greeting-wrapper">
+      <section className="hero-section">
+        <motion.div className="hero-content" variants={heroStagger} initial="hidden" animate="visible">
+          <motion.span className="hero-eyebrow" variants={heroItem}>
+            // hello world — I'm
+          </motion.span>
+
+          <motion.h1 className="hero-title" variants={heroItem}>
+            Daniel Gordon<span className="hero-dot">.</span>
+          </motion.h1>
+
+          <motion.h2 className="hero-role" variants={heroItem}>
+            Software Engineer — <span className="hero-role-accent">Cloud, DevOps &amp; AI Systems</span>
+          </motion.h2>
+
+          <motion.p className="hero-description" variants={heroItem}>
+            I build and operate production systems end-to-end — cloud infrastructure, AI pipelines,
+            and client-facing deployments — working directly with stakeholders to scope, ship, and
+            own outcomes in ambiguous environments.
+          </motion.p>
+
+          <motion.div className="hero-status" variants={heroItem}>
+            <span className="status-prompt">$</span>
             <TypingText
-              text="Hello world, my name is"
-              delay={0.5}
-              speed={0.03}
-              className="greeting"
-              onComplete={() => setGreetingComplete(true)}
-              showCursor={!greetingComplete}
+              text=" now: DevOps / Cloud Engineering Intern @ WellnessLiving — open to FDE, SWE & DevOps roles"
+              delay={1.1}
+              speed={0.018}
+              showCursor={true}
             />
-          </div>
-
-          <h1 className="hero-title">
-            {greetingComplete && (
-              <TypingText
-                text="Daniel Gordon."
-                delay={0}
-                speed={0.05}
-                onComplete={() => setNameComplete(true)}
-                showCursor={!nameComplete}
-              />
-            )}
-          </h1>
-
-          <motion.div
-            className="intro-section"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <h2 className="hero-role">
-              <TypingText
-                text="Software Engineer"
-                delay={1.5}
-                speed={0.04}
-                showCursor={false}
-              />
-              <br />
-              <span style={{ color: 'var(--accent-primary)' }}>
-                <TypingText
-                  text="(AI Platforms & Solutions)"
-                  delay={1.5}
-                  speed={0.04}
-                  showCursor={false}
-                />
-              </span>
-            </h2>
-            <div className="hero-description">
-              <TypingText
-                text="I build scalable AI systems and production-ready infrastructure. Specializing in bridging the gap between machine learning models and real-world product constraints."
-                delay={1.5}
-                speed={0.02}
-                showCursor={true}
-              />
-            </div>
-            <div className="hero-cta">
-              <Link to="/projects" className="magnetic-btn">
-                View featured projects
-              </Link>
-            </div>
           </motion.div>
-        </div>
+
+          <motion.div className="hero-cta" variants={heroItem}>
+            <Link to="/projects" className="btn btn-primary">View projects</Link>
+            <Link to="/resume" className="btn">Resume</Link>
+          </motion.div>
+        </motion.div>
 
         <motion.div
           className="scroll-down"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 2, duration: 1 }}
+          transition={{ delay: 1.8, duration: 1 }}
         >
           <div className="mouse">
             <div className="wheel"></div>
           </div>
-          <div className="arrow-scroll">
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
         </motion.div>
       </section>
 
+      {/* Verified numbers strip */}
+      <motion.section className="stats-strip" {...sectionReveal}>
+        {stats.map((stat, i) => (
+          <div className="stat-block" key={i}>
+            <span className="stat-value">{stat.value}</span>
+            <span className="stat-label">{stat.label}</span>
+          </div>
+        ))}
+      </motion.section>
+
       {/* About Section */}
-      <section className="about-section" ref={sectionRefs.about}>
+      <motion.section className="about-section" {...sectionReveal}>
         <div className="section-header">
-          <h2 className="section-title">About Me</h2>
-          <div className="section-line"></div>
+          <span className="section-marker">01 / about</span>
+          <h2 className="section-title">From cloud fleets to research clusters</h2>
         </div>
 
         <div className="about-content">
           <div className="about-text">
             <p>
-              I am a Software Engineer focused on <strong>AI Platforms & Solutions</strong>.
-              My work centers on designing and implementing the systems that make AI useful, reliable, and scalable in production environments.
+              I'm a 4th-year B.Sc. Honours Computer Science and Management student at{' '}
+              <strong>Wilfrid Laurier University</strong> (graduating Dec 2026). Right now I'm a
+              DevOps / Cloud Engineering Intern at <strong>WellnessLiving</strong>, operating a
+              17-account AWS organization — cost optimization at fleet scale, zero-touch hardening
+              of production WordPress instances, and staged upgrades across 78 live client sites.
             </p>
             <p>
-              I don't just train models; I build the end-to-end infrastructure that serves them.
-              From architecting real-time inference pipelines to optimizing backend performance for high-load applications,
-              I bridge the critical gap between research-grade ML and robust, deployable software.
+              Before that: technical lead on a live AI platform at MCG, solutions architecture at
+              LaunchPath, and a research assistantship where my C++ solver runs on Canada's national
+              supercomputers. On the side I co-founded <strong>TellTours</strong>, an AI tour guide
+              app live in pre-release.
             </p>
             <p>
-              Whether integrating LLMs into complex workflows or engineering custom solutions for unique business needs,
-              I bring a systems-first approach to every challenge.
+              The common thread is owning systems end-to-end — scoping with stakeholders, building
+              the thing, deploying it, and being accountable for it in production. I'm targeting{' '}
+              <strong>Forward Deployed Engineer</strong> and field engineering roles, and equally
+              at home in SWE, DevOps, and AI platform work. Open to Toronto and the Bay Area.
             </p>
 
-            <p>Here are a few technologies I work with:</p>
+            <p className="tech-list-intro">Technologies I work with daily:</p>
             <ul className="skills-list">
-              <li>Python & Typescript</li>
-              <li>React & Next.js</li>
-              <li>FastAPI & Node.js</li>
-              <li>Docker & AWS</li>
-              <li>LLM Orchestration (LangChain)</li>
-              <li>System Architecture</li>
+              <li>Python &amp; TypeScript</li>
+              <li>AWS &amp; GCP</li>
+              <li>C++ &amp; HPC (SLURM)</li>
+              <li>React &amp; React Native</li>
+              <li>Node.js &amp; Electron</li>
+              <li>LLM integration (Gemini, Whisper, OpenAI)</li>
             </ul>
           </div>
           <div className="about-image-container">
             <div className="about-image-wrapper">
-              <img src={profilePhoto} alt="Profile" className="about-image" />
+              <img src={profilePhoto} alt="Daniel Gordon" className="about-image" />
             </div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Featured Projects Section */}
-      <section className="projects-section" ref={sectionRefs.projects}>
+      <motion.section className="projects-section" {...sectionReveal}>
         <div className="section-header">
-          <h2 className="section-title">Some Things I've Built</h2>
-          <div className="section-line"></div>
+          <span className="section-marker">02 / selected work</span>
+          <h2 className="section-title">Things I've built and shipped</h2>
         </div>
 
-        <div className="projects-horizontal-grid">
-          {/* WhatsApp Summarizer */}
-          <div className="project-card-horizontal">
-            <h3 className="project-title">AI-Powered WhatsApp Summarizer</h3>
-            <div className="project-description">
-              <p>
-                Built an AI summarization system for high-volume WhatsApp chat threads, producing daily digests for users. Designed backend services and APIs, implemented validation and reliability checks, and optimized summarization performance for usability and response time.
-              </p>
-            </div>
-            <ul className="project-tech-list">
-              <li>Node.js</li>
-              <li>WhatsApp Web</li>
-              <li>Gemini AI</li>
-              <li>RESTful APIs</li>
-              <li>Express</li>
-            </ul>
-            <div className="project-links">
-              <a href="https://github.com/DanielGord0n" target="_blank" rel="noopener noreferrer" className="project-link-button">
-                <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-                </svg>
-                <span>View on GitHub</span>
-              </a>
-            </div>
-          </div>
-
-          {/* LaunchPath Biotech Architecture */}
-          <div className="project-card-horizontal">
-            <h3 className="project-title">LaunchPath Biotech Architecture</h3>
-            <div className="project-description">
-              <p>
-                Owned solution architecture for a biosensor analytics platform: translated requirements into C4 diagrams and technical specs, coordinated Agile delivery, and built a React Native frontend integrated with Python microservices for real-time data ingestion and reporting.
-              </p>
-            </div>
-            <ul className="project-tech-list">
-              <li>React Native</li>
-              <li>Python</li>
-              <li>Microservices</li>
-              <li>C4 Architecture</li>
-            </ul>
-            <div className="project-links">
-              <a href="https://github.com/DanielGord0n/aptamer_therapeutic" target="_blank" rel="noopener noreferrer" className="project-link-button">
-                <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-                </svg>
-                <span>View on GitHub</span>
-              </a>
-            </div>
-          </div>
-
-          {/* AI-Powered 3D Avatar Platform */}
-          <div className="project-card-horizontal">
-            <h3 className="project-title">AI-Powered 3D Avatar Platform</h3>
-            <div className="project-description">
-              <p>
-                Refactored a Python/JavaScript lip-sync ML pipeline for 3D avatars in Unity. Built AI workflows with speech-to-text and LLM orchestration, benchmarked model tradeoffs, and exposed capabilities as REST APIs for real-time browser-based avatar animation. Reduced inference latency by ~25%.
-              </p>
-            </div>
-            <ul className="project-tech-list">
-              <li>Python</li>
-              <li>Unity</li>
-              <li>OpenAI Whisper</li>
-              <li>LangChain</li>
-              <li>Next.js</li>
-            </ul>
-            <div className="project-links">
-              <a href="https://mycleanmesh.com/" target="_blank" rel="noopener noreferrer" className="project-link-button">
-                <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                  <polyline points="15 3 21 3 21 9"></polyline>
-                  <line x1="10" y1="14" x2="21" y2="3"></line>
-                </svg>
-                <span>Live Demo</span>
-              </a>
-            </div>
-          </div>
+        <div className="featured-grid">
+          {featuredProjects.map(project => (
+            <ProjectCard3D key={project.index} {...project} />
+          ))}
         </div>
 
         <div className="more-projects">
-          <Link to="/projects" className="btn">View All Projects</Link>
+          <Link to="/projects" className="btn">View all projects</Link>
         </div>
-      </section >
+      </motion.section>
 
       {/* Personal Interests Section */}
-      < section className="interests-section" ref={sectionRefs.interests} >
+      <motion.section className="interests-section" {...sectionReveal}>
         <div className="section-header">
-          <h2 className="section-title">Beyond Coding</h2>
-          <div className="section-line"></div>
+          <span className="section-marker">03 / beyond code</span>
+          <h2 className="section-title">When I'm not shipping</h2>
         </div>
 
-        <div className="interests-container">
-          <div className="interests-content">
-            <p>
-              When I'm not coding, you'll find me engaged in various activities that fuel my creativity and keep me balanced. I'm a firm believer that diverse interests contribute to becoming a better developer.
-            </p>
-
-            <div className="interests-grid">
-              <div className="interest-card">
-                <div className="interest-icon">
-                  <FaCar size={24} />
-                </div>
-                <h3>Cars</h3>
-                <p>I'm an automotive enthusiast who loves everything from classic cars to modern engineering marvels. I enjoy attending car shows and learning about the latest automotive technology.</p>
-              </div>
-
-              <div className="interest-card">
-                <div className="interest-icon">
-                  <FaPlaneDeparture size={24} />
-                </div>
-                <h3>Traveling</h3>
-                <p>Exploring new cultures, landscapes, and cuisines is one of my greatest passions. Immersing myself in different environments helps me gain fresh perspectives that I bring back to my work.</p>
-              </div>
-
-              <div className="interest-card">
-                <div className="interest-icon">
-                  <FaBrain size={24} />
-                </div>
-                <h3>Brain Games</h3>
-                <p>I challenge myself daily with chess, crosswords, and Wordle. These mental exercises sharpen my problem-solving skills and keep my analytical thinking fresh for coding challenges.</p>
-              </div>
-
-              <div className="interest-card">
-                <div className="interest-icon">
-                  <FaSnowboarding size={24} />
-                </div>
-                <h3>Snowboarding</h3>
-                <p>Hitting the slopes during winter is where I find both thrill and tranquility. The combination of speed, precision, and being surrounded by nature provides a perfect counterbalance to my technical work.</p>
-              </div>
-
-              <div className="interest-card">
-                <div className="interest-icon">
-                  <FaFistRaised size={24} />
-                </div>
-                <h3>Mixed Martial Arts</h3>
-                <p>Having trained in seven different martial arts disciplines, I've gained not just physical skills but also mental discipline, resilience, and a strategic approach to challenges that applies to both combat and code.</p>
-              </div>
-
-              <div className="interest-card">
-                <div className="interest-icon">
-                  <FaDumbbell size={24} />
-                </div>
-                <h3>Gym & Calisthenics</h3>
-                <p>My fitness regimen combines weight training and bodyweight exercises to build functional strength. This discipline enhances my focus and productivity, essential qualities for tackling complex coding projects.</p>
+        <div className="interests-grid">
+          {interests.map((interest, i) => (
+            <div className="interest-card" key={i}>
+              <div className="interest-icon">{interest.icon}</div>
+              <div className="interest-body">
+                <h3>{interest.title}</h3>
+                <p>{interest.text}</p>
               </div>
             </div>
-          </div>
+          ))}
         </div>
-
-        <div className="skills-cta">
-          <Link to="/skills" className="btn">View My Skills</Link>
-        </div>
-      </section >
+      </motion.section>
 
       {/* Contact CTA Section */}
-      < section className="contact-cta" >
-        <h2>Get In Touch</h2>
+      <motion.section className="contact-cta" {...sectionReveal}>
+        <span className="section-marker">04 / contact</span>
+        <h2>Let's build something.</h2>
         <p>
-          Whether you have a project in mind, a question about my work, or just want to connect,
-          I'm always open to new opportunities and conversations. Let's build something amazing together!
+          Whether it's a role, a project, or a question about my work — I'm always open to a
+          conversation.
         </p>
-        <Link to="/contact" className="btn btn-primary">Say Hello</Link>
-      </section >
-    </div >
+        <Link to="/contact" className="btn btn-primary">Get in touch</Link>
+      </motion.section>
+    </div>
   );
 };
 

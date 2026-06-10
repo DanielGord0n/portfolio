@@ -5,6 +5,9 @@ const HeroBackground = () => {
     const canvasRef = useRef(null);
 
     useEffect(() => {
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (prefersReducedMotion) return;
+
         const canvas = canvasRef.current;
         const ctx = canvas.getContext('2d');
         let animationFrameId;
@@ -13,19 +16,17 @@ const HeroBackground = () => {
         const resizeCanvas = () => {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
+            initParticles();
         };
-
-        window.addEventListener('resize', resizeCanvas);
-        resizeCanvas();
 
         class Particle {
             constructor() {
                 this.x = Math.random() * canvas.width;
                 this.y = Math.random() * canvas.height;
-                this.vx = (Math.random() - 0.5) * 0.5;
-                this.vy = (Math.random() - 0.5) * 0.5;
-                this.size = Math.random() * 2 + 1;
-                this.color = 'rgba(0, 229, 255, ' + (Math.random() * 0.3 + 0.1) + ')'; // Teal with opacity
+                this.vx = (Math.random() - 0.5) * 0.35;
+                this.vy = (Math.random() - 0.5) * 0.35;
+                this.size = Math.random() * 1.6 + 0.6;
+                this.alpha = Math.random() * 0.22 + 0.06;
             }
 
             update() {
@@ -37,7 +38,7 @@ const HeroBackground = () => {
             }
 
             draw() {
-                ctx.fillStyle = this.color;
+                ctx.fillStyle = `rgba(0, 229, 255, ${this.alpha})`;
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
                 ctx.fill();
@@ -46,7 +47,8 @@ const HeroBackground = () => {
 
         const initParticles = () => {
             particles = [];
-            const particleCount = Math.min(window.innerWidth * 0.1, 100); // Responsive count
+            // Sparser field than a typical particle demo — atmosphere, not spectacle
+            const particleCount = Math.min(Math.floor(window.innerWidth * 0.045), 70);
             for (let i = 0; i < particleCount; i++) {
                 particles.push(new Particle());
             }
@@ -68,8 +70,8 @@ const HeroBackground = () => {
                     const dy = a.y - b.y;
                     const distance = Math.sqrt(dx * dx + dy * dy);
 
-                    if (distance < 150) {
-                        ctx.strokeStyle = `rgba(0, 229, 255, ${0.1 * (1 - distance / 150)})`;
+                    if (distance < 140) {
+                        ctx.strokeStyle = `rgba(0, 229, 255, ${0.07 * (1 - distance / 140)})`;
                         ctx.lineWidth = 1;
                         ctx.beginPath();
                         ctx.moveTo(a.x, a.y);
@@ -82,11 +84,23 @@ const HeroBackground = () => {
             animationFrameId = requestAnimationFrame(animate);
         };
 
-        initParticles();
+        // Pause rendering when the tab is hidden
+        const handleVisibility = () => {
+            if (document.hidden) {
+                cancelAnimationFrame(animationFrameId);
+            } else {
+                animationFrameId = requestAnimationFrame(animate);
+            }
+        };
+
+        window.addEventListener('resize', resizeCanvas);
+        document.addEventListener('visibilitychange', handleVisibility);
+        resizeCanvas();
         animate();
 
         return () => {
             window.removeEventListener('resize', resizeCanvas);
+            document.removeEventListener('visibilitychange', handleVisibility);
             cancelAnimationFrame(animationFrameId);
         };
     }, []);

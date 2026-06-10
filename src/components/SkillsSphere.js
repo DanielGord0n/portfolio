@@ -17,18 +17,19 @@ const SkillsSphere = () => {
     };
 
     const texts = React.useMemo(() => [
-        'React', 'Node.js', 'Python', 'Java', 'C/C++',
-        'TypeScript', 'JavaScript', 'Next.js', 'Flutter', 'Dart',
-        'PyTorch', 'TensorFlow', 'SQL', 'NoSQL', 'AWS',
-        'Docker', 'Git', 'Figma', 'Tailwind', 'Prisma',
-        'GraphQL', 'Unity', 'Framer', 'R', 'Bash',
-        'Gemini AI', 'Scikit-learn', 'Babylon.js', 'WireShark',
-        'Electron', 'Flask', 'Unix', 'Expo', 'Hugging Face',
-        'Venv', 'Shell Scripting', 'Maven', 'PostgreSQL', 'MongoDB'
+        'Python', 'TypeScript', 'JavaScript', 'C++', 'Java',
+        'SQL', 'Bash', 'PowerShell', 'AWS', 'S3',
+        'EC2', 'AWS SSM', 'IAM', 'CloudWatch', 'Lambda',
+        'GCP', 'Cloud Run', 'Firestore', 'Docker', 'GitHub Actions',
+        'SLURM', 'OpenMP', 'Linux', 'Git', 'React',
+        'React Native', 'Next.js', 'Node.js', 'Express', 'Electron',
+        'Expo', 'Gemini', 'OpenAI', 'Whisper', 'MongoDB',
+        'MySQL', 'PostgreSQL', 'REST APIs', 'Puppeteer', 'Jira'
     ], []);
 
     useEffect(() => {
         const container = containerRef.current;
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
         // Clear previous tags if any
         container.innerHTML = '';
@@ -58,6 +59,22 @@ const SkillsSphere = () => {
 
         const tags = texts.map((text, idx) => createTag(text, idx));
         tags.forEach(tag => container.appendChild(tag));
+
+        // Reduced motion: lay tags out as a static grid, no animation loop
+        if (prefersReducedMotion) {
+            const cols = 5;
+            const rows = Math.ceil(texts.length / cols);
+            tags.forEach((tag, idx) => {
+                const row = Math.floor(idx / cols);
+                const col = idx % cols;
+                const gx = (col - (cols - 1) / 2) * 160;
+                const gy = (row - (rows - 1) / 2) * 50;
+                tag.style.transform = `translate3d(${gx}px, ${gy}px, 0) translate(-50%, -50%)`;
+            });
+            return () => {
+                container.innerHTML = '';
+            };
+        }
 
         // Store current positions for smooth interpolation
         const currentPositions = tags.map((_, idx) => {

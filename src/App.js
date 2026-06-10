@@ -3,6 +3,7 @@ import { AnimatePresence } from 'framer-motion';
 import './App.css';
 
 import Header from './components/Header';
+import Footer from './components/Footer';
 import SmoothScroll from './components/SmoothScroll';
 import HeroBackground from './components/HeroBackground';
 
@@ -39,6 +40,7 @@ function App() {
         <main className="main-content">
           <AnimatedRoutes />
         </main>
+        <Footer />
       </div>
     </Router>
   );
