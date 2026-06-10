@@ -1,40 +1,12 @@
-import React, { useRef, useMemo } from 'react';
-import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import React from 'react';
+import { useLightbox } from './Lightbox';
 import '../styles/ProjectCard3D.css';
 
-const ProjectCard3D = ({ index, title, company, category, description, tags, links, image, imageDark }) => {
-    const ref = useRef(null);
-
-    // Tilt only on devices that can hover; touch devices get a static card
-    const canTilt = useMemo(
-        () => typeof window !== 'undefined' && window.matchMedia('(hover: hover) and (pointer: fine)').matches,
-        []
-    );
-
-    const x = useMotionValue(0);
-    const y = useMotionValue(0);
-
-    const mouseXSpring = useSpring(x);
-    const mouseYSpring = useSpring(y);
-
-    const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["8deg", "-8deg"]);
-    const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-8deg", "8deg"]);
-
-    const handleMouseMove = (e) => {
-        if (!canTilt) return;
-        const rect = ref.current.getBoundingClientRect();
-
-        const xPct = (e.clientX - rect.left) / rect.width - 0.5;
-        const yPct = (e.clientY - rect.top) / rect.height - 0.5;
-
-        x.set(xPct);
-        y.set(yPct);
-    };
-
-    const handleMouseLeave = () => {
-        x.set(0);
-        y.set(0);
-    };
+// Cards deliberately do not track the pointer with transforms: moving a
+// surface that contains links makes them miss clicks. Hover feedback is
+// border, glow, and the racing stripe instead.
+const ProjectCard3D = ({ index, title, company, category, description, tags, links, image, imageWide }) => {
+    const { openLightbox } = useLightbox();
 
     const monogram = title
         .split(/\s+/)
@@ -45,29 +17,19 @@ const ProjectCard3D = ({ index, title, company, category, description, tags, lin
         .toUpperCase();
 
     return (
-        <motion.div
-            ref={ref}
-            onMouseMove={handleMouseMove}
-            onMouseLeave={handleMouseLeave}
-            style={canTilt ? {
-                rotateY,
-                rotateX,
-                transformStyle: "preserve-3d",
-            } : undefined}
-            className="project-card-3d"
-        >
-            <div
-                style={canTilt ? {
-                    transform: "translateZ(40px)",
-                    transformStyle: "preserve-3d",
-                } : undefined}
-                className="project-card-content"
-            >
+        <article className="project-card-3d">
+            <div className="project-card-content">
                 <div className="card-top-row">
                     {image ? (
-                        <div className={`card-logo ${imageDark ? 'card-logo-light-chip' : ''}`}>
+                        <button
+                            type="button"
+                            className={`card-logo ${imageWide ? 'card-logo-wide' : ''}`}
+                            onClick={() => openLightbox(image, title)}
+                            aria-label={`View ${title} logo larger`}
+                            title="Click to enlarge"
+                        >
                             <img src={image} alt={`${title} logo`} loading="lazy" />
-                        </div>
+                        </button>
                     ) : (
                         <div className="card-monogram">{monogram}</div>
                     )}
@@ -102,7 +64,7 @@ const ProjectCard3D = ({ index, title, company, category, description, tags, lin
                     )}
                 </div>
             </div>
-        </motion.div>
+        </article>
     );
 };
 

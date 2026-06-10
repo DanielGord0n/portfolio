@@ -86,7 +86,19 @@ const SkillsSphere = () => {
         let angleY = 0;
         let animationFrameId;
 
+        // Skip the per-tag transform work while the sphere is offscreen
+        let isVisible = true;
+        const visibilityObserver = new IntersectionObserver(
+            ([entry]) => { isVisible = entry.isIntersecting; },
+            { threshold: 0.05 }
+        );
+        visibilityObserver.observe(container);
+
         const animate = () => {
+            if (!isVisible) {
+                animationFrameId = requestAnimationFrame(animate);
+                return;
+            }
             // Rotate the sphere if not hovered
             if (!isHoveredRef.current) {
                 angleX += 0.005;
@@ -152,6 +164,7 @@ const SkillsSphere = () => {
 
         return () => {
             cancelAnimationFrame(animationFrameId);
+            visibilityObserver.disconnect();
             container.innerHTML = '';
         };
     }, [texts]); // Added texts to dependency array

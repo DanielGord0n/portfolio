@@ -3,6 +3,63 @@
   padding-right: 10px;
 }
 
+/* ----- Cinematic hero: full-bleed Remotion title sequence ----- */
+.hero-cinema {
+  --hero-height: calc(100vh - 76px);
+  position: relative;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  height: var(--hero-height);
+  overflow: hidden;
+  margin-bottom: var(--space-xl);
+}
+
+/* Legibility gradient behind the overlay */
+.hero-cinema-fade {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 220px;
+  background: linear-gradient(to top, rgba(12, 15, 14, 0.92), transparent);
+  pointer-events: none;
+}
+
+.hero-cinema-overlay {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 40px;
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.hero-cinema-overlay .hero-status {
+  margin-bottom: 0;
+  flex: 1;
+  min-width: 320px;
+  max-width: 720px;
+}
+
+/* Screen-reader-only heading keeps the cinematic hero accessible */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 /* ----- Hero: text left, pit-wall monitor right ----- */
 .hero-section {
   display: grid;
@@ -121,6 +178,7 @@
 .telemetry-section,
 .about-section,
 .projects-section,
+.mission-section,
 .interests-section {
   margin-bottom: var(--space-xxl);
 }

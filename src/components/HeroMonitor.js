@@ -1,10 +1,10 @@
-import React, { Suspense, useMemo } from 'react';
+import React, { Suspense, useEffect, useMemo, useRef, useState } from 'react';
 import dgLogo from '../images/opt/DG_logo.png';
 import '../styles/HeroMonitor.css';
 
 // Composition timing (mirrors TITLE_SEQUENCE in src/remotion/TitleSequence.js).
 // Kept as literals here so the remotion runtime stays out of the main bundle.
-const SEQ = { durationInFrames: 360, fps: 30, width: 1280, height: 720 };
+const SEQ = { durationInFrames: 360, fps: 30, width: 1920, height: 1080 };
 
 // Player and composition load together in one lazy chunk
 const LazySequencePlayer = React.lazy(async () => {
@@ -12,7 +12,7 @@ const LazySequencePlayer = React.lazy(async () => {
         import('@remotion/player'),
         import('../remotion/TitleSequence'),
     ]);
-    const SequencePlayer = () => {
+    const SequencePlayer = ({ visibleRef }) => {
         const playerRef = React.useRef(null);
 
         // Drive frames with our own rAF clock through seekTo instead of the
@@ -20,20 +20,24 @@ const LazySequencePlayer = React.lazy(async () => {
         // (its clock is tied to a gesture-gated AudioContext).
         React.useEffect(() => {
             let raf;
-            let start = null;
+            let elapsedBase = 0;
+            let lastNow = null;
             const tick = (now) => {
-                if (start === null) start = now;
-                const elapsed = (now - start) / 1000;
-                const frame = Math.floor(elapsed * SEQ.fps) % SEQ.durationInFrames;
-                const player = playerRef.current;
-                if (player && !document.hidden) {
-                    player.seekTo(frame);
+                const isVisible = !document.hidden && (!visibleRef || visibleRef.current);
+                if (lastNow !== null && isVisible) {
+                    elapsedBase += (now - lastNow) / 1000;
+                    const frame = Math.floor(elapsedBase * SEQ.fps) % SEQ.durationInFrames;
+                    const player = playerRef.current;
+                    if (player) {
+                        player.seekTo(frame);
+                    }
                 }
+                lastNow = now;
                 raf = requestAnimationFrame(tick);
             };
             raf = requestAnimationFrame(tick);
             return () => cancelAnimationFrame(raf);
-        }, []);
+        }, [visibleRef]);
 
         return (
             <Player
@@ -78,22 +82,53 @@ const StaticPoster = () => (
     </div>
 );
 
-const HeroMonitor = () => {
+// variant="panel": framed pit-wall monitor (mobile / reduced contexts)
+// variant="cinema": bare full-bleed player that covers its parent
+const HeroMonitor = ({ variant = 'panel' }) => {
     const prefersReducedMotion = useMemo(
         () => typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches,
         []
     );
 
+    const wrapRef = useRef(null);
+    const visibleRef = useRef(true);
+    const [mounted, setMounted] = useState(false);
+
+    // Track visibility so the frame driver idles when scrolled away
+    useEffect(() => {
+        const el = wrapRef.current;
+        if (!el) return;
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                visibleRef.current = entry.isIntersecting;
+            },
+            { threshold: 0.05 }
+        );
+        observer.observe(el);
+        setMounted(true);
+        return () => observer.disconnect();
+    }, []);
+
+    const player = prefersReducedMotion ? (
+        <StaticPoster />
+    ) : (
+        <Suspense fallback={<StaticPoster />}>
+            {mounted && <LazySequencePlayer visibleRef={visibleRef} />}
+        </Suspense>
+    );
+
+    if (variant === 'cinema') {
+        return (
+            <div className="cinema-wrap" ref={wrapRef} aria-hidden="true">
+                <div className="cinema-player">{player}</div>
+            </div>
+        );
+    }
+
     return (
-        <MonitorChrome>
-            {prefersReducedMotion ? (
-                <StaticPoster />
-            ) : (
-                <Suspense fallback={<StaticPoster />}>
-                    <LazySequencePlayer />
-                </Suspense>
-            )}
-        </MonitorChrome>
+        <div ref={wrapRef}>
+            <MonitorChrome>{player}</MonitorChrome>
+        </div>
     );
 };
 

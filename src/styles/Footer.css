@@ -47,7 +47,13 @@
 
 .footer-links a:hover {
   color: var(--accent-primary);
-  transform: translateY(-2px);
+}
+
+.footer-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 3px;
 }
 
 .footer-note {
@@ -55,6 +61,19 @@
   font-size: var(--fz-xxs);
   color: var(--text-muted);
   letter-spacing: 0.03em;
+}
+
+.footer-source {
+  font-family: var(--font-mono);
+  font-size: var(--fz-xxs);
+  letter-spacing: 0.06em;
+  color: var(--accent-primary);
+}
+
+@media (max-width: 768px) {
+  .footer-right {
+    align-items: center;
+  }
 }
 
 @media (max-width: 768px) {

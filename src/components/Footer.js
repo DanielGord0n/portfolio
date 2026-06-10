@@ -25,6 +25,14 @@ const Footer = () => {
 
         <div className="footer-right">
           <span className="footer-note">Hand-built in React, Remotion &amp; vanilla CSS. No templates.</span>
+          <a
+            href="https://github.com/DanielGord0n/daniels_website"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="footer-source"
+          >
+            view source ▸
+          </a>
         </div>
       </div>
     </footer>

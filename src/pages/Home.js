@@ -10,6 +10,7 @@ import TypingText from '../components/TypingText';
 import ProjectCard3D from '../components/ProjectCard3D';
 import HeroMonitor from '../components/HeroMonitor';
 import StatGauge from '../components/StatGauge';
+import MissionControl from '../components/MissionControl';
 
 const heroStagger = {
   hidden: {},
@@ -85,6 +86,18 @@ const interests = [
 ];
 
 const Home = () => {
+  // Full-bleed cinematic hero on wide viewports; split layout elsewhere
+  const [cinema, setCinema] = React.useState(
+    () => typeof window !== 'undefined' && window.matchMedia('(min-width: 1080px)').matches
+  );
+
+  useEffect(() => {
+    const mq = window.matchMedia('(min-width: 1080px)');
+    const onChange = (e) => setCinema(e.matches);
+    mq.addEventListener('change', onChange);
+    return () => mq.removeEventListener('change', onChange);
+  }, []);
+
   useEffect(() => {
     document.title = 'Daniel Gordon | Software Engineer, Cloud, DevOps & AI Systems';
 
@@ -100,52 +113,82 @@ const Home = () => {
   return (
     <div className="home-container">
       {/* Hero */}
-      <section className="hero-section">
-        <motion.div className="hero-content" variants={heroStagger} initial="hidden" animate="visible">
-          <motion.span className="hero-eyebrow" variants={heroItem}>
-            {'// hello, I\'m'}
-          </motion.span>
+      {cinema ? (
+        <section className="hero-cinema">
+          <h1 className="sr-only">
+            Daniel Gordon, Software Engineer: Cloud, DevOps and AI Systems
+          </h1>
+          <HeroMonitor variant="cinema" />
+          <div className="hero-cinema-fade" />
+          <motion.div
+            className="hero-cinema-overlay"
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <div className="hero-status">
+              <span className="status-prompt">$</span>
+              <TypingText
+                text=" now: DevOps / Cloud Engineering Intern @ WellnessLiving | open to FDE, SWE & DevOps roles"
+                delay={1.2}
+                speed={0.018}
+                showCursor={true}
+              />
+            </div>
+            <div className="hero-cta">
+              <Link to="/projects" className="btn btn-primary">View projects</Link>
+              <Link to="/resume" className="btn">Resume</Link>
+            </div>
+          </motion.div>
+        </section>
+      ) : (
+        <section className="hero-section">
+          <motion.div className="hero-content" variants={heroStagger} initial="hidden" animate="visible">
+            <motion.span className="hero-eyebrow" variants={heroItem}>
+              {'// hello, I\'m'}
+            </motion.span>
 
-          <motion.h1 className="hero-title silver-text" variants={heroItem}>
-            Daniel Gordon
-          </motion.h1>
+            <motion.h1 className="hero-title silver-text" variants={heroItem}>
+              Daniel Gordon
+            </motion.h1>
 
-          <motion.div className="hero-sector" variants={heroItem}>
-            <span className="hero-role">Software Engineer</span>
-            <span className="hero-sector-line">CLOUD&nbsp;//&nbsp;DEVOPS&nbsp;//&nbsp;AI SYSTEMS</span>
+            <motion.div className="hero-sector" variants={heroItem}>
+              <span className="hero-role">Software Engineer</span>
+              <span className="hero-sector-line">CLOUD&nbsp;//&nbsp;DEVOPS&nbsp;//&nbsp;AI SYSTEMS</span>
+            </motion.div>
+
+            <motion.p className="hero-description" variants={heroItem}>
+              I build and operate production systems end to end: cloud infrastructure, AI pipelines,
+              and client deployments. I work directly with stakeholders to scope, ship, and own
+              outcomes in ambiguous environments.
+            </motion.p>
+
+            <motion.div className="hero-status" variants={heroItem}>
+              <span className="status-prompt">$</span>
+              <TypingText
+                text=" now: DevOps / Cloud Engineering Intern @ WellnessLiving | open to FDE, SWE & DevOps roles"
+                delay={1.0}
+                speed={0.018}
+                showCursor={true}
+              />
+            </motion.div>
+
+            <motion.div className="hero-cta" variants={heroItem}>
+              <Link to="/projects" className="btn btn-primary">View projects</Link>
+              <Link to="/resume" className="btn">Resume</Link>
+            </motion.div>
           </motion.div>
 
-          <motion.p className="hero-description" variants={heroItem}>
-            I build and operate production systems end to end: cloud infrastructure, AI pipelines,
-            and client deployments. I work directly with stakeholders to scope, ship, and own
-            outcomes in ambiguous environments.
-          </motion.p>
-
-          <motion.div className="hero-status" variants={heroItem}>
-            <span className="status-prompt">$</span>
-            <TypingText
-              text=" now: DevOps / Cloud Engineering Intern @ WellnessLiving | open to FDE, SWE & DevOps roles"
-              delay={1.0}
-              speed={0.018}
-              showCursor={true}
-            />
+          <motion.div
+            className="hero-monitor-wrap"
+            initial={{ opacity: 0, x: 32 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <HeroMonitor variant="panel" />
           </motion.div>
-
-          <motion.div className="hero-cta" variants={heroItem}>
-            <Link to="/projects" className="btn btn-primary">View projects</Link>
-            <Link to="/resume" className="btn">Resume</Link>
-          </motion.div>
-        </motion.div>
-
-        <motion.div
-          className="hero-monitor-wrap"
-          initial={{ opacity: 0, x: 32 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.7, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
-        >
-          <HeroMonitor />
-        </motion.div>
-      </section>
+        </section>
+      )}
 
       {/* Telemetry gauges */}
       <motion.section className="telemetry-section" {...sectionReveal}>
@@ -179,10 +222,22 @@ const Home = () => {
         </div>
       </motion.section>
 
+      {/* Mission Control */}
+      <motion.section className="mission-section" {...sectionReveal}>
+        <div className="section-header">
+          <span className="section-marker">sector 03 // mission control</span>
+          <h2 className="section-title">Built like I operate</h2>
+          <p className="section-sub">
+            A live look at how this site itself is instrumented, shipped, and where my systems run.
+          </p>
+        </div>
+        <MissionControl />
+      </motion.section>
+
       {/* About */}
       <motion.section className="about-section" {...sectionReveal}>
         <div className="section-header">
-          <span className="section-marker">sector 03 // driver profile</span>
+          <span className="section-marker">sector 04 // driver profile</span>
           <h2 className="section-title">From cloud fleets to supercomputers</h2>
         </div>
 
@@ -230,7 +285,7 @@ const Home = () => {
       {/* Off track */}
       <motion.section className="interests-section" {...sectionReveal}>
         <div className="section-header">
-          <span className="section-marker">sector 04 // off track</span>
+          <span className="section-marker">sector 05 // off track</span>
           <h2 className="section-title">When the laptop closes</h2>
         </div>
 
@@ -249,7 +304,7 @@ const Home = () => {
 
       {/* Contact CTA */}
       <motion.section className="contact-cta" {...sectionReveal}>
-        <span className="section-marker">sector 05 // contact</span>
+        <span className="section-marker">sector 06 // contact</span>
         <h2 className="silver-text">Let's build something.</h2>
         <p>
           A role, a project, or a question about my work. I'm always up for the conversation.

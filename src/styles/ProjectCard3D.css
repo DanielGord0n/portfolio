@@ -29,8 +29,8 @@
 }
 
 .project-card-3d:hover {
-    border-color: var(--border-strong);
-    box-shadow: var(--card-hover-shadow);
+    border-color: var(--accent-tint-30);
+    box-shadow: var(--card-hover-shadow), 0 0 36px -18px rgba(0, 163, 108, 0.45);
 }
 
 .project-card-content {
@@ -58,6 +58,19 @@
     border: 1px solid var(--border-strong);
     padding: 7px;
     flex-shrink: 0;
+    cursor: zoom-in;
+    transition: var(--transition);
+}
+
+.card-logo:hover {
+    border-color: var(--accent-dim);
+    transform: scale(1.05);
+}
+
+/* Wide marks (e.g. LaunchPath, 2560x999) get a wide chip so they stay legible */
+.card-logo-wide {
+    width: 108px;
+    padding: 8px 12px;
 }
 
 .card-logo img {
@@ -185,11 +198,11 @@
     transition: var(--transition);
 }
 
+/* No transform on hover: clickable elements must not move under the cursor */
 .project-link-pill:hover {
     color: #06130D;
     background: var(--accent-primary);
     border-color: var(--accent-primary);
-    transform: translateY(-2px);
 }
 
 @media (max-width: 768px) {

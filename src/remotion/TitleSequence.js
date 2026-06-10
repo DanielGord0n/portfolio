@@ -12,8 +12,8 @@ import dgLogo from '../images/opt/DG_logo.png';
 export const TITLE_SEQUENCE = {
     durationInFrames: 360,
     fps: 30,
-    width: 1280,
-    height: 720,
+    width: 1920,
+    height: 1080,
 };
 
 const COLORS = {
@@ -45,13 +45,13 @@ const Grid = ({ opacity }) => (
             backgroundImage:
                 'linear-gradient(to right, rgba(155,168,160,0.07) 1px, transparent 1px),' +
                 'linear-gradient(to bottom, rgba(155,168,160,0.07) 1px, transparent 1px)',
-            backgroundSize: '64px 64px',
+            backgroundSize: '96px 96px',
         }}
     />
 );
 
 const CornerBrackets = ({ progress }) => {
-    const size = interpolate(progress, [0, 1], [0, 26]);
+    const size = interpolate(progress, [0, 1], [0, 38]);
     const common = {
         position: 'absolute',
         width: size,
@@ -62,10 +62,10 @@ const CornerBrackets = ({ progress }) => {
     };
     return (
         <>
-            <div style={{ ...common, top: 28, left: 28, borderWidth: '2px 0 0 2px' }} />
-            <div style={{ ...common, top: 28, right: 28, borderWidth: '2px 2px 0 0' }} />
-            <div style={{ ...common, bottom: 28, left: 28, borderWidth: '0 0 2px 2px' }} />
-            <div style={{ ...common, bottom: 28, right: 28, borderWidth: '0 2px 2px 0' }} />
+            <div style={{ ...common, top: 42, left: 42, borderWidth: '2px 0 0 2px' }} />
+            <div style={{ ...common, top: 42, right: 42, borderWidth: '2px 2px 0 0' }} />
+            <div style={{ ...common, bottom: 42, left: 42, borderWidth: '0 0 2px 2px' }} />
+            <div style={{ ...common, bottom: 42, right: 42, borderWidth: '0 2px 2px 0' }} />
         </>
     );
 };
@@ -80,13 +80,13 @@ const Boot = () => {
     ];
     return (
         <AbsoluteFill style={{ justifyContent: 'center', alignItems: 'center' }}>
-            <div style={{ fontFamily: mono, fontSize: 22, lineHeight: 2.1, letterSpacing: '0.08em' }}>
+            <div style={{ fontFamily: mono, fontSize: 33, lineHeight: 2.1, letterSpacing: '0.08em' }}>
                 {lines.map((line, i) => {
                     const start = i * 14;
                     const chars = Math.max(0, Math.floor((frame - start) * 1.6));
                     const visible = line.slice(0, chars);
                     return (
-                        <div key={i} style={{ color: i === 0 ? COLORS.greenBright : COLORS.silverDim, minHeight: 46 }}>
+                        <div key={i} style={{ color: i === 0 ? COLORS.greenBright : COLORS.silverDim, minHeight: 69 }}>
                             {visible}
                             {chars > 0 && chars < line.length && (
                                 <span style={{ color: COLORS.green }}>▌</span>
@@ -126,11 +126,11 @@ const Identity = () => {
 
     return (
         <AbsoluteFill style={{ justifyContent: 'center', alignItems: 'center' }}>
-            <div style={{ position: 'relative', width: 124, height: 124, marginBottom: 30 }}>
+            <div style={{ position: 'relative', width: 186, height: 186, marginBottom: 44 }}>
                 <svg
-                    width="124"
-                    height="124"
-                    viewBox="0 0 124 124"
+                    width="186"
+                    height="186"
+                    viewBox="0 0 186 186"
                     style={{
                         position: 'absolute',
                         inset: 0,
@@ -138,11 +138,11 @@ const Identity = () => {
                         transform: `rotate(${ringRotation}deg)`,
                     }}
                 >
-                    <circle cx="62" cy="62" r="58" fill="none" stroke={COLORS.line} strokeWidth="2" />
+                    <circle cx="93" cy="93" r="87" fill="none" stroke={COLORS.line} strokeWidth="3" />
                     <circle
-                        cx="62" cy="62" r="58" fill="none"
-                        stroke={COLORS.green} strokeWidth="2.5"
-                        strokeDasharray="80 285" strokeLinecap="round"
+                        cx="93" cy="93" r="87" fill="none"
+                        stroke={COLORS.green} strokeWidth="3.5"
+                        strokeDasharray="120 428" strokeLinecap="round"
                     />
                 </svg>
                 {/* Native img: this composition only plays in the browser Player,
@@ -152,9 +152,9 @@ const Identity = () => {
                     alt=""
                     style={{
                         position: 'absolute',
-                        inset: 22,
-                        width: 80,
-                        height: 80,
+                        inset: 33,
+                        width: 120,
+                        height: 120,
                         objectFit: 'contain',
                         filter: 'invert(1)',
                         transform: `scale(${logoIn})`,
@@ -162,17 +162,17 @@ const Identity = () => {
                 />
             </div>
 
-            <div style={{ position: 'relative', overflow: 'hidden', padding: '0 20px' }}>
+            <div style={{ position: 'relative', overflow: 'hidden', padding: '0 30px' }}>
                 <div
                     style={{
                         fontFamily: display,
                         fontWeight: 700,
-                        fontSize: 96,
+                        fontSize: 144,
                         letterSpacing: '0.03em',
                         textTransform: 'uppercase',
                         color: COLORS.silver,
                         lineHeight: 1,
-                        transform: `translateY(${interpolate(nameIn, [0, 1], [90, 0])}px)`,
+                        transform: `translateY(${interpolate(nameIn, [0, 1], [135, 0])}px)`,
                         opacity: nameIn,
                         position: 'relative',
                     }}
@@ -193,11 +193,11 @@ const Identity = () => {
                 style={{
                     fontFamily: display,
                     fontWeight: 500,
-                    fontSize: 34,
+                    fontSize: 51,
                     letterSpacing: '0.34em',
                     textTransform: 'uppercase',
                     color: COLORS.greenBright,
-                    marginTop: 14,
+                    marginTop: 20,
                     opacity: roleOpacity,
                 }}
             >
@@ -207,10 +207,10 @@ const Identity = () => {
             <div
                 style={{
                     fontFamily: mono,
-                    fontSize: 17,
+                    fontSize: 25,
                     letterSpacing: '0.3em',
                     color: COLORS.silverDim,
-                    marginTop: 16,
+                    marginTop: 24,
                     opacity: sectorOpacity,
                 }}
             >
@@ -232,16 +232,16 @@ const Telemetry = () => {
             <div
                 style={{
                     fontFamily: mono,
-                    fontSize: 15,
+                    fontSize: 22,
                     letterSpacing: '0.32em',
                     color: COLORS.green,
-                    marginBottom: 42,
+                    marginBottom: 64,
                     opacity: headerOpacity,
                 }}
             >
                 ▸ LIVE TELEMETRY / VERIFIED PRODUCTION NUMBERS
             </div>
-            <div style={{ display: 'flex', gap: 26 }}>
+            <div style={{ display: 'flex', gap: 40 }}>
                 {STATS.map((stat, i) => {
                     const enter = spring({ frame: frame - 6 - i * 7, fps, config: { damping: 15 } });
                     const count = Math.round(
@@ -258,11 +258,11 @@ const Telemetry = () => {
                         <div
                             key={i}
                             style={{
-                                width: 240,
-                                padding: '26px 24px 22px',
+                                width: 360,
+                                padding: '40px 36px 33px',
                                 background: COLORS.panel,
                                 border: `1px solid ${COLORS.line}`,
-                                transform: `translateY(${interpolate(enter, [0, 1], [44, 0])}px)`,
+                                transform: `translateY(${interpolate(enter, [0, 1], [66, 0])}px)`,
                                 opacity: enter,
                             }}
                         >
@@ -270,7 +270,7 @@ const Telemetry = () => {
                                 style={{
                                     fontFamily: display,
                                     fontWeight: 700,
-                                    fontSize: 58,
+                                    fontSize: 87,
                                     lineHeight: 1,
                                     color: COLORS.silver,
                                 }}
@@ -280,9 +280,9 @@ const Telemetry = () => {
                             </div>
                             <div
                                 style={{
-                                    height: 3,
+                                    height: 4,
                                     background: COLORS.line,
-                                    margin: '16px 0 12px',
+                                    margin: '24px 0 18px',
                                     position: 'relative',
                                 }}
                             >
@@ -300,7 +300,7 @@ const Telemetry = () => {
                             <div
                                 style={{
                                     fontFamily: mono,
-                                    fontSize: 12.5,
+                                    fontSize: 19,
                                     letterSpacing: '0.14em',
                                     color: COLORS.silverDim,
                                 }}
@@ -331,7 +331,7 @@ const Tagline = () => {
                 style={{
                     fontFamily: display,
                     fontWeight: 700,
-                    fontSize: 86,
+                    fontSize: 129,
                     letterSpacing: '0.05em',
                     textTransform: 'uppercase',
                     color: COLORS.silver,
@@ -344,10 +344,10 @@ const Tagline = () => {
             <div
                 style={{
                     fontFamily: mono,
-                    fontSize: 17,
+                    fontSize: 25,
                     letterSpacing: '0.26em',
                     color: COLORS.silverDim,
-                    marginTop: 20,
+                    marginTop: 30,
                     opacity: subOpacity,
                 }}
             >
@@ -394,11 +394,11 @@ const TitleSequence = () => {
                 <div
                     style={{
                         position: 'absolute',
-                        bottom: 40,
+                        bottom: 60,
                         width: '100%',
                         textAlign: 'center',
                         fontFamily: mono,
-                        fontSize: 13,
+                        fontSize: 19,
                         letterSpacing: '0.3em',
                         color: COLORS.muted,
                         opacity: gridOpacity,

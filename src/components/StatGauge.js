@@ -84,7 +84,7 @@ const StatGauge = ({ value, suffix = '', label, unit, fraction = 0.75, delay = 0
                     className="gauge-needle-group"
                     style={{ transform: `rotate(${needleAngle}deg)` }}
                 >
-                    <line x1={cx} y1={cy} x2={cx} y2={cy - r + 16} className="gauge-needle" />
+                    <line x1={cx} y1={cy} x2={cx} y2={cy - r + 22} className="gauge-needle" />
                 </g>
                 <circle cx={cx} cy={cy} r="5" className="gauge-hub" />
             </svg>

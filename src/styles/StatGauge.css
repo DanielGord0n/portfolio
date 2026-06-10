@@ -52,9 +52,10 @@
 
 .gauge-needle {
     stroke: var(--silver);
-    stroke-width: 2.5;
+    stroke-width: 2;
     stroke-linecap: round;
-    filter: drop-shadow(0 0 3px rgba(220, 227, 222, 0.4));
+    opacity: 0.85;
+    filter: drop-shadow(0 0 3px rgba(220, 227, 222, 0.35));
 }
 
 .gauge-hub {
@@ -68,6 +69,8 @@
     display: flex;
     align-items: baseline;
     gap: 5px;
+    /* Must be positioned for z-index to apply: keeps the number above the needle */
+    position: relative;
     z-index: 1;
 }
 
@@ -77,6 +80,11 @@
     font-size: 2rem;
     line-height: 1;
     color: var(--text-primary);
+    /* Dark halo so the needle reads as passing behind the number */
+    text-shadow:
+        0 0 6px var(--bg-secondary),
+        0 0 12px var(--bg-secondary),
+        0 0 18px var(--bg-secondary);
 }
 
 .gauge-suffix {

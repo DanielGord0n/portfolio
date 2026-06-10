@@ -1,0 +1,30 @@
+.notfound-container {
+  min-height: calc(100vh - 200px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 110px;
+}
+
+.notfound-panel {
+  background: var(--panel-gradient);
+  border: 1px solid var(--border-strong);
+  padding: 3rem 3.4rem;
+  max-width: 520px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+.notfound-code {
+  font-family: var(--font-mono);
+  font-size: var(--fz-xs);
+  letter-spacing: 0.2em;
+  color: var(--accent-primary);
+  margin-bottom: 10px;
+}
+
+.notfound-panel p {
+  margin-bottom: 1.4rem;
+}

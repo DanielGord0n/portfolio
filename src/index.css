@@ -342,10 +342,11 @@ code {
   z-index: -1;
 }
 
+/* Buttons brighten instead of moving: stable click targets */
 .btn:hover {
-  transform: translateY(-2px);
   border-color: var(--silver-dim);
   color: var(--text-primary);
+  box-shadow: 0 0 24px -10px rgba(0, 163, 108, 0.4);
 }
 
 .btn:hover::before {
@@ -353,7 +354,7 @@ code {
 }
 
 .btn:active {
-  transform: translateY(0);
+  box-shadow: none;
 }
 
 .btn-primary {
