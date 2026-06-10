@@ -44,7 +44,7 @@ const ContactItem = ({ icon: Icon, label, value, action, copyValue }) => {
 
 const Contact = () => {
   useEffect(() => {
-    document.title = 'Contact | Daniel Gordon - Full Stack Developer';
+    document.title = 'Contact | Daniel Gordon';
   }, []);
 
   const openEmail = () => {
@@ -55,8 +55,9 @@ const Contact = () => {
     <div className="contact-container">
       <div className="glass-command-center">
         <div className="command-header">
+          <span className="section-marker">contact</span>
           <h1>Let's Connect</h1>
-          <p>Available for new opportunities</p>
+          <p>Open to FDE, SWE &amp; DevOps roles</p>
         </div>
 
         <div className="command-grid">
@@ -89,7 +90,7 @@ const Contact = () => {
         </div>
 
         <div className="command-footer">
-          <p>Based in Vaughan, Ontario • Open to Remote</p>
+          <p>Greater Toronto Area • Open to Toronto &amp; Bay Area roles</p>
         </div>
       </div>
     </div>

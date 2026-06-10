@@ -99,7 +99,7 @@ const Home = () => {
       <section className="hero-section">
         <motion.div className="hero-content" variants={heroStagger} initial="hidden" animate="visible">
           <motion.span className="hero-eyebrow" variants={heroItem}>
-            // hello world — I'm
+            {"// hello world — I'm"}
           </motion.span>
 
           <motion.h1 className="hero-title" variants={heroItem}>

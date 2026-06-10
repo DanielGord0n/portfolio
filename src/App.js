@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import { AnimatePresence } from 'framer-motion';
+import { AnimatePresence, MotionConfig } from 'framer-motion';
 import './App.css';
 
 import Header from './components/Header';
@@ -33,15 +33,17 @@ const AnimatedRoutes = () => {
 function App() {
   return (
     <Router>
-      <div className="App">
-        <HeroBackground />
-        <SmoothScroll />
-        <Header />
-        <main className="main-content">
-          <AnimatedRoutes />
-        </main>
-        <Footer />
-      </div>
+      <MotionConfig reducedMotion="user">
+        <div className="App">
+          <HeroBackground />
+          <SmoothScroll />
+          <Header />
+          <main className="main-content">
+            <AnimatedRoutes />
+          </main>
+          <Footer />
+        </div>
+      </MotionConfig>
     </Router>
   );
 }

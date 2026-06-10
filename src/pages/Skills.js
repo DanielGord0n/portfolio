@@ -1,293 +1,157 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { FaAws, FaTerminal, FaCloud, FaServer, FaCertificate, FaBrain } from 'react-icons/fa';
 import SkillsSphere from '../components/SkillsSphere';
 import ExperienceTimeline from '../components/ExperienceTimeline';
 import PageTransition from '../components/PageTransition';
 import '../styles/Skills.css';
 
+const sectionReveal = {
+  initial: { opacity: 0, y: 28 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, margin: '-60px' },
+  transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
+};
+
+// Skill groups from PORTFOLIO_HANDOFF.md
+const skillCategories = [
+  {
+    title: 'Languages',
+    icon: <FaTerminal size={26} />,
+    description: 'The day-to-day toolkit, from scripting to systems code',
+    skills: ['Python', 'JavaScript / TypeScript', 'C++', 'Java', 'SQL', 'Bash', 'PowerShell'],
+  },
+  {
+    title: 'Cloud',
+    icon: <FaCloud size={26} />,
+    description: 'Operating production infrastructure on AWS and GCP',
+    skills: [
+      'AWS S3', 'AWS EC2', 'AWS SSM', 'IAM', 'CloudWatch', 'Lambda', 'EBS', 'Identity Center',
+      'GCP Cloud Run', 'Firestore', 'Compute Engine', 'Docker', 'GitHub Actions',
+    ],
+  },
+  {
+    title: 'DevOps & HPC',
+    icon: <FaServer size={26} />,
+    description: 'Fleet automation, incident response, and large-scale compute',
+    skills: [
+      'SSM Run Command', 'SSM Patch Manager', 'Fleet Manager', 'State Manager',
+      'Fleet automation', 'AWS CLI', 'Incident response', 'FinOps', 'SLURM / HPC',
+    ],
+  },
+  {
+    title: 'Backend & AI',
+    icon: <FaBrain size={26} />,
+    description: 'Services, pipelines, and LLM integration in production',
+    skills: [
+      'REST APIs', 'Microservices', 'LLM integration (Gemini, Whisper, OpenAI)',
+      'Real-time pipelines', 'Distributed systems', 'System design',
+      'React', 'React Native', 'Node.js', 'Electron',
+    ],
+  },
+];
+
+const certifications = [
+  {
+    title: 'AWS Certified Cloud Practitioner',
+    issuer: 'Amazon Web Services',
+    date: 'May 2026',
+    icon: <FaAws size={22} />,
+  },
+  {
+    title: 'AWS Solutions Architect Associate',
+    issuer: 'Amazon Web Services',
+    date: 'In progress',
+    icon: <FaAws size={22} />,
+    inProgress: true,
+  },
+  {
+    title: 'SHARCNET HPC / SLURM',
+    issuer: 'Digital Research Alliance of Canada',
+    date: 'Mar 2026',
+    icon: <FaCertificate size={22} />,
+  },
+  {
+    title: 'Claude Code 101 + Claude 101',
+    issuer: 'Anthropic',
+    date: 'May 2026',
+    icon: <FaCertificate size={22} />,
+  },
+];
+
 const Skills = () => {
-  // Update document title
   useEffect(() => {
-    document.title = 'Skills | Daniel Gordon - Full Stack Developer';
+    document.title = 'Skills & Experience | Daniel Gordon';
   }, []);
-
-  // Create refs directly in the component body
-  const mainSkillsRef = useRef(null);
-  const skillBarsRef = useRef(null);
-  const workProcessRef = useRef(null);
-  const additionalSkillsRef = useRef(null);
-  const programmingLanguagesRef = useRef(null);
-
-  // Group refs in an object for easier handling
-  const sectionRefs = {
-    mainSkills: mainSkillsRef,
-    skillBars: skillBarsRef,
-    workProcess: workProcessRef,
-    additionalSkills: additionalSkillsRef,
-    programmingLanguages: programmingLanguagesRef
-  };
-
-  // Animation for sections on scroll
-  useEffect(() => {
-    const observerOptions = {
-      threshold: 0.20,
-      rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observerCallback = (entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('animate-in');
-        }
-      });
-    };
-
-    const observer = new IntersectionObserver(observerCallback, observerOptions);
-
-    Object.values(sectionRefs).forEach(ref => {
-      if (ref.current) {
-        observer.observe(ref.current);
-      }
-    });
-
-    return () => {
-      Object.values(sectionRefs).forEach(ref => {
-        if (ref.current) {
-          observer.unobserve(ref.current);
-        }
-      });
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const skillCategories = [
-    {
-      title: 'AI Platform & Integration',
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M12 2a5 5 0 0 0-5 5v2a5 5 0 0 0 10 0V7a5 5 0 0 0-5-5Z"></path>
-          <path d="M19 11c.6 0 1.1.2 1.5.7l1 1c.4.4.6.9.5 1.4-.1.6-.5 1.1-1 1.4l-4.7 2.8c-.7.4-1.5.6-2.3.6h-1.2"></path>
-          <path d="M8 10.2c-1 0-1.9.5-2.5 1.2l-.7.8c-.6.7-1 1.6-1 2.5 0 .9.3 1.8 1 2.5l.7.8c.6.7 1.5 1.2 2.5 1.2"></path>
-          <path d="m8 22 3.75-14"></path>
-        </svg>
-      ),
-      description: 'Building and optimizing intelligent workflows and model pipelines',
-      skills: [
-        { name: 'AI Workflows (Speech-to-Text, LLM Orchestration)', level: 90 },
-        { name: 'Model Benchmarking (Accuracy vs Latency)', level: 85 },
-        { name: 'NLP Pipelines / Evaluation', level: 85 },
-        { name: 'Prompt / Output Validation', level: 88 }
-      ]
-    },
-    {
-      title: 'Backend & Systems',
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
-          <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
-          <line x1="6" y1="6" x2="6.01" y2="6"></line>
-          <line x1="6" y1="18" x2="6.01" y2="18"></line>
-        </svg>
-      ),
-      description: 'Architecting robust server-side solutions and scalable APIs',
-      skills: [
-        { name: 'Node.js / Express', level: 90 },
-        { name: 'Python (services, scripting)', level: 90 },
-        { name: 'REST APIs', level: 95 },
-        { name: 'Microservices Integration', level: 85 },
-        { name: 'SQL (Postgres/MySQL)', level: 85 },
-        { name: 'MongoDB', level: 80 },
-        { name: 'Docker', level: 75 },
-        { name: 'Git', level: 90 }
-      ]
-    },
-    {
-      title: 'Architecture & Delivery',
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon>
-          <line x1="8" y1="2" x2="8" y2="18"></line>
-          <line x1="16" y1="6" x2="16" y2="22"></line>
-        </svg>
-      ),
-      description: 'Translating business requirements into technical specifications',
-      skills: [
-        { name: 'Solution Architecture (C4 Diagrams)', level: 85 },
-        { name: 'Technical Specifications', level: 90 },
-        { name: 'Agile Delivery (Jira/Confluence)', level: 85 },
-        { name: 'Stakeholder Communication / Demos', level: 95 }
-      ]
-    },
-    {
-      title: 'Frontend (secondary)',
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
-          <line x1="12" y1="18" x2="12.01" y2="18"></line>
-        </svg>
-      ),
-      description: 'Building responsive interfaces to support platform goals',
-      skills: [
-        { name: 'React / Next.js', level: 90 },
-        { name: 'React Native', level: 85 },
-        { name: 'TypeScript', level: 85 }
-      ]
-    },
-    {
-      title: 'Additional Tools',
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <circle cx="12" cy="12" r="1"></circle>
-          <circle cx="19" cy="12" r="1"></circle>
-          <circle cx="5" cy="12" r="1"></circle>
-        </svg>
-      ),
-      description: 'Technologies previously used or learning in progress',
-      skills: [
-        { name: 'Flutter / Dart', level: 75 },
-        { name: 'Framer', level: 80 },
-        { name: 'Babylon.js / Three.js', level: 70 },
-        { name: 'AWS (Learning - Cert in progress)', level: 50 }
-      ]
-    }
-  ];
-
-  // Work process/methodology
-  const workProcess = [
-    {
-      title: 'Research & Planning',
-      description: 'I begin by thoroughly understanding project requirements and researching best approaches.',
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <circle cx="11" cy="11" r="8"></circle>
-          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-        </svg>
-      )
-    },
-    {
-      title: 'Design & Architecture',
-      description: 'Next, I create a solid architecture design that ensures scalability and maintainability.',
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon>
-          <line x1="8" y1="2" x2="8" y2="18"></line>
-          <line x1="16" y1="6" x2="16" y2="22"></line>
-        </svg>
-      )
-    },
-    {
-      title: 'Development',
-      description: 'During development, I follow best practices for clean, maintainable, and well-documented code.',
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <polyline points="16 18 22 12 16 6"></polyline>
-          <polyline points="8 6 2 12 8 18"></polyline>
-        </svg>
-      )
-    },
-    {
-      title: 'Testing & Optimization',
-      description: 'Rigorous testing and performance optimization to ensure a smooth, bug-free experience.',
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
-        </svg>
-      )
-    }
-  ];
 
   return (
     <div className="skills-page">
-      <div className="no-gap-container">
+      {/* Header */}
+      <motion.div className="skills-header" {...sectionReveal}>
+        <span className="section-marker">capabilities</span>
+        <h1>Skills &amp; Experience</h1>
+        <p className="skills-intro">
+          4th-year Honours Computer Science and Management student at Wilfrid Laurier University,
+          AWS Certified Cloud Practitioner, and currently a DevOps / Cloud Engineering Intern at
+          WellnessLiving. My skill set spans cloud operations at fleet scale, AI systems in
+          production, and high-performance computing — built by owning real systems end-to-end.
+        </p>
+      </motion.div>
 
-
-        {/* Main Skills Header Section */}
-        <div className="skills-header" ref={sectionRefs.mainSkills}>
-          <h1>My Technical Skills</h1>
-          <p className="skills-intro">
-            As a fourth-year Honours Bachelor of Computer Science and Management student at Wilfrid Laurier University,
-            I've developed a versatile technical skill set through academic projects and professional experience as a Contract Full Stack Developer.
-            Based in Vaughan, Ontario, I'm passionate about creating intuitive, user-focused solutions.
-          </p>
-          <div className="dual-specialization">
-            <div className="specialization-card">
-              <div className="specialization-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <polyline points="16 18 22 12 16 6"></polyline>
-                  <polyline points="8 6 2 12 8 18"></polyline>
-                </svg>
+      {/* Skill categories */}
+      <motion.div className="skill-categories" {...sectionReveal}>
+        {skillCategories.map((category, index) => (
+          <div className="skill-section" key={index}>
+            <div className="skill-category-header">
+              <div className="skill-category-icon">{category.icon}</div>
+              <div className="skill-category-text">
+                <h2>{category.title}</h2>
+                <p>{category.description}</p>
               </div>
-              <h3>Computer Science</h3>
-              <p>Mastering algorithms, system architecture, and full-stack development to build robust, scalable technical solutions.</p>
             </div>
-            <div className="specialization-card">
-              <div className="specialization-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
-                  <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
-                  <line x1="12" y1="22.08" x2="12" y2="12"></line>
-                </svg>
-              </div>
-              <h3>Business Management</h3>
-              <p>Leveraging strategic thinking, agile methodologies, and product management to align technical execution with business goals.</p>
+            <div className="skill-tags-container">
+              {category.skills.map((skill, idx) => (
+                <div className="skill-tag" key={idx}>
+                  {skill}
+                </div>
+              ))}
             </div>
           </div>
-        </div>
+        ))}
+      </motion.div>
 
-        {/* Work Process Section */}
-        <div className="work-process-section" ref={sectionRefs.workProcess}>
-          <h2>My Development Process</h2>
-          <p className="section-intro">I follow a systematic approach to ensure high-quality deliverables</p>
+      {/* Skills Sphere */}
+      <motion.div className="languages-section" {...sectionReveal}>
+        <span className="section-marker">the full stack</span>
+        <h2>Technologies</h2>
+        <SkillsSphere />
+      </motion.div>
 
-          <div className="process-steps">
-            {workProcess.map((step, index) => (
-              <div className="process-step" key={index}>
-                <div className="step-number">{index + 1}</div>
-                <div className="step-icon">{step.icon}</div>
-                <h3>{step.title}</h3>
-                <p>{step.description}</p>
+      {/* Certifications */}
+      <motion.div className="certifications-section" {...sectionReveal}>
+        <span className="section-marker">credentials</span>
+        <h2>Certifications</h2>
+        <div className="certifications-grid">
+          {certifications.map((cert, i) => (
+            <div className={`cert-card ${cert.inProgress ? 'cert-in-progress' : ''}`} key={i}>
+              <div className="cert-icon">{cert.icon}</div>
+              <div className="cert-body">
+                <h3>{cert.title}</h3>
+                <span className="cert-issuer">{cert.issuer}</span>
               </div>
-            ))}
-          </div>
+              <span className="cert-date">{cert.date}</span>
+            </div>
+          ))}
         </div>
+      </motion.div>
 
-        {/* Experience Section */}
-        <div className="experience-section" ref={sectionRefs.workProcess}>
-          <h2>Professional Experience</h2>
-          <ExperienceTimeline />
-        </div>
-
-        {/* Skills Sphere Section */}
-        <div className="languages-section" ref={sectionRefs.programmingLanguages}>
-          <h2>Technical Skills</h2>
-          <SkillsSphere />
-        </div>
-
-        {/* Skill Categories with Progress Bars */}
-        <div ref={sectionRefs.skillBars}>
-          {skillCategories.map((category, index) => {
-            return (
-              <div className="skill-section" key={index}>
-                <div className="skill-category-header">
-                  <div className="skill-category-icon">{category.icon}</div>
-                  <div className="skill-category-text">
-                    <h2>{category.title}</h2>
-                    <p>{category.description}</p>
-                  </div>
-                </div>
-                <div className="skill-tags-container">
-                  {category.skills.map((skill, idx) => (
-                    <div className="skill-tag" key={idx}>
-                      {skill.name}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-
-    </div >
+      {/* Experience */}
+      <motion.div className="experience-section" {...sectionReveal}>
+        <span className="section-marker">experience</span>
+        <h2>Where I've worked</h2>
+        <ExperienceTimeline />
+      </motion.div>
+    </div>
   );
 };
 
