@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useLightbox } from './Lightbox';
 import '../styles/ProjectCard3D.css';
 
@@ -54,12 +55,19 @@ const ProjectCard3D = ({ index, title, company, category, description, tags, lin
 
                     {links && links.length > 0 && (
                         <div className="card-links">
-                            {links.map((link, i) => (
-                                <a key={i} href={link.url} target="_blank" rel="noopener noreferrer" className="project-link-pill">
-                                    {link.icon}
-                                    <span>{link.label || (link.url.includes('github') ? 'GitHub' : 'Visit')}</span>
-                                </a>
-                            ))}
+                            {links.map((link, i) =>
+                                link.internal ? (
+                                    <Link key={i} to={link.url} className="project-link-pill">
+                                        {link.icon}
+                                        <span>{link.label}</span>
+                                    </Link>
+                                ) : (
+                                    <a key={i} href={link.url} target="_blank" rel="noopener noreferrer" className="project-link-pill">
+                                        {link.icon}
+                                        <span>{link.label || (link.url.includes('github') ? 'GitHub' : 'Visit')}</span>
+                                    </a>
+                                )
+                            )}
                         </div>
                     )}
                 </div>

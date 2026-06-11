@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { FaGithub, FaExternalLinkAlt, FaCar, FaPlaneDeparture, FaBrain, FaSnowboarding, FaFistRaised, FaDumbbell } from 'react-icons/fa';
+import { FaGithub, FaExternalLinkAlt, FaPlay, FaCar, FaPlaneDeparture, FaBrain, FaSnowboarding, FaFistRaised, FaDumbbell } from 'react-icons/fa';
 import '../styles/Home.css';
 import profilePhoto from '../images/opt/profilePhoto.jpeg';
 import tellToursLogo from '../images/opt/TellToursLogo.png';
@@ -50,7 +50,10 @@ const featuredProjects = [
     description:
       'An AI tour guide that narrates the world around you in real time as you walk, drive, or ride. Routes between Gemini, OpenAI, and Ollama with no code changes, tunes its prompts from Firestore without redeploys, and ships through keyless CI/CD on GCP. Now in pre-release with the beta waitlist open.',
     tags: ['React Native', 'GCP', 'Gemini', 'Node.js'],
-    links: [{ url: 'https://telltours.com', icon: <FaExternalLinkAlt size={13} />, label: 'telltours.com' }],
+    links: [
+      { url: '/showcase', internal: true, icon: <FaPlay size={11} />, label: 'Showcase' },
+      { url: 'https://telltours.com', icon: <FaExternalLinkAlt size={13} />, label: 'telltours.com' },
+    ],
   },
   {
     index: 2,

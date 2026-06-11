@@ -6,6 +6,7 @@ import '../styles/Header.css';
 const NAV_ITEMS = [
   { to: '/', label: 'Home' },
   { to: '/projects', label: 'Projects' },
+  { to: '/showcase', label: 'Showcase' },
   { to: '/skills', label: 'Skills' },
   { to: '/resume', label: 'Resume' },
   { to: '/contact', label: 'Contact' },

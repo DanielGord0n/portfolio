@@ -47,7 +47,7 @@ const useEarthDots = () => {
             ctx.drawImage(img, 0, 0);
             const { data, width, height } = ctx.getImageData(0, 0, canvas.width, canvas.height);
 
-            const count = 16000;
+            const count = 22000;
             const land = [];
             const ocean = [];
             for (let i = 0; i < count; i++) {
@@ -57,9 +57,13 @@ const useEarthDots = () => {
                 const x = Math.cos(theta) * r;
                 const z = Math.sin(theta) * r;
 
-                // Invert latLonToVec3 so dots line up with the site markers
+                // Invert latLonToVec3 so dots line up with the site markers.
+                // atan2 spans [-180, 180], so after the -180 shift the eastern
+                // hemisphere lands below -180 and must wrap back into range,
+                // otherwise half the planet samples the mask's left edge.
                 const lat = 90 - Math.acos(y) * (180 / Math.PI);
-                const lon = Math.atan2(z, -x) * (180 / Math.PI) - 180;
+                let lon = Math.atan2(z, -x) * (180 / Math.PI) - 180;
+                if (lon < -180) lon += 360;
 
                 const u = Math.min(width - 1, Math.max(0, Math.round(((lon + 180) / 360) * width)));
                 const v = Math.min(height - 1, Math.max(0, Math.round(((90 - lat) / 180) * height)));
@@ -182,10 +186,15 @@ const GlobeScene = ({ active, drag, dots }) => {
                 are properly hidden instead of ghosting through */}
             <mesh>
                 <sphereGeometry args={[GLOBE_RADIUS * 0.992, 48, 48]} />
-                <meshBasicMaterial color="#101F19" />
+                <meshBasicMaterial color="#13231C" />
             </mesh>
-            <DotField positions={dots.ocean} color="#33423A" size={0.0095} opacity={0.65} />
-            <DotField positions={dots.land} color="#9DB5A8" size={0.0135} opacity={0.95} />
+            {/* Soft atmosphere halo around the silhouette */}
+            <mesh>
+                <sphereGeometry args={[GLOBE_RADIUS * 1.06, 48, 48]} />
+                <meshBasicMaterial color="#00A36C" transparent opacity={0.07} side={THREE.BackSide} />
+            </mesh>
+            <DotField positions={dots.ocean} color="#4A5A51" size={0.011} opacity={0.8} />
+            <DotField positions={dots.land} color="#C7D6CC" size={0.0145} opacity={1} />
             <SiteMarkers />
             <Arcs />
         </group>

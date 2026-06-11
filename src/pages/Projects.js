@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
+import { FaGithub, FaExternalLinkAlt, FaPlay } from 'react-icons/fa';
 import ProjectCard3D from '../components/ProjectCard3D';
 import PageTransition from '../components/PageTransition';
 import { useLightbox } from '../components/Lightbox';
@@ -36,7 +37,10 @@ const caseStudies = [
       'Real-time geofenced playback triggers in React Native, a full GPS simulator for local testing, and in-flight LLM observability (model, token count, latency) on every narration call.',
     ],
     tags: ['React Native', 'Expo', 'Node.js', 'Express', 'GCP', 'Cloud Run', 'Firestore', 'Cloud TTS', 'Gemini', 'OpenAI'],
-    links: [{ url: 'https://telltours.com', icon: <FaExternalLinkAlt size={13} />, label: 'telltours.com' }],
+    links: [
+      { url: '/showcase', internal: true, icon: <FaPlay size={11} />, label: 'Scroll showcase' },
+      { url: 'https://telltours.com', icon: <FaExternalLinkAlt size={13} />, label: 'telltours.com' },
+    ],
     terminal: [
       { cmd: 'status', out: 'pre-release / beta waitlist live' },
       { cmd: 'providers', out: 'gemini > openai > ollama (hot-swap)' },
@@ -293,12 +297,19 @@ const CaseStudy = ({ study, flipped }) => {
       </ul>
 
       <div className="case-links">
-        {study.links.map((link, i) => (
-          <a key={i} href={link.url} target="_blank" rel="noopener noreferrer" className="project-link-pill">
-            {link.icon}
-            <span>{link.label}</span>
-          </a>
-        ))}
+        {study.links.map((link, i) =>
+          link.internal ? (
+            <Link key={i} to={link.url} className="project-link-pill">
+              {link.icon}
+              <span>{link.label}</span>
+            </Link>
+          ) : (
+            <a key={i} href={link.url} target="_blank" rel="noopener noreferrer" className="project-link-pill">
+              {link.icon}
+              <span>{link.label}</span>
+            </a>
+          )
+        )}
       </div>
     </div>
 
