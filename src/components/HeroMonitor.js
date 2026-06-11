@@ -105,8 +105,32 @@ const HeroMonitor = ({ variant = 'panel' }) => {
             { threshold: 0.05 }
         );
         observer.observe(el);
-        setMounted(true);
         return () => observer.disconnect();
+    }, []);
+
+    // Load the player chunk only after first paint settles: keeps the hero
+    // text's LCP independent of the Remotion download
+    useEffect(() => {
+        let idleId;
+        const start = () => {
+            if ('requestIdleCallback' in window) {
+                idleId = window.requestIdleCallback(() => setMounted(true), { timeout: 1500 });
+            } else {
+                idleId = setTimeout(() => setMounted(true), 500);
+            }
+        };
+        if (document.readyState === 'complete') {
+            start();
+        } else {
+            window.addEventListener('load', start, { once: true });
+        }
+        return () => {
+            window.removeEventListener('load', start);
+            if (idleId) {
+                if ('cancelIdleCallback' in window) window.cancelIdleCallback(idleId);
+                clearTimeout(idleId);
+            }
+        };
     }, []);
 
     const player = prefersReducedMotion ? (

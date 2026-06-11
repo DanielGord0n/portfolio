@@ -1,8 +1,12 @@
-import React, { useMemo, useRef } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
+import earthMask from '../images/earth-mask.png';
 
 const GLOBE_RADIUS = 1;
+const PITCH_MIN = -0.4;
+const PITCH_MAX = 0.5;
+const IDLE_SPIN = 0.0022;
 
 // Real footprint: home base, DRAC HPC clusters, cloud regions
 const SITES = [
@@ -24,27 +28,70 @@ const latLonToVec3 = (lat, lon, radius) => {
     );
 };
 
-// Fibonacci-distributed dot sphere
-const DotSphere = () => {
+// Sample the equirectangular land mask (land = dark pixels): land points get
+// bright dots, a sparse subset of ocean points gets faint dots so the sphere
+// always reads as a complete planet from every angle.
+const useEarthDots = () => {
+    const [dots, setDots] = useState(null);
+
+    useEffect(() => {
+        let cancelled = false;
+        const img = new Image();
+        img.src = earthMask;
+        img.onload = () => {
+            if (cancelled) return;
+            const canvas = document.createElement('canvas');
+            canvas.width = img.width;
+            canvas.height = img.height;
+            const ctx = canvas.getContext('2d', { willReadFrequently: true });
+            ctx.drawImage(img, 0, 0);
+            const { data, width, height } = ctx.getImageData(0, 0, canvas.width, canvas.height);
+
+            const count = 16000;
+            const land = [];
+            const ocean = [];
+            for (let i = 0; i < count; i++) {
+                const y = 1 - (i / (count - 1)) * 2;
+                const r = Math.sqrt(1 - y * y);
+                const theta = i * Math.PI * (3 - Math.sqrt(5));
+                const x = Math.cos(theta) * r;
+                const z = Math.sin(theta) * r;
+
+                // Invert latLonToVec3 so dots line up with the site markers
+                const lat = 90 - Math.acos(y) * (180 / Math.PI);
+                const lon = Math.atan2(z, -x) * (180 / Math.PI) - 180;
+
+                const u = Math.min(width - 1, Math.max(0, Math.round(((lon + 180) / 360) * width)));
+                const v = Math.min(height - 1, Math.max(0, Math.round(((90 - lat) / 180) * height)));
+                const pixel = data[(v * width + u) * 4];
+
+                if (pixel < 128) {
+                    land.push(x * GLOBE_RADIUS, y * GLOBE_RADIUS, z * GLOBE_RADIUS);
+                } else if (i % 3 === 0) {
+                    ocean.push(x * GLOBE_RADIUS, y * GLOBE_RADIUS, z * GLOBE_RADIUS);
+                }
+            }
+            setDots({
+                land: new Float32Array(land),
+                ocean: new Float32Array(ocean),
+            });
+        };
+        return () => { cancelled = true; };
+    }, []);
+
+    return dots;
+};
+
+const DotField = ({ positions, color, size, opacity }) => {
     const geometry = useMemo(() => {
-        const count = 900;
-        const positions = new Float32Array(count * 3);
-        for (let i = 0; i < count; i++) {
-            const y = 1 - (i / (count - 1)) * 2;
-            const r = Math.sqrt(1 - y * y);
-            const theta = i * Math.PI * (3 - Math.sqrt(5));
-            positions[i * 3] = Math.cos(theta) * r * GLOBE_RADIUS;
-            positions[i * 3 + 1] = y * GLOBE_RADIUS;
-            positions[i * 3 + 2] = Math.sin(theta) * r * GLOBE_RADIUS;
-        }
         const geo = new THREE.BufferGeometry();
         geo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
         return geo;
-    }, []);
+    }, [positions]);
 
     return (
         <points geometry={geometry}>
-            <pointsMaterial color="#6e7f76" size={0.022} sizeAttenuation transparent opacity={0.95} />
+            <pointsMaterial color={color} size={size} sizeAttenuation transparent opacity={opacity} />
         </points>
     );
 };
@@ -65,7 +112,7 @@ const SiteMarkers = () => {
     return (
         <>
             {SITES.map((site, i) => {
-                const pos = latLonToVec3(site.lat, site.lon, GLOBE_RADIUS * 1.01);
+                const pos = latLonToVec3(site.lat, site.lon, GLOBE_RADIUS * 1.012);
                 return (
                     <mesh
                         key={site.name}
@@ -105,48 +152,40 @@ const Arcs = () => {
     );
 };
 
-const GlobeScene = ({ active }) => {
+// drag.current: { yaw, pitch, yawVelocity, dragging }
+const GlobeScene = ({ active, drag, dots }) => {
     const groupRef = useRef(null);
-    const dragState = useRef({ dragging: false, lastX: 0, velocity: 0.0016 });
 
     useFrame((_, delta) => {
         const group = groupRef.current;
         if (!group) return;
-        if (!dragState.current.dragging && active) {
-            group.rotation.y += dragState.current.velocity * (delta * 60);
-            // Ease drag momentum back to the idle cruise speed
-            dragState.current.velocity += (0.0016 - dragState.current.velocity) * 0.02;
+        const state = drag.current;
+        const step = delta * 60;
+
+        if (!state.dragging) {
+            // Inertia decays toward a gentle idle spin
+            state.yawVelocity += (IDLE_SPIN * (active ? 1 : 0) - state.yawVelocity) * 0.03 * step;
+            state.yaw += state.yawVelocity * step;
+            // Pitch eases back toward a comfortable angle
+            state.pitch += (0.28 - state.pitch) * 0.02 * step;
         }
+
+        // Smoothly follow the targets for a damped, fluid feel
+        group.rotation.y += (state.yaw - group.rotation.y) * 0.18 * step;
+        group.rotation.x += (state.pitch - group.rotation.x) * 0.18 * step;
     });
 
-    const onPointerDown = (e) => {
-        dragState.current.dragging = true;
-        dragState.current.lastX = e.clientX;
-    };
-    const onPointerMove = (e) => {
-        if (!dragState.current.dragging || !groupRef.current) return;
-        const dx = e.clientX - dragState.current.lastX;
-        dragState.current.lastX = e.clientX;
-        groupRef.current.rotation.y += dx * 0.005;
-        dragState.current.velocity = dx * 0.0009;
-    };
-    const endDrag = () => { dragState.current.dragging = false; };
-
     return (
-        <group
-            ref={groupRef}
-            rotation={[0.25, 2.4, 0]}
-            onPointerDown={onPointerDown}
-            onPointerMove={onPointerMove}
-            onPointerUp={endDrag}
-            onPointerLeave={endDrag}
-        >
-            {/* Faint solid body so the dot field reads as a globe; also catches pointer events */}
+        // Initial yaw 0.22 puts Toronto and the marker cluster face-on
+        <group ref={groupRef} rotation={[0.28, 0.22, 0]}>
+            {/* Opaque body: writes depth so far-side dots, markers, and arcs
+                are properly hidden instead of ghosting through */}
             <mesh>
-                <sphereGeometry args={[GLOBE_RADIUS * 0.985, 32, 32]} />
-                <meshBasicMaterial color="#0E2A20" transparent opacity={0.5} />
+                <sphereGeometry args={[GLOBE_RADIUS * 0.992, 48, 48]} />
+                <meshBasicMaterial color="#101F19" />
             </mesh>
-            <DotSphere />
+            <DotField positions={dots.ocean} color="#33423A" size={0.0095} opacity={0.65} />
+            <DotField positions={dots.land} color="#9DB5A8" size={0.0135} opacity={0.95} />
             <SiteMarkers />
             <Arcs />
         </group>
@@ -154,16 +193,63 @@ const GlobeScene = ({ active }) => {
 };
 
 const SystemGlobe = ({ active = true }) => {
+    const dots = useEarthDots();
+    const drag = useRef({ yaw: 0.22, pitch: 0.28, yawVelocity: IDLE_SPIN, dragging: false });
+    const pointer = useRef({ lastX: 0, lastY: 0, lastMoveX: 0 });
+    const [grabbing, setGrabbing] = useState(false);
+
+    const onPointerDown = (e) => {
+        drag.current.dragging = true;
+        drag.current.yawVelocity = 0;
+        pointer.current.lastX = e.clientX;
+        pointer.current.lastY = e.clientY;
+        pointer.current.lastMoveX = 0;
+        setGrabbing(true);
+        // Keep receiving moves even when the pointer leaves the tile mid-drag
+        e.currentTarget.setPointerCapture(e.pointerId);
+    };
+
+    const onPointerMove = (e) => {
+        if (!drag.current.dragging) return;
+        const dx = e.clientX - pointer.current.lastX;
+        const dy = e.clientY - pointer.current.lastY;
+        pointer.current.lastX = e.clientX;
+        pointer.current.lastY = e.clientY;
+        pointer.current.lastMoveX = dx;
+
+        drag.current.yaw += dx * 0.006;
+        drag.current.pitch = Math.min(
+            PITCH_MAX,
+            Math.max(PITCH_MIN, drag.current.pitch + dy * 0.004)
+        );
+    };
+
+    const onPointerUp = () => {
+        if (!drag.current.dragging) return;
+        drag.current.dragging = false;
+        // Fling: carry the last move into momentum
+        drag.current.yawVelocity = Math.max(-0.06, Math.min(0.06, pointer.current.lastMoveX * 0.0012));
+        setGrabbing(false);
+    };
+
     return (
-        <Canvas
-            camera={{ position: [0, 0.1, 2.55], fov: 45 }}
-            dpr={[1, 1.75]}
-            frameloop={active ? 'always' : 'demand'}
-            gl={{ antialias: true, alpha: true }}
-            style={{ width: '100%', height: '100%', cursor: 'grab', touchAction: 'pan-y' }}
+        <div
+            style={{ width: '100%', height: '100%', cursor: grabbing ? 'grabbing' : 'grab', touchAction: 'pan-y' }}
+            onPointerDown={onPointerDown}
+            onPointerMove={onPointerMove}
+            onPointerUp={onPointerUp}
+            onPointerCancel={onPointerUp}
         >
-            <GlobeScene active={active} />
-        </Canvas>
+            <Canvas
+                camera={{ position: [0, 0.1, 2.55], fov: 45 }}
+                dpr={[1, 1.75]}
+                frameloop={active ? 'always' : 'demand'}
+                gl={{ antialias: true, alpha: true }}
+                style={{ width: '100%', height: '100%' }}
+            >
+                {dots && <GlobeScene active={active} drag={drag} dots={dots} />}
+            </Canvas>
+        </div>
     );
 };
 

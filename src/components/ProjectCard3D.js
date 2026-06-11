@@ -5,7 +5,7 @@ import '../styles/ProjectCard3D.css';
 // Cards deliberately do not track the pointer with transforms: moving a
 // surface that contains links makes them miss clicks. Hover feedback is
 // border, glow, and the racing stripe instead.
-const ProjectCard3D = ({ index, title, company, category, description, tags, links, image, imageWide }) => {
+const ProjectCard3D = ({ index, title, company, category, description, tags, links, image, imageWide, logoTreatment }) => {
     const { openLightbox } = useLightbox();
 
     const monogram = title
@@ -23,7 +23,7 @@ const ProjectCard3D = ({ index, title, company, category, description, tags, lin
                     {image ? (
                         <button
                             type="button"
-                            className={`card-logo ${imageWide ? 'card-logo-wide' : ''}`}
+                            className={`card-logo ${imageWide ? 'card-logo-wide' : ''} ${logoTreatment ? `card-logo-${logoTreatment}` : ''}`}
                             onClick={() => openLightbox(image, title)}
                             aria-label={`View ${title} logo larger`}
                             title="Click to enlarge"

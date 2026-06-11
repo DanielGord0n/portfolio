@@ -80,6 +80,12 @@
 .monitor-screen {
     background: var(--bg-primary);
     overflow: hidden;
+    /* Reserve the 16:9 box before the lazy Player mounts: prevents layout shift */
+    aspect-ratio: 16 / 9;
+}
+
+.monitor-screen > * {
+    width: 100%;
 }
 
 .monitor-footer {

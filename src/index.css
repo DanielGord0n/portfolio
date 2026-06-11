@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Saira+Condensed:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+/* Fonts: see public/fonts.css (static, parallel-loaded, preloaded in index.html) */
 
 :root {
   /* Core colors: graphite, racing green, silver */
@@ -9,7 +9,8 @@
 
   --text-primary: #DCE3DE;
   --text-secondary: #9BA8A0;
-  --text-muted: #5F6C64;
+  /* Lightest tone still meeting WCAG AA (4.5:1) on the graphite background */
+  --text-muted: #79877E;
 
   --accent-primary: #00A36C;
   --accent-secondary: #43D695;

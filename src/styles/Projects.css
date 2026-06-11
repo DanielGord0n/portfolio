@@ -90,10 +90,9 @@
 }
 
 .case-logo-btn {
-  background: rgba(220, 227, 222, 0.94);
-  border: 1px solid var(--border-strong);
-  border-radius: var(--radius-md);
-  padding: 6px;
+  background: transparent;
+  border: none;
+  padding: 0;
   cursor: zoom-in;
   flex-shrink: 0;
   display: flex;
@@ -101,15 +100,15 @@
 }
 
 .case-logo-btn:hover {
-  border-color: var(--accent-dim);
-  transform: scale(1.05);
+  transform: scale(1.07);
 }
 
 .case-logo {
-  width: 42px;
-  height: 42px;
+  width: 58px;
+  height: 58px;
   object-fit: contain;
   display: block;
+  filter: drop-shadow(0 0 10px rgba(220, 227, 222, 0.16));
 }
 
 .case-title {

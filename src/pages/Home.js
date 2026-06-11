@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { FaGithub, FaExternalLinkAlt, FaCar, FaPlaneDeparture, FaBrain, FaSnowboarding, FaFistRaised, FaDumbbell } from 'react-icons/fa';
 import '../styles/Home.css';
 import profilePhoto from '../images/opt/profilePhoto.jpeg';
-import tellToursLogo from '../images/TellToursLogo.png';
+import tellToursLogo from '../images/opt/TellToursLogo.png';
 import PageTransition from '../components/PageTransition';
 import TypingText from '../components/TypingText';
 import ProjectCard3D from '../components/ProjectCard3D';
@@ -12,16 +12,17 @@ import HeroMonitor from '../components/HeroMonitor';
 import StatGauge from '../components/StatGauge';
 import MissionControl from '../components/MissionControl';
 
+// Snappy entrance: long delays here directly push out LCP
 const heroStagger = {
   hidden: {},
   visible: {
-    transition: { staggerChildren: 0.09, delayChildren: 0.1 },
+    transition: { staggerChildren: 0.06, delayChildren: 0.04 },
   },
 };
 
 const heroItem = {
-  hidden: { opacity: 0, y: 18 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] } },
+  hidden: { opacity: 0, y: 14 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] } },
 };
 
 const sectionReveal = {
@@ -157,11 +158,12 @@ const Home = () => {
               <span className="hero-sector-line">CLOUD&nbsp;//&nbsp;DEVOPS&nbsp;//&nbsp;AI SYSTEMS</span>
             </motion.div>
 
-            <motion.p className="hero-description" variants={heroItem}>
+            {/* Static (not opacity-gated): this is the page's LCP element on mobile */}
+            <p className="hero-description">
               I build and operate production systems end to end: cloud infrastructure, AI pipelines,
               and client deployments. I work directly with stakeholders to scope, ship, and own
               outcomes in ambiguous environments.
-            </motion.p>
+            </p>
 
             <motion.div className="hero-status" variants={heroItem}>
               <span className="status-prompt">$</span>

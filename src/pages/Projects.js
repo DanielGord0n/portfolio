@@ -7,7 +7,7 @@ import { useLightbox } from '../components/Lightbox';
 import '../styles/Projects.css';
 
 import tellToursLogo from '../images/opt/TellToursLogo.png';
-import mcgLogo from '../images/MCGLogo.png';
+import mcgLogo from '../images/opt/MCGLogo.png';
 import vivaLogo from '../images/VivaLogo.png';
 import launchpathLogo from '../images/opt/launchpathLogo.png';
 import laurierLogo from '../images/opt/LaurierLogo.png';
@@ -128,6 +128,7 @@ const projects = [
     company: 'MCG Digital Assetization',
     category: 'AI Systems',
     image: mcgLogo,
+    logoTreatment: 'invert',
     description:
       'Integrated OpenAI Whisper and LLM orchestration into production AI workflows for real-time 3D avatar animation, benchmarking accuracy and latency tradeoffs across models. Improved overall system performance by 25%. Refactored the Python/JavaScript lip-sync pipeline for Unity avatars, exposed as RESTful services to a React/Next.js frontend.',
     tags: ['Python', 'OpenAI Whisper', 'Unity', 'Next.js', 'REST APIs'],
@@ -179,6 +180,7 @@ const projects = [
     category: 'Architecture',
     image: launchpathLogo,
     imageWide: true,
+    logoTreatment: 'hue',
     description:
       'Owned the full-stack solution architecture for a biosensor analytics platform. Designed C4 system diagrams, defined API specifications, and implemented a React Native + Python microservices ecosystem for real-time data ingestion. Delivered a secure, production-ready system for clinical data reporting.',
     tags: ['React Native', 'Python', 'Microservices', 'C4 Architecture'],
@@ -190,6 +192,7 @@ const projects = [
     company: 'This site',
     category: 'Frontend',
     image: dgLogo,
+    logoTreatment: 'invert',
     description:
       'The site you are on. A programmatic title sequence rendered in React with Remotion, an animated SVG telemetry gauge cluster, a lazy-loaded React Three Fiber systems globe, and a 3D skill sphere built with pure CSS transforms. The design system is hand-rolled CSS variables. No Tailwind, no component library.',
     tags: ['React 19', 'Remotion', 'React Three Fiber', 'Framer Motion 12', 'Vanilla CSS'],
@@ -201,6 +204,7 @@ const projects = [
     company: 'Academic Project',
     category: 'Algorithms',
     image: queenIcon,
+    logoTreatment: 'invert',
     description:
       'Implemented an optimized Min-Conflicts CSP solver scaling to N=1,000,000. Designed greedy initialization and constant-time conflict repair to reduce runtime to O(n).',
     tags: ['Python', 'Min-Conflicts CSP', 'Optimization', 'PyTorch'],
@@ -223,6 +227,7 @@ const projects = [
     company: 'Futures and Fringes',
     category: 'Frontend',
     image: ffLogo,
+    logoTreatment: 'invert',
     description:
       'Designed and launched a CMS-powered website in Framer. Improved mobile load times by 25% and integrated interactive features for better user engagement.',
     tags: ['Framer', 'CMS', 'UI/UX Design'],
@@ -378,6 +383,7 @@ const Projects = () => {
             links={project.links}
             image={project.image}
             imageWide={project.imageWide}
+            logoTreatment={project.logoTreatment}
           />
         ))}
       </div>
