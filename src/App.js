@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import React from 'react'; // re-add Suspense when the showcase route returns
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence, MotionConfig } from 'framer-motion';
 import './App.css';
@@ -17,23 +17,26 @@ import Resume from './pages/Resume';
 import Contact from './pages/Contact';
 import NotFound from './pages/NotFound';
 
-// The TellTours scroll film loads on demand
-const Showcase = React.lazy(() => import('./pages/Showcase'));
-
-const ShowcaseLoading = () => (
-  <div style={{
-    minHeight: '100vh',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    fontFamily: "'JetBrains Mono', monospace",
-    fontSize: 13,
-    letterSpacing: '0.2em',
-    color: '#A8B8AC',
-  }}>
-    LOADING THE TOUR ...
-  </div>
-);
+// TellTours scroll film: shelved until the Higgsfield clips are ready.
+// To re-enable, uncomment this block, the /showcase Route below, the
+// immersive check in AppShell, the nav item in Header.js, and the
+// showcase links on the TellTours card (Home.js) and case study (Projects.js).
+// const Showcase = React.lazy(() => import('./pages/Showcase'));
+//
+// const ShowcaseLoading = () => (
+//   <div style={{
+//     minHeight: '100vh',
+//     display: 'flex',
+//     alignItems: 'center',
+//     justifyContent: 'center',
+//     fontFamily: "'JetBrains Mono', monospace",
+//     fontSize: 13,
+//     letterSpacing: '0.2em',
+//     color: '#A8B8AC',
+//   }}>
+//     LOADING THE TOUR ...
+//   </div>
+// );
 
 const AnimatedRoutes = () => {
   const location = useLocation();
@@ -46,14 +49,14 @@ const AnimatedRoutes = () => {
         <Route path="/skills" element={<Skills />} />
         <Route path="/resume" element={<Resume />} />
         <Route path="/contact" element={<Contact />} />
-        <Route
+        {/* <Route
           path="/showcase"
           element={
             <Suspense fallback={<ShowcaseLoading />}>
               <Showcase />
             </Suspense>
           }
-        />
+        /> */}
         <Route path="*" element={<NotFound />} />
       </Routes>
     </AnimatePresence>
@@ -63,8 +66,8 @@ const AnimatedRoutes = () => {
 // Inside the Router so it can read the location: the showcase is a
 // full-takeover page with no site header or footer
 const AppShell = () => {
-  const location = useLocation();
-  const immersive = location.pathname === '/showcase';
+  const location = useLocation(); // eslint-disable-line no-unused-vars
+  const immersive = false; // location.pathname === '/showcase' (showcase shelved)
 
   return (
     <div className="App">

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { FaGithub, FaExternalLinkAlt, FaPlay } from 'react-icons/fa';
+import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa'; // re-add FaPlay when the showcase link returns
 import ProjectCard3D from '../components/ProjectCard3D';
 import PageTransition from '../components/PageTransition';
 import { useLightbox } from '../components/Lightbox';
@@ -38,7 +38,7 @@ const caseStudies = [
     ],
     tags: ['React Native', 'Expo', 'Node.js', 'Express', 'GCP', 'Cloud Run', 'Firestore', 'Cloud TTS', 'Gemini', 'OpenAI'],
     links: [
-      { url: '/showcase', internal: true, icon: <FaPlay size={11} />, label: 'Scroll showcase' },
+      // { url: '/showcase', internal: true, icon: <FaPlay size={11} />, label: 'Scroll showcase' }, // shelved
       { url: 'https://telltours.com', icon: <FaExternalLinkAlt size={13} />, label: 'telltours.com' },
     ],
     terminal: [
