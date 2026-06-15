@@ -38,18 +38,6 @@ const STATS = [
     { value: 4, suffix: '', label: 'NATIONAL HPC CLUSTERS' },
 ];
 
-const Grid = ({ opacity }) => (
-    <AbsoluteFill
-        style={{
-            opacity,
-            backgroundImage:
-                'linear-gradient(to right, rgba(155,168,160,0.07) 1px, transparent 1px),' +
-                'linear-gradient(to bottom, rgba(155,168,160,0.07) 1px, transparent 1px)',
-            backgroundSize: '96px 96px',
-        }}
-    />
-);
-
 const CornerBrackets = ({ progress }) => {
     const size = interpolate(progress, [0, 1], [0, 38]);
     const common = {
@@ -372,9 +360,10 @@ const TitleSequence = () => {
     });
 
     return (
-        <AbsoluteFill style={{ backgroundColor: COLORS.bg }}>
+        // Transparent root: in the cinema hero the live warped-grid canvas
+        // shows through; the panel variant supplies its own screen background.
+        <AbsoluteFill>
             <AbsoluteFill style={{ opacity: loopFade }}>
-                <Grid opacity={gridOpacity * 0.8} />
                 <CornerBrackets progress={bracketProgress} />
 
                 <Sequence durationInFrames={62}>

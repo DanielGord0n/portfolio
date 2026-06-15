@@ -77,18 +77,17 @@
     max-height: 100%;
     object-fit: contain;
     display: block;
-    filter: drop-shadow(0 0 10px rgba(220, 227, 222, 0.16));
 }
 
 /* Black marks become silver on the dark theme; true colors show in the lightbox */
 .card-logo-invert img {
-    filter: invert(1) drop-shadow(0 0 10px rgba(220, 227, 222, 0.12));
+    filter: invert(1);
     opacity: 0.92;
 }
 
 /* Dark-on-light multicolor marks: flip lightness, roughly keep hue */
 .card-logo-hue img {
-    filter: invert(1) hue-rotate(180deg) drop-shadow(0 0 10px rgba(220, 227, 222, 0.12));
+    filter: invert(1) hue-rotate(180deg);
 }
 
 .card-monogram {

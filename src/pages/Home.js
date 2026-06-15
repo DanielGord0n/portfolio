@@ -4,7 +4,9 @@ import { motion } from 'framer-motion';
 import { FaGithub, FaExternalLinkAlt, FaCar, FaPlaneDeparture, FaBrain, FaSnowboarding, FaFistRaised, FaDumbbell } from 'react-icons/fa';
 import '../styles/Home.css';
 import profilePhoto from '../images/opt/profilePhoto.jpeg';
-import tellToursLogo from '../images/opt/TellToursLogo.png';
+import tellToursLogo from '../images/TellToursLogo.svg';
+import bs45Mark from '../images/BS45Mark.svg';
+import phoenixMark from '../images/PhoenixMark.svg';
 import PageTransition from '../components/PageTransition';
 import TypingText from '../components/TypingText';
 import ProjectCard3D from '../components/ProjectCard3D';
@@ -60,6 +62,7 @@ const featuredProjects = [
     title: 'BS45 Quantum Explorer',
     company: 'Research / Wilfrid Laurier University',
     category: 'HPC / C++',
+    image: bs45Mark,
     description:
       'A distributed C++17 solver hunting BS(45,44), an unsolved problem in combinatorial mathematics. It runs on 4 of Canada\'s national supercomputing clusters, coordinates 10,000+ CPU cores through SLURM, and prunes the naive search space by roughly 100x.',
     tags: ['C++17', 'OpenMP', 'SLURM', 'HPC'],
@@ -70,6 +73,7 @@ const featuredProjects = [
     title: 'Phoenix Bot',
     company: 'Self-employed / shipped v0.2.1',
     category: 'Desktop / AI',
+    image: phoenixMark,
     description:
       'A cross-platform Electron app that summarizes WhatsApp group chats with Gemini. The hard part: keeping a persistent Puppeteer/headless-Chrome session alive inside the Electron main process, something serverless platforms simply cannot do. Credentials live in the OS keychain, state in local SQLite.',
     tags: ['Electron', 'Puppeteer', 'Gemini', 'SQLite'],

@@ -3,6 +3,8 @@
   margin-top: var(--space-xxl);
   padding: 2rem 1.5rem;
   background: var(--bg-secondary);
+  position: relative;
+  z-index: 1;
 }
 
 .footer-inner {

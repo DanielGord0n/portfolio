@@ -7,12 +7,15 @@ import PageTransition from '../components/PageTransition';
 import { useLightbox } from '../components/Lightbox';
 import '../styles/Projects.css';
 
-import tellToursLogo from '../images/opt/TellToursLogo.png';
+import tellToursLogo from '../images/TellToursLogo.svg';
 import mcgLogo from '../images/opt/MCGLogo.png';
 import vivaLogo from '../images/VivaLogo.png';
 import launchpathLogo from '../images/opt/launchpathLogo.png';
 import laurierLogo from '../images/opt/LaurierLogo.png';
 import elenasArtLogo from '../images/opt/ElenasArtLogo.png';
+import bs45Mark from '../images/BS45Mark.svg';
+import phoenixMark from '../images/PhoenixMark.svg';
+import medDoseMark from '../images/MedDoseMark.svg';
 import dgLogo from '../images/opt/DG_logo.png';
 import queenIcon from '../images/QueenIcon.png';
 import waiverLogo from '../images/waiver.png';
@@ -55,7 +58,7 @@ const caseStudies = [
     subtitle: 'Distributed HPC Solver / Research Assistantship, Wilfrid Laurier University',
     period: '2025 - Present',
     category: 'HPC / C++ / Research',
-    logo: laurierLogo,
+    logo: bs45Mark,
     description:
       'A high-performance distributed search engine hunting BS(45,44), an unsolved world-record target in combinatorial mathematics. Built for my research assistantship and deployed on Canada\'s national supercomputing clusters, coordinating more than 10,000 CPU cores.',
     highlights: [
@@ -79,6 +82,7 @@ const caseStudies = [
     subtitle: 'AI WhatsApp Group Chat Summarizer / Self-employed',
     period: '2025',
     category: 'Desktop / Electron / AI',
+    logo: phoenixMark,
     description:
       'A cross-platform desktop app (macOS, Windows, Linux) that connects to WhatsApp via QR code, monitors group chats, and generates structured AI summaries with Google Gemini. Shipped as v0.2.1 with signed, notarized installers.',
     highlights: [
@@ -105,6 +109,7 @@ const caseStudies = [
     subtitle: 'AI-Powered Medication Assessment App / built at LaunchPath Inc.',
     period: '2025',
     category: 'AI / Mobile / Backend',
+    logo: medDoseMark,
     description:
       'An AI-powered medication assessment and dosage guidance app: the work from my Junior Solutions Architect role at LaunchPath Inc., shared as an NDA-safe public rebuild. Users complete a dynamic 15-step health questionnaire, and the backend builds a structured prompt for Google Gemini that returns dosage recommendations with step-by-step mathematical reasoning.',
     highlights: [

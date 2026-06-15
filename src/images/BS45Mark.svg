@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <!-- BS45 Quantum Explorer: a +1/-1 binary sequence as a square wave -->
+  <path d="M8 32 h48" stroke="#C2CBC5" stroke-width="1.5" stroke-dasharray="2 4" opacity="0.6"/>
+  <path d="M8 42 h7 v-20 h8 v20 h8 v-20 h8 v20 h8 v-20 h9"
+        stroke="#43D695" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="15" cy="22" r="2.4" fill="#C2CBC5"/>
+  <circle cx="39" cy="42" r="2.4" fill="#C2CBC5"/>
+</svg>
