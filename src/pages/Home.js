@@ -6,7 +6,7 @@ import '../styles/Home.css';
 import profilePhoto from '../images/opt/profilePhoto.jpeg';
 import tellToursLogo from '../images/TellToursLogo.svg';
 import bs45Mark from '../images/BS45Mark.svg';
-import phoenixMark from '../images/PhoenixMark.svg';
+import phoenixLogo from '../images/opt/PhoenixBotLogo.png';
 import PageTransition from '../components/PageTransition';
 import TypingText from '../components/TypingText';
 import ProjectCard3D from '../components/ProjectCard3D';
@@ -73,7 +73,7 @@ const featuredProjects = [
     title: 'Phoenix Bot',
     company: 'Self-employed / shipped v0.2.1',
     category: 'Desktop / AI',
-    image: phoenixMark,
+    image: phoenixLogo,
     description:
       'A cross-platform Electron app that summarizes WhatsApp group chats with Gemini. The hard part: keeping a persistent Puppeteer/headless-Chrome session alive inside the Electron main process, something serverless platforms simply cannot do. Credentials live in the OS keychain, state in local SQLite.',
     tags: ['Electron', 'Puppeteer', 'Gemini', 'SQLite'],

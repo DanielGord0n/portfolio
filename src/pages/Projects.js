@@ -14,7 +14,7 @@ import launchpathLogo from '../images/opt/launchpathLogo.png';
 import laurierLogo from '../images/opt/LaurierLogo.png';
 import elenasArtLogo from '../images/opt/ElenasArtLogo.png';
 import bs45Mark from '../images/BS45Mark.svg';
-import phoenixMark from '../images/PhoenixMark.svg';
+import phoenixLogo from '../images/opt/PhoenixBotLogo.png';
 import medDoseMark from '../images/MedDoseMark.svg';
 import dgLogo from '../images/opt/DG_logo.png';
 import queenIcon from '../images/QueenIcon.png';
@@ -82,7 +82,7 @@ const caseStudies = [
     subtitle: 'AI WhatsApp Group Chat Summarizer / Self-employed',
     period: '2025',
     category: 'Desktop / Electron / AI',
-    logo: phoenixMark,
+    logo: phoenixLogo,
     description:
       'A cross-platform desktop app (macOS, Windows, Linux) that connects to WhatsApp via QR code, monitors group chats, and generates structured AI summaries with Google Gemini. Shipped as v0.2.1 with signed, notarized installers.',
     highlights: [
