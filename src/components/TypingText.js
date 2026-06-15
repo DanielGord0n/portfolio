@@ -10,6 +10,14 @@ const TypingText = ({ text, delay = 0, speed = 0.05, className = '', onComplete,
     }, [onComplete]);
 
     useEffect(() => {
+        // Reduced motion: show the full text immediately
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            setDisplayedText(text);
+            setIsComplete(true);
+            if (onCompleteRef.current) onCompleteRef.current();
+            return;
+        }
+
         // Reset state when text changes
         setDisplayedText('');
         setIsComplete(false);

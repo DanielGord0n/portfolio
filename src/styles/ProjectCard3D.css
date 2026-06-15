@@ -1,188 +1,222 @@
 .project-card-3d {
-    width: 100%;
-    height: 600px;
-    border-radius: 20px;
-    background-color: var(--bg-secondary);
+    position: relative;
+    height: 100%;
+    border-radius: var(--radius-md);
+    background: var(--panel-gradient);
     border: 1px solid var(--border-color);
-    position: relative;
-    transition: border-color 0.3s ease;
-    cursor: pointer;
-}
-
-.project-card-3d:hover {
-    border-color: var(--accent-primary);
-}
-
-.project-card-content {
-    position: absolute;
-    inset: 20px;
-    background: var(--bg-tertiary);
-    border-radius: 15px;
-    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
-    display: flex;
-    flex-direction: column;
-    padding: 0;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    will-change: transform;
     overflow: hidden;
 }
 
-.project-image-container {
-    width: 100%;
-    height: 160px;
-    position: relative;
-    overflow: hidden;
-    flex-shrink: 0;
-    /* Prevent shrinking */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #ffffff;
-}
-
-.project-image {
-    width: auto;
-    height: auto;
-    max-width: 80%;
-    max-height: 80%;
-    object-fit: contain;
-    padding: 0;
-    transition: transform 0.5s ease;
-    opacity: 0.9;
-    border: none;
-    outline: none;
-    border-radius: 0;
-}
-
-.project-card-3d:hover .project-image {
-    transform: scale(1.05);
-    opacity: 0.4;
-    filter: blur(5px);
-}
-
-/* Specific override for Futures and Fringes logo */
-.project-image.ff-img {
-    transform: scale(2.25);
-    /* Increased by another 50% (1.5 * 1.5 = 2.25) */
-}
-
-.project-card-3d:hover .project-image.ff-img {
-    transform: scale(2.3);
-    /* Maintain scale on hover */
-}
-
-.project-image-overlay {
+/* Racing stripe along the top edge, revealed on hover */
+.project-card-3d::before {
+    content: '';
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.9) 100%);
-    opacity: 0.6;
-    transition: opacity 0.3s ease;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(to right, var(--accent-primary) 0 60%, var(--silver-dim) 60% 70%, transparent 70%);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+    z-index: 2;
 }
 
-.project-card-3d:hover .project-image-overlay {
-    opacity: 0.3;
+.project-card-3d:hover::before {
+    transform: scaleX(1);
+}
+
+.project-card-3d:hover {
+    border-color: var(--accent-tint-30);
+    box-shadow: var(--card-hover-shadow), 0 0 36px -18px rgba(0, 163, 108, 0.45);
+}
+
+.project-card-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 1.6rem;
+}
+
+.card-top-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 1.25rem;
+}
+
+/* Transparent logo: no chip, large mark with a soft glow for separation */
+.card-logo {
+    width: 68px;
+    height: 68px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    padding: 0;
+    flex-shrink: 0;
+    cursor: zoom-in;
+    transition: var(--transition);
+}
+
+.card-logo:hover {
+    transform: scale(1.07);
+}
+
+/* Wide marks (e.g. LaunchPath, 2560x999) get extra width so they stay legible */
+.card-logo-wide {
+    width: 150px;
+    height: 58px;
+}
+
+.card-logo img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+/* Black marks become silver on the dark theme; true colors show in the lightbox */
+.card-logo-invert img {
+    filter: invert(1);
+    opacity: 0.92;
+}
+
+/* Dark-on-light multicolor marks: flip lightness, roughly keep hue */
+.card-logo-hue img {
+    filter: invert(1) hue-rotate(180deg);
+}
+
+.card-monogram {
+    width: 52px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-md);
+    background: var(--accent-tint-08);
+    border: 1px solid var(--accent-tint-15);
+    color: var(--accent-secondary);
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.2rem;
+    letter-spacing: 0.04em;
+    flex-shrink: 0;
+}
+
+.card-top-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+}
+
+.card-index {
+    font-family: var(--font-mono);
+    font-size: var(--fz-xxs);
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+}
+
+.card-index::before {
+    content: 'P.';
+    color: var(--accent-dim);
+}
+
+.card-category {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-secondary);
+    background: var(--bg-accent);
+    border: 1px solid var(--border-color);
+    padding: 3px 9px;
+    border-radius: var(--radius-sm);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    white-space: nowrap;
 }
 
 .project-info {
-    padding: 20px;
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
-    overflow: hidden;
-    /* Prevent spillover */
-    position: relative;
-    /* Needed for absolute positioning of buttons */
-}
-
-.project-title-3d,
-.project-desc-3d,
-.project-tags-3d {
-    transition: opacity 0.3s ease;
-}
-
-/* Removed blur from text on hover */
-.project-card-3d:hover .project-title-3d,
-.project-card-3d:hover .project-desc-3d,
-.project-card-3d:hover .project-tags-3d {
-    filter: none;
-    opacity: 1;
+    flex: 1;
 }
 
 .project-title-3d {
+    font-size: 1.35rem;
+    margin-bottom: 0.2rem;
     color: var(--text-primary);
-    font-size: 1.3rem;
-    margin-bottom: 10px;
-    font-weight: 700;
+}
+
+.card-company {
+    font-family: var(--font-mono);
+    font-size: var(--fz-xxs);
+    color: var(--accent-primary);
+    letter-spacing: 0.08em;
+    margin-bottom: 0.8rem;
 }
 
 .project-desc-3d {
+    font-size: var(--fz-sm);
     color: var(--text-secondary);
-    font-size: 0.85rem;
-    line-height: 1.6;
-    flex-grow: 1;
-    margin-bottom: 15px;
-    /* Removed scrollbar styles */
+    line-height: 1.65;
+    flex: 1;
+    margin-bottom: 1.1rem;
 }
 
 .project-tags-3d {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: 7px;
     list-style: none;
+    margin: 0 0 1.1rem 0;
     padding: 0;
-    margin-top: auto;
-    margin-bottom: 15px;
 }
 
 .project-tags-3d li {
-    font-family: 'Fira Code', monospace;
-    font-size: 0.75rem;
-    color: var(--accent-primary);
-    background: rgba(0, 229, 255, 0.1);
-    padding: 4px 8px;
-    border-radius: 4px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-secondary);
+    padding: 3px 8px;
+    border-radius: var(--radius-sm);
+    background: var(--accent-tint-04);
+    border: 1px solid var(--border-color);
+    white-space: nowrap;
 }
 
-.project-links-3d {
+.card-links {
     display: flex;
-    gap: 15px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0.9);
-    opacity: 0;
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    z-index: 10;
-    width: 100%;
-    justify-content: center;
-}
-
-.project-card-3d:hover .project-links-3d {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: auto;
 }
 
 .project-link-pill {
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    gap: 8px;
-    padding: 12px 24px;
-    background: var(--bg-secondary);
-    border: 1px solid var(--accent-primary);
-    border-radius: 30px;
+    gap: 7px;
+    font-family: var(--font-mono);
+    font-size: var(--fz-xs);
     color: var(--text-primary);
-    text-decoration: none;
-    font-size: 1rem;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    background: var(--bg-accent);
+    border: 1px solid var(--border-strong);
+    padding: 6px 13px;
+    border-radius: var(--radius-sm);
+    transition: var(--transition);
 }
 
+/* No transform on hover: clickable elements must not move under the cursor */
 .project-link-pill:hover {
+    color: #06130D;
     background: var(--accent-primary);
     border-color: var(--accent-primary);
-    color: var(--bg-primary);
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0, 229, 255, 0.4);
+}
+
+@media (max-width: 768px) {
+    .project-card-content {
+        padding: 1.3rem;
+    }
 }

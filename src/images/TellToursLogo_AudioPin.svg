@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1206.96 1545.12">
+  <defs>
+    <style>
+      .cls-1 { fill: #fff; }
+      .cls-2 { fill: #34a160; }
+      .cls-3 { fill: #677a89; }
+      .cls-road { fill: none; stroke: #fff; stroke-width: 51.8; stroke-linecap: round; stroke-linejoin: round; }
+    </style>
+    <!-- Soft, premium drop shadow to make the pin float -->
+    <filter id="pinShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="35" stdDeviation="25" flood-color="#000000" flood-opacity="0.2"/>
+    </filter>
+  </defs>
+
+  <!-- Pin Group with Floating Shadow -->
+  <g filter="url(#pinShadow)">
+    
+    <!-- 2. Outer Teardrop Pin (Slate Grey) -->
+    <path class="cls-3" d="M1206.96,603.46c0,60.62-8.94,119.2-25.58,174.41-4.08,13.54-8.61,26.88-13.63,39.99-.42,1.13-.87,2.27-1.33,3.43-6.09,15.19-14.35,34.19-25.48,56.89-.06.16-.16.32-.26.49-60.62,123.5-205.49,355.23-537.18,666.44C272.81,1234.84,127.81,1003.57,66.87,879.81c-12.4-25.19-21.34-45.92-27.65-61.95-.13-.39-.29-.74-.42-1.1-4.73-12.5-9.07-25.22-12.98-38.11-.1-.29-.13-.49-.16-.62-.03-.16-.06-.23-.06-.23C8.94,722.59,0,664.08,0,603.46,0,270.16,270.19,0,603.5,0s603.46,270.16,603.46,603.46Z"/>
+    
+    <!-- 3. Inner White Ring -->
+    <path class="cls-1" d="M603.49,81.37c-287.89,0-522.1,234.21-522.1,522.1s234.21,522.1,522.1,522.1,522.1-234.21,522.1-522.1S891.37,81.37,603.49,81.37Z"/>
+    
+    <!-- 4. Inner Green Globe -->
+    <path class="cls-2" d="M1064.03,603.46c0,231.88-171.4,423.74-394.38,455.8-21.6,3.11-43.68,4.73-66.16,4.73-23.87,0-47.28-1.81-70.17-5.31-221.04-33.77-390.36-224.73-390.36-455.22,0-254.36,206.17-460.53,460.53-460.53s460.53,206.17,460.53,460.53Z"/>
+
+    <!-- 5. Road Type Lines (Smoothly Curved & Connected to Audio Wave Ends) -->
+    <!-- Top-left vertical road curving down to meet the top of Bar 2 -->
+    <path class="cls-road" d="M 454.5 143 L 454.5 350 C 454.5 420, 498.5 420, 498.5 463.5" />
+    
+    <!-- Left horizontal road curving down to meet the bottom of Bar 2 -->
+    <path class="cls-road" d="M 143 462.5 L 300 462.5 C 370 462.5, 370 743.5, 498.5 743.5" />
+    
+    <!-- Right diagonal road curving into the top of Bar 4 -->
+    <path class="cls-road" d="M 915 285 L 800 400 C 740 460, 708.5 420, 708.5 463.5" />
+    
+    <!-- Bottom horizontal/diagonal road curving into the bottom of Bar 3 -->
+    <path class="cls-road" d="M 945 920 L 800 780 C 700 680, 603.5 750, 603.5 823.5" />
+    
+    <!-- Left diagonal going down-left -->
+    <path class="cls-road" d="M 336.5 650 L 160 826" />
+
+    <!-- 6. 3D Slate Grey Backing for Audio Waveform -->
+    <rect class="cls-3" x="348.5" y="558.5" width="70" height="120" rx="35" />
+    <rect class="cls-3" x="453.5" y="478.5" width="70" height="280" rx="35" />
+    <rect class="cls-3" x="558.5" y="398.5" width="70" height="440" rx="35" />
+    <rect class="cls-3" x="663.5" y="478.5" width="70" height="280" rx="35" />
+    <rect class="cls-3" x="768.5" y="558.5" width="70" height="120" rx="35" />
+
+    <!-- 7. Perfect "Sweet Spot" White Audio Waveform (53% Globe Width) -->
+    <rect class="cls-1" x="358.5" y="543.5" width="70" height="120" rx="35" />
+    <rect class="cls-1" x="463.5" y="463.5" width="70" height="280" rx="35" />
+    <rect class="cls-1" x="568.5" y="383.5" width="70" height="440" rx="35" />
+    <rect class="cls-1" x="673.5" y="463.5" width="70" height="280" rx="35" />
+    <rect class="cls-1" x="778.5" y="543.5" width="70" height="120" rx="35" />
+
+  </g>
+</svg>

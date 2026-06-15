@@ -1,73 +1,50 @@
-import React, { useRef } from 'react';
-import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { useLightbox } from './Lightbox';
 import '../styles/ProjectCard3D.css';
 
-const ProjectCard3D = ({ title, description, tags, links, image, customImageClass }) => {
-    const ref = useRef(null);
+// Cards deliberately do not track the pointer with transforms: moving a
+// surface that contains links makes them miss clicks. Hover feedback is
+// border, glow, and the racing stripe instead.
+const ProjectCard3D = ({ index, title, company, category, description, tags, links, image, imageWide, logoTreatment }) => {
+    const { openLightbox } = useLightbox();
 
-    const x = useMotionValue(0);
-    const y = useMotionValue(0);
-
-    const mouseXSpring = useSpring(x);
-    const mouseYSpring = useSpring(y);
-
-    const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["17.5deg", "-17.5deg"]);
-    const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-17.5deg", "17.5deg"]);
-
-    const handleMouseMove = (e) => {
-        const rect = ref.current.getBoundingClientRect();
-
-        const width = rect.width;
-        const height = rect.height;
-
-        const mouseX = e.clientX - rect.left;
-        const mouseY = e.clientY - rect.top;
-
-        const xPct = mouseX / width - 0.5;
-        const yPct = mouseY / height - 0.5;
-
-        x.set(xPct);
-        y.set(yPct);
-    };
-
-    const handleMouseLeave = () => {
-        x.set(0);
-        y.set(0);
-    };
+    const monogram = title
+        .split(/\s+/)
+        .map(word => word[0])
+        .filter(ch => /[A-Za-z0-9]/.test(ch))
+        .slice(0, 2)
+        .join('')
+        .toUpperCase();
 
     return (
-        <motion.div
-            ref={ref}
-            onMouseMove={handleMouseMove}
-            onMouseLeave={handleMouseLeave}
-            style={{
-                rotateY,
-                rotateX,
-                transformStyle: "preserve-3d",
-            }}
-            className="project-card-3d"
-        >
-            <div
-                style={{
-                    transform: "translateZ(75px)",
-                    transformStyle: "preserve-3d",
-                }}
-                className="project-card-content"
-            >
-                <div className="project-image-container">
-                    {image && <img src={image} alt={title} className={`project-image ${customImageClass || ''}`} />}
-                    <div className="project-links-3d">
-                        {links.map((link, i) => (
-                            <a key={i} href={link.url} target="_blank" rel="noopener noreferrer" className="project-link-pill">
-                                {link.icon}
-                                <span>{link.url.includes('github') ? 'GitHub' : 'Visit'}</span>
-                            </a>
-                        ))}
+        <article className="project-card-3d">
+            <div className="project-card-content">
+                <div className="card-top-row">
+                    {image ? (
+                        <button
+                            type="button"
+                            className={`card-logo ${imageWide ? 'card-logo-wide' : ''} ${logoTreatment ? `card-logo-${logoTreatment}` : ''}`}
+                            onClick={() => openLightbox(image, title)}
+                            aria-label={`View ${title} logo larger`}
+                            title="Click to enlarge"
+                        >
+                            <img src={image} alt={`${title} logo`} loading="lazy" />
+                        </button>
+                    ) : (
+                        <div className="card-monogram">{monogram}</div>
+                    )}
+                    <div className="card-top-meta">
+                        {index != null && (
+                            <span className="card-index">{String(index).padStart(2, '0')}</span>
+                        )}
+                        {category && <span className="card-category">{category}</span>}
                     </div>
                 </div>
 
                 <div className="project-info">
                     <h3 className="project-title-3d">{title}</h3>
+                    {company && <span className="card-company">{company}</span>}
                     <p className="project-desc-3d">{description}</p>
 
                     <ul className="project-tags-3d">
@@ -75,9 +52,27 @@ const ProjectCard3D = ({ title, description, tags, links, image, customImageClas
                             <li key={i}>{tag}</li>
                         ))}
                     </ul>
+
+                    {links && links.length > 0 && (
+                        <div className="card-links">
+                            {links.map((link, i) =>
+                                link.internal ? (
+                                    <Link key={i} to={link.url} className="project-link-pill">
+                                        {link.icon}
+                                        <span>{link.label}</span>
+                                    </Link>
+                                ) : (
+                                    <a key={i} href={link.url} target="_blank" rel="noopener noreferrer" className="project-link-pill">
+                                        {link.icon}
+                                        <span>{link.label || (link.url.includes('github') ? 'GitHub' : 'Visit')}</span>
+                                    </a>
+                                )
+                            )}
+                        </div>
+                    )}
                 </div>
             </div>
-        </motion.div>
+        </article>
     );
 };
 

@@ -1,6 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import dgLogo from '../images/opt/DG_logo.png';
 import '../styles/Header.css';
+
+const NAV_ITEMS = [
+  { to: '/', label: 'Home' },
+  { to: '/projects', label: 'Projects' },
+  // { to: '/showcase', label: 'Showcase' }, // shelved until Higgsfield clips are ready
+  { to: '/skills', label: 'Skills' },
+  { to: '/resume', label: 'Resume' },
+  { to: '/contact', label: 'Contact' },
+];
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -13,12 +23,12 @@ const Header = () => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       const direction = currentScrollY > prevScrollY ? 'down' : 'up';
-      
-      if (direction !== scrollDirection && 
+
+      if (direction !== scrollDirection &&
           (currentScrollY - prevScrollY > 10 || prevScrollY - currentScrollY > 10)) {
         setScrollDirection(direction);
       }
-      
+
       setPrevScrollY(currentScrollY);
     };
 
@@ -42,40 +52,42 @@ const Header = () => {
 
   // Determine header class based on scroll direction
   const headerClass = `header ${
-    scrollDirection === 'down' && window.scrollY > 100 ? 'header-scrolled' : 
+    scrollDirection === 'down' && window.scrollY > 100 ? 'header-scrolled' :
     scrollDirection === 'up' ? 'header-visible' : ''
   }`;
 
   // Toggle mobile menu
   const toggleMenu = () => setMenuOpen(!menuOpen);
 
-  // Create a NavLink component with highlight effect
-  const NavLink = ({ to, children }) => (
-    <Link to={to}>
-      {children}
-      <span className="nav-link-highlight"></span>
-    </Link>
-  );
-
   return (
     <header className={headerClass}>
       <div className="logo">
-        <Link to="/">Daniel Gordon</Link>
+        <Link to="/">
+          <img src={dgLogo} alt="DG" className="logo-mark" />
+          <span className="logo-name">Daniel Gordon</span>
+        </Link>
       </div>
-      
+
       <div className={`hamburger ${menuOpen ? 'active' : ''}`} onClick={toggleMenu}>
         <span></span>
         <span></span>
         <span></span>
       </div>
-      
+
       <nav className={`nav ${menuOpen ? 'active' : ''}`}>
         <ul>
-          <li><NavLink to="/">Home</NavLink></li>
-          <li><NavLink to="/projects">Projects</NavLink></li>
-          <li><NavLink to="/skills">Skills</NavLink></li>
-          <li><NavLink to="/resume">Resume</NavLink></li>
-          <li><NavLink to="/contact">Contact</NavLink></li>
+          {NAV_ITEMS.map((item, i) => (
+            <li key={item.to}>
+              <Link
+                to={item.to}
+                className={location.pathname === item.to ? 'nav-active' : ''}
+              >
+                <span className="nav-index">{String(i + 1).padStart(2, '0')}.</span>
+                {item.label}
+                <span className="nav-link-highlight"></span>
+              </Link>
+            </li>
+          ))}
         </ul>
       </nav>
     </header>

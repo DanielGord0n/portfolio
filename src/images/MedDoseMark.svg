@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <!-- MedDose: capsule with dosage plus -->
+  <rect x="13" y="24" width="38" height="16" rx="8"
+        transform="rotate(-45 32 32)"
+        stroke="#C2CBC5" stroke-width="3"/>
+  <path d="M27.5 36.5 L36.5 27.5" stroke="#C2CBC5" stroke-width="3" stroke-linecap="round"/>
+  <path d="M22.7 41.3 a8 8 0 0 0 11.3 0 l2.5 -2.5 -11.3 -11.3 -2.5 2.5 a8 8 0 0 0 0 11.3 Z"
+        fill="#43D695" opacity="0.28"/>
+  <path d="M50 10 v10 M45 15 h10" stroke="#43D695" stroke-width="3" stroke-linecap="round"/>
+</svg>

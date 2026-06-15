@@ -1,0 +1,351 @@
+.mission-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-areas:
+        'status ops ops stack'
+        'globe globe arch arch';
+    gap: 18px;
+}
+
+.mc-tile {
+    background: var(--panel-gradient);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 1.4rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    transition: var(--transition);
+    min-width: 0;
+}
+
+.mc-tile:hover {
+    border-color: var(--accent-tint-30);
+}
+
+.mc-status {
+    grid-area: status;
+}
+
+.mc-ops {
+    grid-area: ops;
+}
+
+.mc-stack {
+    grid-area: stack;
+}
+
+.mc-globe {
+    grid-area: globe;
+}
+
+.mc-arch {
+    grid-area: arch;
+}
+
+.mc-tile-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.mc-tile-label {
+    font-family: var(--font-mono);
+    font-size: var(--fz-xxs);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent-primary);
+}
+
+.mc-tile-label::before {
+    content: '▸ ';
+    color: var(--accent-dim);
+}
+
+.mc-sim-badge {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    color: var(--text-muted);
+    border: 1px solid var(--border-strong);
+    padding: 2px 8px;
+    border-radius: var(--radius-sm);
+    white-space: nowrap;
+}
+
+.mc-tile-footnote {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+    margin-top: auto;
+    line-height: 1.6;
+}
+
+/* ----- Status tile ----- */
+.mc-status-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.mc-status-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--accent-primary);
+    box-shadow: 0 0 12px var(--accent-primary);
+    animation: mc-pulse 2.2s ease-in-out infinite;
+}
+
+@keyframes mc-pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.45;
+    }
+}
+
+.mc-status-text {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--text-primary);
+}
+
+.mc-status-checks {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+}
+
+.mc-check-dot {
+    width: 7px;
+    height: 18px;
+    border-radius: 2px;
+    background: var(--accent-primary);
+    opacity: 0.75;
+    animation: mc-check-breathe 3.4s ease-in-out infinite;
+}
+
+@keyframes mc-check-breathe {
+
+    0%,
+    100% {
+        opacity: 0.75;
+    }
+
+    50% {
+        opacity: 0.35;
+    }
+}
+
+/* ----- Ops tile ----- */
+.mc-ops-readouts {
+    display: flex;
+    gap: 34px;
+    flex-wrap: wrap;
+}
+
+.mc-readout {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.mc-readout-value {
+    font-family: var(--font-display);
+    font-size: 1.9rem;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--text-primary);
+    font-variant-numeric: tabular-nums;
+}
+
+.mc-readout-value small {
+    font-size: 0.85rem;
+    color: var(--accent-secondary);
+    margin-left: 3px;
+    font-weight: 500;
+}
+
+.mc-readout-label {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+.sparkline {
+    width: 100%;
+    height: 84px;
+    display: block;
+}
+
+.sparkline-line {
+    fill: none;
+    stroke: var(--accent-primary);
+    stroke-width: 2;
+    vector-effect: non-scaling-stroke;
+    filter: drop-shadow(0 0 4px rgba(0, 163, 108, 0.5));
+}
+
+.sparkline-area {
+    fill: rgba(0, 163, 108, 0.12);
+    stroke: none;
+}
+
+/* ----- Stack tile ----- */
+.mc-stack-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.mc-stack-list li {
+    position: relative;
+    padding-left: 20px;
+    font-family: var(--font-mono);
+    font-size: var(--fz-xs);
+    color: var(--text-secondary);
+}
+
+.mc-stack-list li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--accent-primary);
+}
+
+/* ----- Globe tile ----- */
+.mc-globe {
+    min-height: 380px;
+}
+
+.mc-globe-canvas {
+    flex: 1;
+    min-height: 260px;
+    position: relative;
+}
+
+.mc-globe-loading {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-mono);
+    font-size: var(--fz-xs);
+    letter-spacing: 0.12em;
+    color: var(--text-muted);
+}
+
+/* ----- Architecture tile ----- */
+.mc-arch-flow {
+    display: flex;
+    align-items: stretch;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.mc-arch-node {
+    flex: 1;
+    min-width: 86px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-sm);
+    padding: 10px 10px 9px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.mc-arch-icon {
+    color: var(--accent-primary);
+    margin-bottom: 3px;
+}
+
+.mc-arch-title {
+    font-family: var(--font-display);
+    font-size: var(--fz-md);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--text-primary);
+}
+
+.mc-arch-sub {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.04em;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+
+.mc-arch-arrow {
+    align-self: center;
+    color: var(--accent-dim);
+    font-size: 13px;
+}
+
+.mc-arch-notes {
+    list-style: none;
+    margin: 4px 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.mc-arch-notes li {
+    position: relative;
+    padding-left: 20px;
+    font-size: var(--fz-xs);
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+.mc-arch-notes li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--accent-primary);
+}
+
+/* ----- Responsive ----- */
+@media (max-width: 1024px) {
+    .mission-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas:
+            'status stack'
+            'ops ops'
+            'globe globe'
+            'arch arch';
+    }
+}
+
+@media (max-width: 620px) {
+    .mission-grid {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            'status'
+            'ops'
+            'globe'
+            'stack'
+            'arch';
+    }
+
+    .mc-globe {
+        min-height: 320px;
+    }
+}

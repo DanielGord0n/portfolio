@@ -3,17 +3,17 @@
   justify-content: space-between;
   align-items: center;
   padding: 0 50px;
-  height: 80px;
-  background-color: rgba(18, 18, 18, 0.85);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  height: 76px;
+  background-color: rgba(12, 15, 14, 0.82);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-color);
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 100;
   transition: var(--transition);
-  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.3);
   transform: translateY(0);
 }
 
@@ -24,35 +24,38 @@
 
 .header-visible {
   transform: translateY(0);
-  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.7);
-  background-color: rgba(18, 18, 18, 0.95);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.6);
+  background-color: rgba(12, 15, 14, 0.93);
 }
 
 .logo a {
-  font-family: 'Fira Code', monospace;
-  font-size: var(--fz-lg);
   text-decoration: none;
-  font-weight: 500;
-  color: var(--accent-primary);
-  position: relative;
-  letter-spacing: 1px;
   display: flex;
   align-items: center;
-  padding: 10px;
+  gap: 12px;
+  padding: 10px 0;
 }
 
-/* Removed < symbol as requested */
-.logo a::before {
-  content: '';
-  margin-right: 0;
-  color: var(--accent-primary);
+.logo-mark {
+  height: 34px;
+  width: auto;
+  filter: invert(1);
+  opacity: 0.95;
+  transition: var(--transition);
 }
 
-/* Removed /> symbol for consistency */
-.logo a::after {
-  content: '';
-  margin-left: 0;
-  color: var(--accent-primary);
+.logo a:hover .logo-mark {
+  opacity: 1;
+  transform: scale(1.04);
+}
+
+.logo-name {
+  font-family: var(--font-display);
+  font-size: var(--fz-lg);
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--silver);
+  letter-spacing: 0.1em;
 }
 
 .nav ul {
@@ -65,9 +68,9 @@
 }
 
 .nav ul li {
-  margin-left: 30px;
+  margin-left: 22px;
   position: relative;
-  font-family: 'Fira Code', monospace;
+  font-family: var(--font-mono);
 }
 
 .nav ul li a {
@@ -76,53 +79,40 @@
   transition: var(--transition);
   font-size: var(--fz-xs);
   font-weight: 400;
-  padding: 10px;
+  padding: 10px 4px;
   display: inline-block;
-  letter-spacing: 1px;
+  letter-spacing: 0.05em;
   position: relative;
 }
 
-/* Numbers removed from nav items as requested */
+.nav-index {
+  color: var(--accent-dim);
+  margin-right: 5px;
+  font-size: var(--fz-xxs);
+}
 
-.nav ul li a:hover {
-  color: var(--accent-primary);
+.nav ul li a:hover,
+.nav ul li a.nav-active {
+  color: var(--text-primary);
 }
 
 .nav-link-highlight {
   display: block;
   position: absolute;
   z-index: -1;
-  bottom: 0;
+  bottom: 2px;
   left: 0;
   width: 0%;
-  height: 2px;
+  height: 1px;
   background-color: var(--accent-primary);
   transition: var(--transition);
   border-radius: var(--radius-pill);
-  opacity: 0.5;
+  opacity: 0.6;
 }
 
-.nav ul li a:hover .nav-link-highlight {
+.nav ul li a:hover .nav-link-highlight,
+.nav ul li a.nav-active .nav-link-highlight {
   width: 100%;
-}
-
-.resume-button {
-  color: var(--accent-primary);
-  background-color: transparent;
-  border: 1px solid var(--accent-primary);
-  border-radius: var(--radius-sm);
-  padding: 0.75rem 1rem;
-  font-size: var(--fz-xs);
-  font-family: 'Fira Code', monospace;
-  line-height: 1;
-  text-decoration: none;
-  transition: var(--transition);
-  margin-left: 15px;
-}
-
-.resume-button:hover {
-  background-color: rgba(100, 255, 218, 0.1);
-  transform: translateY(-3px);
 }
 
 /* Hamburger Menu */
@@ -130,8 +120,8 @@
   display: none;
   flex-direction: column;
   justify-content: space-between;
-  width: 30px;
-  height: 20px;
+  width: 28px;
+  height: 18px;
   cursor: pointer;
   z-index: 10;
   position: relative;
@@ -143,6 +133,7 @@
   background-color: var(--accent-primary);
   transition: var(--transition);
   transform-origin: left;
+  border-radius: 2px;
 }
 
 .hamburger.active span:first-child {
@@ -160,6 +151,11 @@
 @media (max-width: 768px) {
   .header {
     padding: 0 25px;
+    height: 68px;
+  }
+
+  .logo-name {
+    display: none;
   }
 
   .hamburger {
@@ -172,10 +168,11 @@
     right: 0;
     bottom: 0;
     padding: 50px 10px;
-    width: min(75vw, 400px);
+    width: min(75vw, 360px);
     height: 100vh;
     background-color: var(--bg-secondary);
-    box-shadow: -10px 0px 30px -15px rgba(2, 12, 27, 0.7);
+    border-left: 1px solid var(--border-color);
+    box-shadow: -10px 0px 30px -15px rgba(0, 0, 0, 0.8);
     transform: translateX(100%);
     visibility: hidden;
     transition: var(--transition);
@@ -198,19 +195,13 @@
 
   .nav ul li {
     margin: 0;
-    padding: 15px 0;
+    padding: 12px 0;
     width: 100%;
   }
 
   .nav ul li a {
     width: 100%;
-    padding: 15px 0;
+    padding: 14px 0;
     font-size: var(--fz-lg);
-  }
-
-  .resume-button {
-    margin: 20px auto 0;
-    width: 50%;
-    display: block;
   }
 }

@@ -1,0 +1,109 @@
+.stat-gauge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.6rem 1.2rem 1.4rem;
+    background: var(--panel-gradient);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    transition: var(--transition);
+}
+
+.stat-gauge:hover {
+    border-color: var(--accent-tint-30);
+}
+
+.gauge-svg {
+    width: 100%;
+    max-width: 190px;
+    overflow: visible;
+}
+
+.gauge-track {
+    fill: none;
+    stroke: var(--border-strong);
+    stroke-width: 4;
+}
+
+.gauge-fill {
+    fill: none;
+    stroke: var(--accent-primary);
+    stroke-width: 4;
+    stroke-linecap: round;
+    transition: stroke-dashoffset 1.5s cubic-bezier(0.34, 1.2, 0.45, 1);
+    filter: drop-shadow(0 0 5px rgba(0, 163, 108, 0.55));
+}
+
+.gauge-tick {
+    stroke: var(--text-muted);
+    stroke-width: 1;
+    opacity: 0.55;
+}
+
+.gauge-tick-major {
+    stroke: var(--silver-dim);
+    stroke-width: 1.6;
+}
+
+.gauge-needle-group {
+    transform-origin: 100px 96px;
+    transition: transform 1.5s cubic-bezier(0.34, 1.3, 0.4, 1);
+}
+
+.gauge-needle {
+    stroke: var(--silver);
+    stroke-width: 2;
+    stroke-linecap: round;
+    opacity: 0.85;
+    filter: drop-shadow(0 0 3px rgba(220, 227, 222, 0.35));
+}
+
+.gauge-hub {
+    fill: var(--bg-primary);
+    stroke: var(--silver);
+    stroke-width: 2;
+}
+
+.gauge-readout {
+    margin-top: -28px;
+    display: flex;
+    align-items: baseline;
+    gap: 5px;
+    /* Must be positioned for z-index to apply: keeps the number above the needle */
+    position: relative;
+    z-index: 1;
+}
+
+.gauge-value {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 2rem;
+    line-height: 1;
+    color: var(--text-primary);
+    /* Dark halo so the needle reads as passing behind the number */
+    text-shadow:
+        0 0 6px var(--bg-secondary),
+        0 0 12px var(--bg-secondary),
+        0 0 18px var(--bg-secondary);
+}
+
+.gauge-suffix {
+    color: var(--accent-secondary);
+}
+
+.gauge-unit {
+    font-family: var(--font-mono);
+    font-size: var(--fz-xxs);
+    color: var(--text-muted);
+}
+
+.gauge-label {
+    margin-top: 10px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    text-align: center;
+    line-height: 1.6;
+}

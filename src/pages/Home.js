@@ -1,388 +1,326 @@
-import React, { useEffect, useRef, useMemo } from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { FaGithub, FaExternalLinkAlt, FaCar, FaPlaneDeparture, FaBrain, FaSnowboarding, FaFistRaised, FaDumbbell } from 'react-icons/fa';
 import '../styles/Home.css';
-import '../styles/MagneticButton.css';
-import profilePhoto from '../images/profilePhoto.jpeg';
+import profilePhoto from '../images/opt/profilePhoto.jpeg';
+import tellToursLogo from '../images/TellToursLogo.svg';
+import bs45Mark from '../images/BS45Mark.svg';
+import phoenixMark from '../images/PhoenixMark.svg';
 import PageTransition from '../components/PageTransition';
 import TypingText from '../components/TypingText';
-import { FaCar, FaPlaneDeparture, FaBrain, FaSnowboarding, FaFistRaised, FaDumbbell } from 'react-icons/fa';
+import ProjectCard3D from '../components/ProjectCard3D';
+import HeroMonitor from '../components/HeroMonitor';
+import StatGauge from '../components/StatGauge';
+import MissionControl from '../components/MissionControl';
+
+// Snappy entrance: long delays here directly push out LCP
+const heroStagger = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.06, delayChildren: 0.04 },
+  },
+};
+
+const heroItem = {
+  hidden: { opacity: 0, y: 14 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] } },
+};
+
+const sectionReveal = {
+  initial: { opacity: 0, y: 28 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, margin: '-60px' },
+  transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
+};
+
+// All figures verified, see PORTFOLIO_HANDOFF.md
+const gauges = [
+  { value: 455, label: 'S3 buckets audited / 17-account AWS org', fraction: 0.78, delay: 0 },
+  { value: 79, label: 'production EC2 instances hardened', fraction: 0.58, delay: 150 },
+  { value: 10000, suffix: '+', label: 'CPU cores coordinated via SLURM', fraction: 0.92, delay: 300 },
+  { value: 4, label: 'national HPC clusters', fraction: 0.42, delay: 450 },
+];
+
+const featuredProjects = [
+  {
+    index: 1,
+    title: 'TellTours',
+    company: 'Co-founder / telltours.com',
+    category: 'AI / Mobile',
+    image: tellToursLogo,
+    description:
+      'An AI tour guide that narrates the world around you in real time as you walk, drive, or ride. Routes between Gemini, OpenAI, and Ollama with no code changes, tunes its prompts from Firestore without redeploys, and ships through keyless CI/CD on GCP. Now in pre-release with the beta waitlist open.',
+    tags: ['React Native', 'GCP', 'Gemini', 'Node.js'],
+    links: [
+      // { url: '/showcase', internal: true, icon: <FaPlay size={11} />, label: 'Showcase' }, // shelved
+      { url: 'https://telltours.com', icon: <FaExternalLinkAlt size={13} />, label: 'telltours.com' },
+    ],
+  },
+  {
+    index: 2,
+    title: 'BS45 Quantum Explorer',
+    company: 'Research / Wilfrid Laurier University',
+    category: 'HPC / C++',
+    image: bs45Mark,
+    description:
+      'A distributed C++17 solver hunting BS(45,44), an unsolved problem in combinatorial mathematics. It runs on 4 of Canada\'s national supercomputing clusters, coordinates 10,000+ CPU cores through SLURM, and prunes the naive search space by roughly 100x.',
+    tags: ['C++17', 'OpenMP', 'SLURM', 'HPC'],
+    links: [{ url: 'https://github.com/DanielGord0n/BS45_Quantum_Explorer', icon: <FaGithub size={14} />, label: 'GitHub' }],
+  },
+  {
+    index: 3,
+    title: 'Phoenix Bot',
+    company: 'Self-employed / shipped v0.2.1',
+    category: 'Desktop / AI',
+    image: phoenixMark,
+    description:
+      'A cross-platform Electron app that summarizes WhatsApp group chats with Gemini. The hard part: keeping a persistent Puppeteer/headless-Chrome session alive inside the Electron main process, something serverless platforms simply cannot do. Credentials live in the OS keychain, state in local SQLite.',
+    tags: ['Electron', 'Puppeteer', 'Gemini', 'SQLite'],
+    links: [
+      { url: 'https://phoenix-bot-web.vercel.app/', icon: <FaExternalLinkAlt size={13} />, label: 'Live' },
+      { url: 'https://github.com/DanielGord0n/phoenix-bot-desktop', icon: <FaGithub size={14} />, label: 'GitHub' },
+    ],
+  },
+];
+
+const interests = [
+  { icon: <FaCar size={20} />, title: 'Cars', text: 'Lifelong car enthusiast. Classics, modern engineering, all of it.' },
+  { icon: <FaSnowboarding size={20} />, title: 'Snowboarding', text: 'Speed, precision, and mountains every winter.' },
+  { icon: <FaFistRaised size={20} />, title: 'Martial Arts', text: 'Trained across seven disciplines. Discipline carries over.' },
+  { icon: <FaBrain size={20} />, title: 'Brain Games', text: 'Daily chess, crosswords, and Wordle to stay sharp.' },
+  { icon: <FaPlaneDeparture size={20} />, title: 'Traveling', text: 'New cultures and cuisines for fresh perspective.' },
+  { icon: <FaDumbbell size={20} />, title: 'Gym & Calisthenics', text: 'Functional strength, weights and bodyweight.' },
+];
 
 const Home = () => {
-  // Create refs directly
-  const heroRef = useRef(null);
-  const aboutRef = useRef(null);
-  const projectsRef = useRef(null);
-  const interestsRef = useRef(null);
+  // Full-bleed cinematic hero on wide viewports; split layout elsewhere
+  const [cinema, setCinema] = React.useState(
+    () => typeof window !== 'undefined' && window.matchMedia('(min-width: 1080px)').matches
+  );
 
-  // Animation states
-  const [greetingComplete, setGreetingComplete] = React.useState(false);
-  const [nameComplete, setNameComplete] = React.useState(false);
-
-  // Memoize the refs object to prevent unnecessary re-renders
-  const sectionRefs = useMemo(() => ({
-    hero: heroRef,
-    about: aboutRef,
-    projects: projectsRef,
-    interests: interestsRef
-  }), []);
-
-  // Set document title for Home page
   useEffect(() => {
-    document.title = 'Daniel Gordon | Software Engineer (AI Platforms & Solutions)';
+    const mq = window.matchMedia('(min-width: 1080px)');
+    const onChange = (e) => setCinema(e.matches);
+    mq.addEventListener('change', onChange);
+    return () => mq.removeEventListener('change', onChange);
+  }, []);
 
-    // Set meta description
+  useEffect(() => {
+    document.title = 'Daniel Gordon | Software Engineer, Cloud, DevOps & AI Systems';
+
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
-      metaDescription.setAttribute('content', 'Daniel Gordon - Software Engineer (AI Platforms & Solutions). Building scalable AI systems and production-ready infrastructure.');
+      metaDescription.setAttribute(
+        'content',
+        'Daniel Gordon is a software engineer who builds and operates production systems end to end: cloud infrastructure, AI pipelines, and client deployments.'
+      );
     }
   }, []);
 
-  // Animation for sections on scroll
-  useEffect(() => {
-    const isMobile = window.innerWidth <= 768;
-
-    const observerOptions = {
-      threshold: isMobile ? [0, 0.05, 0.1] : [0, 0.1, 0.2], // Even more sensitive on mobile
-      rootMargin: isMobile ? '0px 0px -20px 0px' : '0px 0px -50px 0px' // Less aggressive margin for mobile
-    };
-
-    const observerCallback = (entries) => {
-      entries.forEach(entry => {
-        // More sensitive triggering - activate when element enters viewport
-        if (entry.isIntersecting && entry.intersectionRatio >= (isMobile ? 0.05 : 0.1)) {
-          entry.target.classList.add('animate-in');
-        }
-      });
-    };
-
-    const observer = new IntersectionObserver(observerCallback, observerOptions);
-
-    // Add a timeout fallback for mobile devices
-    const fallbackTimeout = setTimeout(() => {
-      Object.values(sectionRefs).forEach(ref => {
-        if (ref.current && !ref.current.classList.contains('animate-in')) {
-          const rect = ref.current.getBoundingClientRect();
-          // If section is anywhere near the viewport, animate it
-          if (rect.top < window.innerHeight * 1.2) {
-            ref.current.classList.add('animate-in');
-          }
-        }
-      });
-    }, 1000);
-
-    Object.values(sectionRefs).forEach(ref => {
-      if (ref.current) {
-        observer.observe(ref.current);
-      }
-    });
-
-    return () => {
-      clearTimeout(fallbackTimeout);
-      Object.values(sectionRefs).forEach(ref => {
-        if (ref.current) {
-          observer.unobserve(ref.current);
-        }
-      });
-    };
-  }, [sectionRefs]);
-
   return (
     <div className="home-container">
-      {/* Hero Section */}
-      <section className="hero-section" ref={sectionRefs.hero}>
-        <img src={require('../images/DG_logo.png')} alt="DG Logo" className="hero-logo" />
-        <div className="hero-content">
-          <div className="greeting-wrapper">
-            <TypingText
-              text="Hello world, my name is"
-              delay={0.5}
-              speed={0.03}
-              className="greeting"
-              onComplete={() => setGreetingComplete(true)}
-              showCursor={!greetingComplete}
-            />
-          </div>
-
-          <h1 className="hero-title">
-            {greetingComplete && (
-              <TypingText
-                text="Daniel Gordon."
-                delay={0}
-                speed={0.05}
-                onComplete={() => setNameComplete(true)}
-                showCursor={!nameComplete}
-              />
-            )}
+      {/* Hero */}
+      {cinema ? (
+        <section className="hero-cinema">
+          <h1 className="sr-only">
+            Daniel Gordon, Software Engineer: Cloud, DevOps and AI Systems
           </h1>
-
+          <HeroMonitor variant="cinema" />
+          <div className="hero-cinema-fade" />
           <motion.div
-            className="intro-section"
-            initial={{ opacity: 0, y: 30 }}
+            className="hero-cinema-overlay"
+            initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.7, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
           >
-            <h2 className="hero-role">
+            <div className="hero-status">
+              <span className="status-prompt">$</span>
               <TypingText
-                text="Software Engineer"
-                delay={1.5}
-                speed={0.04}
-                showCursor={false}
-              />
-              <br />
-              <span style={{ color: 'var(--accent-primary)' }}>
-                <TypingText
-                  text="(AI Platforms & Solutions)"
-                  delay={1.5}
-                  speed={0.04}
-                  showCursor={false}
-                />
-              </span>
-            </h2>
-            <div className="hero-description">
-              <TypingText
-                text="I build scalable AI systems and production-ready infrastructure. Specializing in bridging the gap between machine learning models and real-world product constraints."
-                delay={1.5}
-                speed={0.02}
+                text=" now: DevOps / Cloud Engineering Intern @ WellnessLiving | open to FDE, SWE & DevOps roles"
+                delay={1.2}
+                speed={0.018}
                 showCursor={true}
               />
             </div>
             <div className="hero-cta">
-              <Link to="/projects" className="magnetic-btn">
-                View featured projects
-              </Link>
+              <Link to="/projects" className="btn btn-primary">View projects</Link>
+              <Link to="/resume" className="btn">Resume</Link>
             </div>
           </motion.div>
+        </section>
+      ) : (
+        <section className="hero-section">
+          <motion.div className="hero-content" variants={heroStagger} initial="hidden" animate="visible">
+            <motion.span className="hero-eyebrow" variants={heroItem}>
+              {'// hello, I\'m'}
+            </motion.span>
+
+            <motion.h1 className="hero-title silver-text" variants={heroItem}>
+              Daniel Gordon
+            </motion.h1>
+
+            <motion.div className="hero-sector" variants={heroItem}>
+              <span className="hero-role">Software Engineer</span>
+              <span className="hero-sector-line">CLOUD&nbsp;//&nbsp;DEVOPS&nbsp;//&nbsp;AI SYSTEMS</span>
+            </motion.div>
+
+            {/* Static (not opacity-gated): this is the page's LCP element on mobile */}
+            <p className="hero-description">
+              I build and operate production systems end to end: cloud infrastructure, AI pipelines,
+              and client deployments. I work directly with stakeholders to scope, ship, and own
+              outcomes in ambiguous environments.
+            </p>
+
+            <motion.div className="hero-status" variants={heroItem}>
+              <span className="status-prompt">$</span>
+              <TypingText
+                text=" now: DevOps / Cloud Engineering Intern @ WellnessLiving | open to FDE, SWE & DevOps roles"
+                delay={1.0}
+                speed={0.018}
+                showCursor={true}
+              />
+            </motion.div>
+
+            <motion.div className="hero-cta" variants={heroItem}>
+              <Link to="/projects" className="btn btn-primary">View projects</Link>
+              <Link to="/resume" className="btn">Resume</Link>
+            </motion.div>
+          </motion.div>
+
+          <motion.div
+            className="hero-monitor-wrap"
+            initial={{ opacity: 0, x: 32 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <HeroMonitor variant="panel" />
+          </motion.div>
+        </section>
+      )}
+
+      {/* Telemetry gauges */}
+      <motion.section className="telemetry-section" {...sectionReveal}>
+        <div className="section-header">
+          <span className="section-marker">sector 01 // telemetry</span>
+          <h2 className="section-title">The numbers are real</h2>
+          <p className="section-sub">Pulled straight from production work. Nothing padded.</p>
+        </div>
+        <div className="gauge-grid">
+          {gauges.map((gauge, i) => (
+            <StatGauge key={i} {...gauge} />
+          ))}
+        </div>
+      </motion.section>
+
+      {/* Selected work */}
+      <motion.section className="projects-section" {...sectionReveal}>
+        <div className="section-header">
+          <span className="section-marker">sector 02 // selected work</span>
+          <h2 className="section-title">Built and shipped</h2>
         </div>
 
-        <motion.div
-          className="scroll-down"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 2, duration: 1 }}
-        >
-          <div className="mouse">
-            <div className="wheel"></div>
-          </div>
-          <div className="arrow-scroll">
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-        </motion.div>
-      </section>
+        <div className="featured-grid">
+          {featuredProjects.map(project => (
+            <ProjectCard3D key={project.index} {...project} />
+          ))}
+        </div>
 
-      {/* About Section */}
-      <section className="about-section" ref={sectionRefs.about}>
+        <div className="more-projects">
+          <Link to="/projects" className="btn">All projects</Link>
+        </div>
+      </motion.section>
+
+      {/* Mission Control */}
+      <motion.section className="mission-section" {...sectionReveal}>
         <div className="section-header">
-          <h2 className="section-title">About Me</h2>
-          <div className="section-line"></div>
+          <span className="section-marker">sector 03 // mission control</span>
+          <h2 className="section-title">Built like I operate</h2>
+          <p className="section-sub">
+            A live look at how this site itself is instrumented, shipped, and where my systems run.
+          </p>
+        </div>
+        <MissionControl />
+      </motion.section>
+
+      {/* About */}
+      <motion.section className="about-section" {...sectionReveal}>
+        <div className="section-header">
+          <span className="section-marker">sector 04 // driver profile</span>
+          <h2 className="section-title">From cloud fleets to supercomputers</h2>
         </div>
 
         <div className="about-content">
           <div className="about-text">
             <p>
-              I am a Software Engineer focused on <strong>AI Platforms & Solutions</strong>.
-              My work centers on designing and implementing the systems that make AI useful, reliable, and scalable in production environments.
+              I'm a 4th-year Computer Science and Management student at{' '}
+              <strong>Wilfrid Laurier University</strong>, graduating December 2026. These days I'm
+              a DevOps / Cloud Engineering Intern at <strong>WellnessLiving</strong>, running cost
+              optimization and fleet hardening across a 17-account AWS organization. Real
+              production, real client sites, real consequences when you get it wrong.
             </p>
             <p>
-              I don't just train models; I build the end-to-end infrastructure that serves them.
-              From architecting real-time inference pipelines to optimizing backend performance for high-load applications,
-              I bridge the critical gap between research-grade ML and robust, deployable software.
+              Before that I was the technical lead on a live AI platform at MCG, did solutions
+              architecture at LaunchPath, and my research solver currently runs on Canada's national
+              supercomputers. On the side I co-founded <strong>TellTours</strong>, an AI tour guide
+              app now in pre-release.
             </p>
             <p>
-              Whether integrating LLMs into complex workflows or engineering custom solutions for unique business needs,
-              I bring a systems-first approach to every challenge.
+              The thread through all of it: I like owning systems end to end. Scope it with the
+              people who need it, build it, deploy it, and answer for it in production. That's why
+              I'm targeting <strong>Forward Deployed Engineer</strong> roles, and why SWE, DevOps,
+              and AI platform work all feel like home. Open to Toronto and the Bay Area.
             </p>
 
-            <p>Here are a few technologies I work with:</p>
+            <p className="tech-list-intro">Daily drivers:</p>
             <ul className="skills-list">
-              <li>Python & Typescript</li>
-              <li>React & Next.js</li>
-              <li>FastAPI & Node.js</li>
-              <li>Docker & AWS</li>
-              <li>LLM Orchestration (LangChain)</li>
-              <li>System Architecture</li>
+              <li>Python &amp; TypeScript</li>
+              <li>AWS &amp; GCP</li>
+              <li>C++ &amp; HPC (SLURM)</li>
+              <li>React &amp; React Native</li>
+              <li>Node.js &amp; Electron</li>
+              <li>LLM integration (Gemini, Whisper, OpenAI)</li>
             </ul>
           </div>
           <div className="about-image-container">
-            <div className="about-image-wrapper">
-              <img src={profilePhoto} alt="Profile" className="about-image" />
+            <div className="about-image-wrapper hud-corners">
+              <img src={profilePhoto} alt="Daniel Gordon" className="about-image" />
+              <span className="about-image-caption">GORDON / D.</span>
             </div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
-      {/* Featured Projects Section */}
-      <section className="projects-section" ref={sectionRefs.projects}>
+      {/* Off track */}
+      <motion.section className="interests-section" {...sectionReveal}>
         <div className="section-header">
-          <h2 className="section-title">Some Things I've Built</h2>
-          <div className="section-line"></div>
+          <span className="section-marker">sector 05 // off track</span>
+          <h2 className="section-title">When the laptop closes</h2>
         </div>
 
-        <div className="projects-horizontal-grid">
-          {/* WhatsApp Summarizer */}
-          <div className="project-card-horizontal">
-            <h3 className="project-title">AI-Powered WhatsApp Summarizer</h3>
-            <div className="project-description">
-              <p>
-                Built an AI summarization system for high-volume WhatsApp chat threads, producing daily digests for users. Designed backend services and APIs, implemented validation and reliability checks, and optimized summarization performance for usability and response time.
-              </p>
+        <div className="interests-grid">
+          {interests.map((interest, i) => (
+            <div className="interest-card" key={i}>
+              <div className="interest-icon">{interest.icon}</div>
+              <div className="interest-body">
+                <h3>{interest.title}</h3>
+                <p>{interest.text}</p>
+              </div>
             </div>
-            <ul className="project-tech-list">
-              <li>Node.js</li>
-              <li>WhatsApp Web</li>
-              <li>Gemini AI</li>
-              <li>RESTful APIs</li>
-              <li>Express</li>
-            </ul>
-            <div className="project-links">
-              <a href="https://github.com/DanielGord0n" target="_blank" rel="noopener noreferrer" className="project-link-button">
-                <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-                </svg>
-                <span>View on GitHub</span>
-              </a>
-            </div>
-          </div>
-
-          {/* LaunchPath Biotech Architecture */}
-          <div className="project-card-horizontal">
-            <h3 className="project-title">LaunchPath Biotech Architecture</h3>
-            <div className="project-description">
-              <p>
-                Owned solution architecture for a biosensor analytics platform: translated requirements into C4 diagrams and technical specs, coordinated Agile delivery, and built a React Native frontend integrated with Python microservices for real-time data ingestion and reporting.
-              </p>
-            </div>
-            <ul className="project-tech-list">
-              <li>React Native</li>
-              <li>Python</li>
-              <li>Microservices</li>
-              <li>C4 Architecture</li>
-            </ul>
-            <div className="project-links">
-              <a href="https://github.com/DanielGord0n/aptamer_therapeutic" target="_blank" rel="noopener noreferrer" className="project-link-button">
-                <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-                </svg>
-                <span>View on GitHub</span>
-              </a>
-            </div>
-          </div>
-
-          {/* AI-Powered 3D Avatar Platform */}
-          <div className="project-card-horizontal">
-            <h3 className="project-title">AI-Powered 3D Avatar Platform</h3>
-            <div className="project-description">
-              <p>
-                Refactored a Python/JavaScript lip-sync ML pipeline for 3D avatars in Unity. Built AI workflows with speech-to-text and LLM orchestration, benchmarked model tradeoffs, and exposed capabilities as REST APIs for real-time browser-based avatar animation. Reduced inference latency by ~25%.
-              </p>
-            </div>
-            <ul className="project-tech-list">
-              <li>Python</li>
-              <li>Unity</li>
-              <li>OpenAI Whisper</li>
-              <li>LangChain</li>
-              <li>Next.js</li>
-            </ul>
-            <div className="project-links">
-              <a href="https://mycleanmesh.com/" target="_blank" rel="noopener noreferrer" className="project-link-button">
-                <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                  <polyline points="15 3 21 3 21 9"></polyline>
-                  <line x1="10" y1="14" x2="21" y2="3"></line>
-                </svg>
-                <span>Live Demo</span>
-              </a>
-            </div>
-          </div>
+          ))}
         </div>
+      </motion.section>
 
-        <div className="more-projects">
-          <Link to="/projects" className="btn">View All Projects</Link>
-        </div>
-      </section >
-
-      {/* Personal Interests Section */}
-      < section className="interests-section" ref={sectionRefs.interests} >
-        <div className="section-header">
-          <h2 className="section-title">Beyond Coding</h2>
-          <div className="section-line"></div>
-        </div>
-
-        <div className="interests-container">
-          <div className="interests-content">
-            <p>
-              When I'm not coding, you'll find me engaged in various activities that fuel my creativity and keep me balanced. I'm a firm believer that diverse interests contribute to becoming a better developer.
-            </p>
-
-            <div className="interests-grid">
-              <div className="interest-card">
-                <div className="interest-icon">
-                  <FaCar size={24} />
-                </div>
-                <h3>Cars</h3>
-                <p>I'm an automotive enthusiast who loves everything from classic cars to modern engineering marvels. I enjoy attending car shows and learning about the latest automotive technology.</p>
-              </div>
-
-              <div className="interest-card">
-                <div className="interest-icon">
-                  <FaPlaneDeparture size={24} />
-                </div>
-                <h3>Traveling</h3>
-                <p>Exploring new cultures, landscapes, and cuisines is one of my greatest passions. Immersing myself in different environments helps me gain fresh perspectives that I bring back to my work.</p>
-              </div>
-
-              <div className="interest-card">
-                <div className="interest-icon">
-                  <FaBrain size={24} />
-                </div>
-                <h3>Brain Games</h3>
-                <p>I challenge myself daily with chess, crosswords, and Wordle. These mental exercises sharpen my problem-solving skills and keep my analytical thinking fresh for coding challenges.</p>
-              </div>
-
-              <div className="interest-card">
-                <div className="interest-icon">
-                  <FaSnowboarding size={24} />
-                </div>
-                <h3>Snowboarding</h3>
-                <p>Hitting the slopes during winter is where I find both thrill and tranquility. The combination of speed, precision, and being surrounded by nature provides a perfect counterbalance to my technical work.</p>
-              </div>
-
-              <div className="interest-card">
-                <div className="interest-icon">
-                  <FaFistRaised size={24} />
-                </div>
-                <h3>Mixed Martial Arts</h3>
-                <p>Having trained in seven different martial arts disciplines, I've gained not just physical skills but also mental discipline, resilience, and a strategic approach to challenges that applies to both combat and code.</p>
-              </div>
-
-              <div className="interest-card">
-                <div className="interest-icon">
-                  <FaDumbbell size={24} />
-                </div>
-                <h3>Gym & Calisthenics</h3>
-                <p>My fitness regimen combines weight training and bodyweight exercises to build functional strength. This discipline enhances my focus and productivity, essential qualities for tackling complex coding projects.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="skills-cta">
-          <Link to="/skills" className="btn">View My Skills</Link>
-        </div>
-      </section >
-
-      {/* Contact CTA Section */}
-      < section className="contact-cta" >
-        <h2>Get In Touch</h2>
+      {/* Contact CTA */}
+      <motion.section className="contact-cta" {...sectionReveal}>
+        <span className="section-marker">sector 06 // contact</span>
+        <h2 className="silver-text">Let's build something.</h2>
         <p>
-          Whether you have a project in mind, a question about my work, or just want to connect,
-          I'm always open to new opportunities and conversations. Let's build something amazing together!
+          A role, a project, or a question about my work. I'm always up for the conversation.
         </p>
-        <Link to="/contact" className="btn btn-primary">Say Hello</Link>
-      </section >
-    </div >
+        <Link to="/contact" className="btn btn-primary">Get in touch</Link>
+      </motion.section>
+    </div>
   );
 };
 
